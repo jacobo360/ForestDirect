@@ -12,6 +12,6 @@ import retrofit2.http.Query;
  */
 public interface RestAPIService {
 
-    @GET("/getCities")
+    @GET("flights/getCities")
     Call<List<LocationModel>> getLocations(@Query("q") String name);
 }

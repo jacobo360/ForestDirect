@@ -3,9 +3,9 @@
 
     <!-- Fonts -->
     <string-array name="fonts">
-        <item>Fonts/Roboto/Roboto-Regular.ttf</item>
-        <item>Fonts/Roboto/Roboto-Medium.ttf</item>
-        <item>Fonts/Roboto/Roboto-Black.ttf</item>
+        <item>Roboto/Roboto-Regular.ttf</item>
+        <item>Roboto/Roboto-Medium.ttf</item>
+        <item>Roboto/Roboto-Black.ttf</item>
     </string-array>
 
     <!-- Adapter -->

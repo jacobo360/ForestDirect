@@ -13,7 +13,7 @@ public class Client {
     /**
      * Attributes
      */
-    private static final String host = "https://forestdirect.com/flights/";
+    private static final String host = "https://forestdirect.com/";
     private static RestAPIService restAPIService = null;
 
 
