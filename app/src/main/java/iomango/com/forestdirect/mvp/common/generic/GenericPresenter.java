@@ -81,7 +81,7 @@ public abstract class GenericPresenter<RPM, PMM, M extends ModelMethods<RPM>> {
      * @param view active RequiredFragmentMethods
      */
     public void onConfigurationChange(MVP.RequiredFragmentMethods view) {
-        // Implemented on concrete fragment if needed
+        // Implemented on concrete presenter if needed
     }
 
     /**
@@ -100,7 +100,7 @@ public abstract class GenericPresenter<RPM, PMM, M extends ModelMethods<RPM>> {
      * @param isChangingConfigurations True if a runtime configuration triggered the onDestroy call.
      */
     public void onDestroy(boolean isChangingConfigurations) {
-        // Implemented on concrete fragment if needed
+        // Implemented on concrete presenter if needed
     }
 
     /**
@@ -110,7 +110,18 @@ public abstract class GenericPresenter<RPM, PMM, M extends ModelMethods<RPM>> {
      * @param viewId view Id
      */
     public void handleClick(int viewId) {
-        // Implemented on concrete fragment if needed
+        // Implemented on concrete presenter if needed
     }
+
+    /**
+     * Hook method dispatched by an activity or fragment passing in the data model associated.
+     * The presenter will perform the appropriate network call.
+     *
+     * @param model data model (POJO class)
+     */
+    public <T> void executeNetworkRequest(T model) {
+        // Implemented on concrete presenter if needed
+    }
+
 }
 

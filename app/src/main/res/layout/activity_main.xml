@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <iomango.com.forestdirect.mvp.view.custom.CustomEditText
+        android:id="@+id/search_edit_text"
+        android:layout_marginTop="25dp"
+        android:hint="Insert text here"
+        style="@style/EditTextStyle"/>
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recycler_location_list"
+        android:layout_marginTop="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:scrollbars="vertical"/>
+
+</LinearLayout>

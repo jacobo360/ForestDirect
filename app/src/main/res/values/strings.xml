@@ -7,4 +7,8 @@
         <item>Fonts/Roboto/Roboto-Medium.ttf</item>
         <item>Fonts/Roboto/Roboto-Black.ttf</item>
     </string-array>
+
+    <!-- Adapter -->
+    <string name="code_name">NYC</string>
+    <string name="location_name">New York, United States</string>
 </resources>

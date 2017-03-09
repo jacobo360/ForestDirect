@@ -309,4 +309,12 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
     }
 
     // TODO: add method to show snack bar instead o a toast
+
+    /**
+     * Update activity view content with new {@param data}
+     */
+    @Override
+    public <T> void updateView(T data) {
+        // Implemented on concrete fragment / activity if needed
+    }
 }

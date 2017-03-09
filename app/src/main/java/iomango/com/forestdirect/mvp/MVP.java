@@ -100,6 +100,11 @@ public interface MVP {
          * @param length the length of the toast (short, long, etc)
          */
         void displayToast(String message, int length);
+
+        /**
+         * Update activity view content with new {@param data}
+         */
+        <T> void updateView(T data);
     }
 
     interface RequiredFragmentMethods {
@@ -124,6 +129,8 @@ public interface MVP {
             extends PresenterMethods<RequiredActivityMethods> {
 
         void handleClick(int viewId);
+
+        <T> void executeNetworkRequest(T model);
 
         <PMM> PMM getModel();
     }

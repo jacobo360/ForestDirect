@@ -1,0 +1,80 @@
+package iomango.com.forestdirect.mvp.view.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
+
+/**
+ * Created by clelia_arch on 3/8/17
+ */
+public class LocationListAdapter
+        extends RecyclerView.Adapter<LocationListAdapter.ViewHolder> {
+
+    /**
+     * Attributes
+     */
+    private Context context;
+    private List<LocationModel> locations;
+
+
+    public LocationListAdapter(Context context, List<LocationModel> locations) {
+        this.context = context;
+        this.locations = locations;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View convertView = inflater.inflate(R.layout.location_list_item, parent, false);
+        return new ViewHolder(convertView);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.codeTextView.setText(locations.get(position).getCode());
+        holder.locationTextView.setText(locations.get(position).getCity()
+                + ", " + locations.get(position).getCountry());
+    }
+
+    @Override
+    public int getItemCount() {
+        return locations.size();
+    }
+
+    /**
+     * View holder class for list item
+     */
+    class ViewHolder
+            extends RecyclerView.ViewHolder
+            implements View.OnClickListener {
+
+        /**
+         * Attributes
+         */
+        CustomTextView codeTextView;
+        CustomTextView locationTextView;
+
+
+        ViewHolder(View view) {
+            super(view);
+            codeTextView = (CustomTextView)view.findViewById(R.id.code_text_view);
+            locationTextView = (CustomTextView)view.findViewById(R.id.location_text_view);
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            /*if (listener != null)
+                listener.onClick(locations.get(position));*/
+        }
+    }
+}

@@ -8,4 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- TextView General -->
+    <style name="TextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="typeface">roboto_regular</item>
+    </style>
+
+    <!-- TextView Subheading -->
+    <style name="TextViewStyle.Subheading">
+        <item name="android:textSize">16sp</item>
+        <item name="typeface">roboto_medium</item>
+    </style>
+
+    <!-- EditText -->
+    <style name="EditTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="android:background">@drawable/bg_edit_text</item>
+        <item name="android:singleLine">true</item>
+        <item name="typeface">roboto_regular</item>
+    </style>
+
 </resources>
