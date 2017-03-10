@@ -11,7 +11,7 @@ import iomango.com.forestdirect.mvp.model.GlobalModel;
 /**
  * Created by Clelia López on 03/10/2015
  */
-public class TemplatePresenterActivity
+public class MainActivityPresenter
         extends GenericPresenter<MVP.RequiredPresenterMethods, MVP.ProvidedModelMethods, GlobalModel>
         implements MVP.ProvidedPresenterMethodsActivity, MVP.RequiredPresenterMethods {
 

@@ -17,4 +17,9 @@
     <declare-styleable name="CustomAutoComplete">
         <attr name="typeface"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomTabLayout">
+        <attr name="typeface"/>
+    </declare-styleable>
+
 </resources>

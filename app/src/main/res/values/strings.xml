@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ForestDirect</string>
+    <string name="app_name">Forest Direct</string>
 
     <!-- Fonts -->
     <string-array name="fonts">
@@ -15,4 +15,16 @@
     <!-- All -->
     <string name="search_hint">Type to search</string>
     <string name="image">Image</string>
+
+    <!-- Empty Fragment -->
+    <string name="empty_label">Not content yet</string>
+
+    <!-- Flight Fragment -->
+    <string name="flight_label">Flight</string>
+
+    <!-- Hotels Fragment -->
+    <string name="hotel_label">Hotels</string>
+
+
+
 </resources>

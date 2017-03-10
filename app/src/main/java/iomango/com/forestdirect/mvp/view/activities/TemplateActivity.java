@@ -9,7 +9,7 @@ import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.presenter.TemplatePresenterActivity;
 
 /**
- * Created by Clelia López on 08/12/2015
+ * Created by Clelia López on 03/10/2016
  */
 public class TemplateActivity
         extends GenericActivity<MVP.RequiredActivityMethods, MVP.ProvidedPresenterMethodsActivity, TemplatePresenterActivity>
@@ -53,17 +53,13 @@ public class TemplateActivity
          */
     }
 
-    @Override
-    public void onClick(View view) {
-        forwardClick(view);
-    }
-
     /**
      * Called when the user clicks a button to perform some action
      *
      * @param view Indicates the view component pressed by the user
      */
-    public void forwardClick(View view) {
+    @Override
+    public void onClick(View view) {
         getPresenter().handleClick(view.getId());
     }
 }

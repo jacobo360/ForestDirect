@@ -4,7 +4,7 @@ package iomango.com.forestdirect.mvp.model;
  * Created by clelia_arch on 3/8/17
  */
 
-public class MainActivityModel {
+public class SearchActivityModel {
 
     /**
      * Attributes
@@ -12,7 +12,7 @@ public class MainActivityModel {
     private String location;
 
 
-    public MainActivityModel(String location) {
+    public SearchActivityModel(String location) {
         this.location = location.trim();
     }
 

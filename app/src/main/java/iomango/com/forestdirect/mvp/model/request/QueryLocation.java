@@ -4,7 +4,7 @@ import java.util.List;
 
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
-import iomango.com.forestdirect.mvp.model.MainActivityModel;
+import iomango.com.forestdirect.mvp.model.SearchActivityModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
@@ -36,7 +36,7 @@ public class QueryLocation<M>
     @Override
     public void performNetworkRequest() {
         Call<List<LocationModel>> call = Client.getRestAPIService()
-                .getLocations(((MainActivityModel)model).getLocation());
+                .getLocations(((SearchActivityModel)model).getLocation());
 
         call.enqueue(new Callback<List<LocationModel>>() {
             @Override

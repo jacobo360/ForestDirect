@@ -13,7 +13,8 @@ import java.util.List;
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
-import iomango.com.forestdirect.mvp.model.MainActivityModel;
+import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
+import iomango.com.forestdirect.mvp.model.SearchActivityModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.presenter.SearchActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.LocationListAdapter;
@@ -43,7 +44,7 @@ public class SearchActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
 
         // Instantiate the presenter
         super.onCreate(SearchActivityPresenter.class, this);
@@ -60,6 +61,10 @@ public class SearchActivity
         recyclerView = (RecyclerView) findViewById(R.id.recycler_location_list);
         ImageButton clearImageButton = (ImageButton) findViewById(R.id.clear_image_button);
         ImageButton backImageButton = (ImageButton) findViewById(R.id.back_image_button);
+
+        // Tinting icons
+        DrawablesTools.tintDrawable(this, R.drawable.ic_clear_black, R.color.grey_500);
+        DrawablesTools.tintDrawable(this, R.drawable.ic_arrow_back_black, R.color.grey_500);
 
         setDialog(findViewById(R.id.dialog));
 
@@ -88,7 +93,7 @@ public class SearchActivity
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() > 0)
-                    getPresenter().executeNetworkRequest(new MainActivityModel(editable.toString()));
+                    getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString()));
                 else
                     adapter.clear();
             }
