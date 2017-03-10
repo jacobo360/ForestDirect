@@ -3,18 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="7dp"
+    android:layout_marginBottom="7dp"
     android:orientation="horizontal">
+
+    <android.support.v4.widget.Space
+        android:id="@+id/space"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
     <iomango.com.forestdirect.mvp.view.custom.CustomTextView
         android:id="@+id/code_text_view"
-        android:layout_weight="1"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+
         android:text="@string/code_name"
         style="@style/TextViewStyle.Subheading"/>
 
     <iomango.com.forestdirect.mvp.view.custom.CustomTextView
         android:id="@+id/location_text_view"
-        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="start"
+        android:maxLines="3"
         android:text="@string/location_name"
         style="@style/TextViewStyle.Subheading"/>
 </LinearLayout>

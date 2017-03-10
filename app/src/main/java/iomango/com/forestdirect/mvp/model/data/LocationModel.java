@@ -13,8 +13,8 @@ public class LocationModel {
     private String code;
     private String country;
     private String municipality;
-    private String isChild;
-    private String hasChild;
+    private boolean isChild;
+    private boolean hasChild;
 
 
     public String getCity() {
@@ -33,11 +33,11 @@ public class LocationModel {
         return municipality;
     }
 
-    public String getIsChild() {
+    public boolean getIsChild() {
         return isChild;
     }
 
-    public String getHasChild() {
+    public boolean getHasChild() {
         return hasChild;
     }
 }

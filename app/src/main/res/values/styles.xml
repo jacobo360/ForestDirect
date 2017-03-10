@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,18 +21,17 @@
     <!-- TextView Subheading -->
     <style name="TextViewStyle.Subheading">
         <item name="android:textSize">16sp</item>
-        <item name="typeface">roboto_medium</item>
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="typeface">roboto_regular</item>
     </style>
 
     <!-- EditText -->
     <style name="EditTextStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">35dp</item>
-        <item name="android:layout_marginLeft">30dp</item>
-        <item name="android:layout_marginRight">30dp</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textColorHint">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="android:textColorHint">@color/grey_500</item>
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:singleLine">true</item>
         <item name="typeface">roboto_regular</item>

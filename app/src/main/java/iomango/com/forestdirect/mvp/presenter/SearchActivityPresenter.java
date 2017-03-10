@@ -6,6 +6,7 @@ import java.lang.ref.WeakReference;
 
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericPresenter;
+import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
@@ -14,7 +15,7 @@ import iomango.com.forestdirect.mvp.model.request.QueryLocation;
 /**
  * Created by Clelia López on 12/9/2015
  */
-public class MainActivityPresenter
+public class SearchActivityPresenter
         extends GenericPresenter<MVP.RequiredPresenterMethods, MVP.ProvidedModelMethods, GlobalModel>
         implements MVP.ProvidedPresenterMethodsActivity, MVP.RequiredPresenterMethods, OnNetworkResponseListener {
 
@@ -55,6 +56,7 @@ public class MainActivityPresenter
     public <M> void executeNetworkRequest(M model) {
         NetworkRequest request = new QueryLocation<>(model, this);
         request.performNetworkRequest();
+        view.get().displayDialog(DialogType.TIME_UNDETERMINED);
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +67,7 @@ public class MainActivityPresenter
 
     @Override
     public <T> void processResponse(T response) {
+        view.get().dismissDialog(DialogType.TIME_UNDETERMINED);
         view.get().updateView(response);
     }
 }

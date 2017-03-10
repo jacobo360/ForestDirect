@@ -5,11 +5,7 @@ package iomango.com.forestdirect.mvp.common.global;
  */
 public class Enums {
 
-    public enum NodeType {MODEL, VIDEO, ALPHA_VIDEO, IMAGE};
-
-    public enum Axis {X,Y,Z}
-
-    public enum ScreenUnit { PX, DP }
+    public enum DialogType { TIME_DETERMINED, TIME_UNDETERMINED, MESSAGE}
 
     public enum CustomTypeface {
         ROBOTO_REGULAR(0),

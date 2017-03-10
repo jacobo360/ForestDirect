@@ -6,16 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.List;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
-import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.model.MainActivityModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
-import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
+import iomango.com.forestdirect.mvp.presenter.SearchActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.LocationListAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
@@ -23,17 +23,16 @@ import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
 /**
  * Created by Clelia López on 08/12/2015
  */
-public class MainActivity
-        extends GenericActivity<MVP.RequiredActivityMethods, MVP.ProvidedPresenterMethodsActivity, MainActivityPresenter>
+public class SearchActivity
+        extends GenericActivity<MVP.RequiredActivityMethods, MVP.ProvidedPresenterMethodsActivity, SearchActivityPresenter>
         implements MVP.RequiredActivityMethods, View.OnClickListener {
 
     /**
      * Attributes
      */
-    private final String TAG = getClass().getSimpleName();
-    private final Logger logger = new Logger(TAG);
     private CustomEditText editText;
     private RecyclerView recyclerView;
+    LocationListAdapter adapter;
 
 
     /**
@@ -47,7 +46,7 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         // Instantiate the presenter
-        super.onCreate(MainActivityPresenter.class, this);
+        super.onCreate(SearchActivityPresenter.class, this);
 
         // Initialize all view components defined in the activity's layout
         initializeViews();
@@ -59,6 +58,14 @@ public class MainActivity
     private void initializeViews() {
         editText = (CustomEditText) findViewById(R.id.search_edit_text);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_location_list);
+        ImageButton clearImageButton = (ImageButton) findViewById(R.id.clear_image_button);
+        ImageButton backImageButton = (ImageButton) findViewById(R.id.back_image_button);
+
+        setDialog(findViewById(R.id.dialog));
+
+        // Setting listeners
+        clearImageButton.setOnClickListener(this);
+        backImageButton.setOnClickListener(this);
 
         // Recycler set up
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -80,7 +87,10 @@ public class MainActivity
 
             @Override
             public void afterTextChanged(Editable editable) {
-                getPresenter().executeNetworkRequest(new MainActivityModel(editable.toString()));
+                if (editable.toString().length() > 0)
+                    getPresenter().executeNetworkRequest(new MainActivityModel(editable.toString()));
+                else
+                    adapter.clear();
             }
         });
     }
@@ -92,13 +102,21 @@ public class MainActivity
      */
     @Override
     public void onClick(View view) {
-        getPresenter().handleClick(view.getId());
+        switch (view.getId()) {
+            case R.id.clear_image_button:
+                editText.setText("");
+                break;
+            case R.id.back_image_button:
+                finish();
+                break;
+            default:
+                getPresenter().handleClick(view.getId());
+        }
     }
 
     @Override
     public <T> void updateView(T data) {
-        // Adapter set up
-        LocationListAdapter adapter = new LocationListAdapter(this, (List<LocationModel>)data);
+        adapter = new LocationListAdapter(this, (List<LocationModel>)data);
         // adapter.setPortfolioListItemListener(this);
         recyclerView.setAdapter(adapter);
     }

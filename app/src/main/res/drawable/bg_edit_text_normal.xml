@@ -10,9 +10,9 @@
         </shape>
     </item>
 
-    <item android:bottom="1.5dp" >
+    <item android:bottom="1dp" >
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 

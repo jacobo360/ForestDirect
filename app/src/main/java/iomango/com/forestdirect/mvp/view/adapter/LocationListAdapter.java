@@ -1,6 +1,7 @@
 package iomango.com.forestdirect.mvp.view.adapter;
 
 import android.content.Context;
+import android.support.v4.widget.Space;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,11 +43,20 @@ public class LocationListAdapter
         holder.codeTextView.setText(locations.get(position).getCode());
         holder.locationTextView.setText(locations.get(position).getCity()
                 + ", " + locations.get(position).getCountry());
+
+        if (locations.get(position).getIsChild())
+            holder.space.setVisibility(View.VISIBLE);
     }
 
     @Override
     public int getItemCount() {
         return locations.size();
+    }
+
+    public void clear() {
+        int size = locations.size();
+        locations.clear();
+        notifyItemRangeRemoved(0, size);
     }
 
     /**
@@ -61,12 +71,14 @@ public class LocationListAdapter
          */
         CustomTextView codeTextView;
         CustomTextView locationTextView;
+        Space space;
 
 
         ViewHolder(View view) {
             super(view);
             codeTextView = (CustomTextView)view.findViewById(R.id.code_text_view);
             locationTextView = (CustomTextView)view.findViewById(R.id.location_text_view);
+            space = (Space)view.findViewById(R.id.space);
             view.setOnClickListener(this);
         }
 

@@ -6,13 +6,13 @@
         android:left="0dp"
         android:right="0dp">
         <shape>
-            <solid android:color="@color/black" />
+            <solid android:color="@color/colorPrimary" />
         </shape>
     </item>
 
-    <item android:bottom="1.5dp" >
+    <item android:bottom="1dp" >
         <shape>
-            <solid android:color="#ffffff" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 

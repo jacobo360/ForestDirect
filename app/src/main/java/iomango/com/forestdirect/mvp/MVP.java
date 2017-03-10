@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
+import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
 import iomango.com.forestdirect.mvp.common.interfaces.ModelMethods;
 import iomango.com.forestdirect.mvp.common.interfaces.PresenterMethods;
 import iomango.com.forestdirect.mvp.common.managers.RetainedFragmentManager;
@@ -100,6 +101,25 @@ public interface MVP {
          * @param length the length of the toast (short, long, etc)
          */
         void displayToast(String message, int length);
+
+        /**
+         * Sets a custom dialog view to be displayed on request of the fragment
+         */
+        void setDialog(View view);
+
+        /**
+         * Displays dialog with type {@param type}
+         *
+         * @param type chosen type
+         */
+        void displayDialog(DialogType type);
+
+        /**
+         * Dismiss dialog with type {@param type}
+         *
+         * @param type chosen type
+         */
+        void dismissDialog(DialogType type);
 
         /**
          * Update activity view content with new {@param data}

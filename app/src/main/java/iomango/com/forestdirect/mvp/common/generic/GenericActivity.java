@@ -15,10 +15,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.global.Constants;
+import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
 import iomango.com.forestdirect.mvp.common.interfaces.ContextView;
 import iomango.com.forestdirect.mvp.common.interfaces.PresenterMethods;
 import iomango.com.forestdirect.mvp.common.managers.RetainedFragmentManager;
@@ -60,7 +62,7 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
     protected Toolbar toolbar = null;
     protected boolean readPermission = false;
     protected boolean writePermission = false;
-    protected boolean cameraPermission = false;
+    protected View dialog = null;
 
 
     /**
@@ -308,7 +310,48 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
         Toast.makeText(this, message, length).show();
     }
 
-    // TODO: add method to show snack bar instead o a toast
+    /**
+     * Sets a custom dialog view to be displayed on request of the fragment
+     */
+    public void setDialog(View view) {
+        dialog = view;
+    }
+
+    /**
+     * Displays dialog with type {@param type}
+     *
+     * @param type chosen type
+     */
+    public void displayDialog(DialogType type) {
+        switch (type) {
+            case TIME_DETERMINED:
+                break;
+            case TIME_UNDETERMINED:
+                LinearLayout progressBar = (LinearLayout) dialog;
+                progressBar.setVisibility(View.VISIBLE);
+                break;
+            case MESSAGE:
+                break;
+        }
+    }
+
+    /**
+     * Dismiss dialog with type {@param type}
+     *
+     * @param type chosen type
+     */
+    public void dismissDialog(DialogType type) {
+        switch (type) {
+            case TIME_DETERMINED:
+                break;
+            case TIME_UNDETERMINED:
+                LinearLayout progressBar = (LinearLayout) dialog;
+                progressBar.setVisibility(View.GONE);
+                break;
+            case MESSAGE:
+                break;
+        }
+    }
 
     /**
      * Update activity view content with new {@param data}

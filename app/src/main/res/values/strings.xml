@@ -10,5 +10,9 @@
 
     <!-- Adapter -->
     <string name="code_name">NYC</string>
-    <string name="location_name">New York, United States</string>
+    <string name="location_name">Phoenix Regional Airport, United States</string>
+
+    <!-- All -->
+    <string name="search_hint">Type to search</string>
+    <string name="image">Image</string>
 </resources>
