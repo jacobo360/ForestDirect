@@ -12,8 +12,8 @@
     <style name="TextViewStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:gravity">left</item>
         <item name="android:textColor">@color/black</item>
         <item name="typeface">roboto_regular</item>
     </style>
@@ -60,6 +60,11 @@
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:singleLine">true</item>
         <item name="typeface">roboto_regular</item>
+    </style>
+
+    <!-- EditText with Margin -->
+    <style name="EditTextStyle.Margin">
+        <item name="android:layout_marginRight">20dp</item>
     </style>
 
     <!-- Button -->
@@ -109,14 +114,8 @@
     </style>
 
     <style name="MarginStyle">
-        <item name="android:paddingLeft">0dp</item>
-        <!--<item name="android:paddingStart">0dp</item>-->
-        <item name="android:paddingRight">20dp</item>
-        <!--<item name="android:paddingEnd">0dp</item>-->
-        <!--android:paddingLeft="0dp"
-        android:paddingStart="0dp"
-        android:paddingRight="20dp"
-        android:paddingEnd="20dp"-->
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
     </style>
 
 </resources>

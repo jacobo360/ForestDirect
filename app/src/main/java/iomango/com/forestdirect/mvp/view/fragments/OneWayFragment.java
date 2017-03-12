@@ -1,6 +1,5 @@
 package iomango.com.forestdirect.mvp.view.fragments;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -8,9 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.CheckBox;
-import android.widget.DatePicker;
-
-import java.util.Calendar;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
@@ -19,19 +15,19 @@ import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.presenter.TemplatePresenterFragment;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
+import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
 
 /**
  * Created by Clelia López on 03/10/2017
  */
 public class OneWayFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, TemplatePresenterFragment>
-        implements MVP.RequiredFragmentMethods, View.OnClickListener, DatePickerDialog.OnDateSetListener {
+        implements MVP.RequiredFragmentMethods, View.OnClickListener {
 
     /**
      * Attributes
      */
     private NestedScrollView containerLayout;
-    private DatePickerDialog datePickerDialog;
 
 
     /**
@@ -66,7 +62,7 @@ public class OneWayFragment
         // Initializing views
         CustomEditText fromEditText = (CustomEditText) containerLayout.findViewById(R.id.from_edit_text);
         CustomEditText toEditText = (CustomEditText) containerLayout.findViewById(R.id.to_edit_text);
-        CustomEditText dateEditText = (CustomEditText) containerLayout.findViewById(R.id.date_edit_text);
+        DatePickerEditText dateEditText = (DatePickerEditText) containerLayout.findViewById(R.id.date_edit_text);
         CustomEditText kindEditText = (CustomEditText) containerLayout.findViewById(R.id.kind_edit_text);
         CheckBox fromCheckBox = (CheckBox) containerLayout.findViewById(R.id.from_checkbox);
         CheckBox toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
@@ -86,12 +82,6 @@ public class OneWayFragment
         fromCheckBox.setOnClickListener(this);
         toCheckBox.setOnClickListener(this);
         moreOptionsCustomTextView.setOnClickListener(this);
-
-        Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
-        datePickerDialog = new DatePickerDialog(getActivityContext(), this, year, month, day);
     }
 
     /**
@@ -105,9 +95,6 @@ public class OneWayFragment
                 break;
             case R.id.to_edit_text:
                 break;
-            case R.id.date_edit_text:
-                datePickerDialog.show();
-                break;
             case R.id.kind_edit_text:
                 break;
             case R.id.from_checkbox:
@@ -117,10 +104,5 @@ public class OneWayFragment
             case R.id.more_options_link:
                 break;
         }
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
     }
 }

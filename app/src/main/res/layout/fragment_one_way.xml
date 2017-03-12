@@ -14,186 +14,225 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_flight_takeoff"
-                android:contentDescription="@string/image"/>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:orientation="vertical"
-                style="@style/MarginStyle">
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                    android:layout_gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:text="@string/from_label"
                     style="@style/TextViewStyle.Body"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/MarginStyle">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_flight_takeoff"
+                    android:contentDescription="@string/image"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomEditText
                     android:id="@+id/from_edit_text"
                     android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/search_hint"
-                    style="@style/EditTextStyle"/>
+                    style="@style/EditTextStyle.Margin"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <CheckBox
                     android:id="@+id/from_checkbox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="@string/include_airport_label"
                     style="@style/CheckBoxStyle"/>
-            </LinearLayout>
+            </TableRow>
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            style="@style/MarginStyle">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_flight_land"
-                android:contentDescription="@string/image"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:orientation="vertical">
+                android:layout_marginTop="15dp">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                    android:layout_gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:text="@string/to_label"
                     style="@style/TextViewStyle.Body"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_flight_land"
+                    android:contentDescription="@string/image"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomEditText
                     android:id="@+id/to_edit_text"
                     android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/search_hint"
-                    style="@style/EditTextStyle"/>
+                    style="@style/EditTextStyle.Margin"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <CheckBox
                     android:id="@+id/to_checkbox"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="@string/include_airport_label"
                     style="@style/CheckBoxStyle"/>
-            </LinearLayout>
+            </TableRow>
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_event"
-                android:contentDescription="@string/image"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:orientation="vertical"
-                style="@style/MarginStyle">
+                android:layout_marginTop="15dp">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                    android:layout_gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:text="@string/date_label"
                     style="@style/TextViewStyle.Body"/>
+            </TableRow>
 
-                <iomango.com.forestdirect.mvp.view.custom.CustomEditText
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_event"
+                    android:contentDescription="@string/image"/>
+
+                <iomango.com.forestdirect.mvp.view.custom.DatePickerEditText
                     android:id="@+id/date_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/search_hint"
-                    android:editable="false"
-                    style="@style/EditTextStyle"/>
-            </LinearLayout>
+                    style="@style/EditTextStyle.Margin"/>
+            </TableRow>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_filter_outline"
-                android:contentDescription="@string/image"/>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:orientation="vertical"
-                style="@style/MarginStyle">
+                android:layout_marginTop="15dp">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                    android:layout_gravity="start"
+                    android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:text="@string/kind_label"
                     style="@style/TextViewStyle.Body"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1.5"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_filter_outline"
+                    android:contentDescription="@string/image"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomEditText
                     android:id="@+id/kind_edit_text"
                     android:layout_width="match_parent"
+                    android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:hint="@string/search_hint"
-                    style="@style/EditTextStyle"/>
-            </LinearLayout>
+                    style="@style/EditTextStyle.Margin"/>
+            </TableRow>
 
-        </LinearLayout>
+    </TableLayout>
 
-        <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-            android:id="@+id/more_options_link"
-            android:paddingLeft="0dp"
-            android:paddingStart="0dp"
-            android:paddingRight="20dp"
-            android:paddingEnd="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_gravity="end"
-            android:clickable="true"
-            android:text="@string/more_options_label"
-            style="@style/TextViewStyle.Link"/>
+    <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+        android:id="@+id/more_options_link"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="end"
+        android:clickable="true"
+        android:text="@string/more_options_label"
+        style="@style/TextViewStyle.Link"/>
 
-        <iomango.com.forestdirect.mvp.view.custom.CustomButton
-            android:id="@+id/begin_session_button"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="15dp"
-            android:paddingLeft="0dp"
-            android:paddingStart="0dp"
-            android:paddingRight="20dp"
-            android:paddingEnd="20dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/search_label"
-            style="@style/ButtonStyle"/>
+    <iomango.com.forestdirect.mvp.view.custom.CustomButton
+        android:id="@+id/begin_session_button"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/search_label"
+        style="@style/ButtonStyle"/>
 
     </LinearLayout>
 

@@ -3,10 +3,13 @@ package iomango.com.forestdirect.mvp.view.custom;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.common.utilities.FontTools;
 
 
@@ -74,5 +77,25 @@ public class CustomEditText
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), FontTools.getDefaultFontType(context));
         if (typeface != null)
             setTypeface(typeface);
+    }
+
+    /**
+     * Method used to customize the default error icon
+     */
+    public void setError(CharSequence error) {
+        Drawable icon;
+        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_circle_check, R.color.white);
+        if (error == null) {
+            setCompoundDrawables(null, null, null, null);
+            icon = ContextCompat.getDrawable(getContext(), R.drawable.ic_circle_check);
+            icon.setBounds(0, 0, icon.getIntrinsicWidth() - 10, icon.getIntrinsicHeight() - 10);
+            setCompoundDrawables(null, null, icon, null);
+            setError(null, icon);
+        } else {
+            icon = ContextCompat.getDrawable(getContext(), R.drawable.ic_circle_cancel);
+            icon.setBounds(0, 0, icon.getIntrinsicWidth() - 10, icon.getIntrinsicHeight() - 10);
+            setCompoundDrawables(null, null, icon, null);
+            setError(error, icon);
+        }
     }
 }

@@ -34,5 +34,6 @@
     <string name="advanced_options_label">Advanced Options</string>
     <string name="include_airport_label">Include Near Airport</string>
     <string name="search_label">Search</string>
+    <string name="date_error">Date is not valid</string>
 
 </resources>
