@@ -25,6 +25,14 @@
     <!-- Hotels Fragment -->
     <string name="hotel_label">Hotels</string>
 
-
+    <!-- One Way Fragment -->
+    <string name="from_label">From</string>
+    <string name="to_label">To</string>
+    <string name="date_label">Date</string>
+    <string name="kind_label">Kind</string>
+    <string name="more_options_label">More Options</string>
+    <string name="advanced_options_label">Advanced Options</string>
+    <string name="include_airport_label">Include Near Airport</string>
+    <string name="search_label">Search</string>
 
 </resources>

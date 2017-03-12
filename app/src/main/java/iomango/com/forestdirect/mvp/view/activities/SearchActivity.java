@@ -63,8 +63,8 @@ public class SearchActivity
         ImageButton backImageButton = (ImageButton) findViewById(R.id.back_image_button);
 
         // Tinting icons
-        DrawablesTools.tintDrawable(this, R.drawable.ic_clear_black, R.color.grey_500);
-        DrawablesTools.tintDrawable(this, R.drawable.ic_arrow_back_black, R.color.grey_500);
+        DrawablesTools.tintDrawable(this, R.drawable.ic_clear, R.color.grey_500);
+        DrawablesTools.tintDrawable(this, R.drawable.ic_arrow_back, R.color.grey_500);
 
         setDialog(findViewById(R.id.dialog));
 

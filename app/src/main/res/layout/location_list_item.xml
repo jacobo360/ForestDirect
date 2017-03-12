@@ -17,7 +17,6 @@
         android:id="@+id/code_text_view"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-
         android:text="@string/code_name"
         style="@style/TextViewStyle.Subheading"/>
 

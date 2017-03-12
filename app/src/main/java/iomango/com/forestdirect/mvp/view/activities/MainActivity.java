@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
@@ -12,10 +11,10 @@ import java.lang.ref.WeakReference;
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
-import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
+import iomango.com.forestdirect.mvp.view.fragments.OneWayFragment;
 
 /**
  * Created by Clelia López on 03/10/2016
@@ -27,8 +26,6 @@ public class MainActivity
     /**
      * Attributes
      */
-    private final String TAG = getClass().getSimpleName();
-    private final Logger logger = new Logger(TAG);
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private ViewPagerAdapter adapter;
@@ -57,8 +54,6 @@ public class MainActivity
     private void initializeViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setToolbar(toolbar, false);
-        /*if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(null);*/
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setViewPager();
@@ -77,7 +72,7 @@ public class MainActivity
      */
     private void setViewPager() {
         adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
-        adapter.addFragment(new EmptyFragment(), R.string.flight_label);
+        adapter.addFragment(new OneWayFragment(), R.string.flight_label);
         adapter.addFragment(new EmptyFragment(), R.string.hotel_label);
         viewPager.setAdapter(adapter);
     }
@@ -139,19 +134,7 @@ public class MainActivity
             if (tabLayout != null)
                 tabLayout.getTabAt(position).select();
 
-
-            /*if(menu != null) {
-                MenuItem menuItem = menu.findItem(search_menu);
-                if (tabLayout != null)
-                    //noinspection ConstantConditions
-                    tabLayout.getTabAt(position).select();
-
-                // Search menu display logic
-                if (adapter.getPageTitle(position).equals(getResources().getString(R.string.account_label)))
-                    menuItem.setVisible(false);
-                else
-                    menuItem.setVisible(true);
-
+            /*
                 if (position == 0)
                     floatingActionButton.setVisibility(View.VISIBLE);
                 else

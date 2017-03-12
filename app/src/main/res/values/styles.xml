@@ -25,9 +25,34 @@
         <item name="typeface">roboto_regular</item>
     </style>
 
+    <!-- TextView Body -->
+    <style name="TextViewStyle.Body">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/grey_dark</item>
+    </style>
+
+    <!-- TextView Body Bold -->
+    <style name="TextViewStyle.Body.Bold">
+        <item name="android:textSize">14sp</item>
+        <item name="typeface">roboto_medium</item>
+    </style>
+
+    <!-- TextView Caption -->
+    <style name="TextViewStyle.Caption">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- TextView Link -->
+    <style name="TextViewStyle.Link">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/link_button</item>
+        <item name="typeface">roboto_medium</item>
+        <item name="android:clickable">true</item>
+    </style>
+
     <!-- EditText -->
     <style name="EditTextStyle">
-        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/grey_dark</item>
@@ -35,6 +60,18 @@
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:singleLine">true</item>
         <item name="typeface">roboto_regular</item>
+    </style>
+
+    <!-- Button -->
+    <style name="ButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="typeface">roboto_medium</item>
     </style>
 
     <!-- TabLayout -->
@@ -54,6 +91,32 @@
         <item name="android:textColor">@color/white</item>
         <item name="android:maxLines">1</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- CheckBox -->
+    <style name="CheckBoxStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/grey_500</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/grey_dark</item>
+    </style>
+
+    <!-- Scroll View -->
+    <style name="ScrollViewStyle">
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarSize">2dp</item>
+        <item name="android:scrollbarThumbVertical">@color/colorAccent</item>
+    </style>
+
+    <style name="MarginStyle">
+        <item name="android:paddingLeft">0dp</item>
+        <!--<item name="android:paddingStart">0dp</item>-->
+        <item name="android:paddingRight">20dp</item>
+        <!--<item name="android:paddingEnd">0dp</item>-->
+        <!--android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingRight="20dp"
+        android:paddingEnd="20dp"-->
     </style>
 
 </resources>
