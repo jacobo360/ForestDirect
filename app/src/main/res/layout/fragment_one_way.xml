@@ -199,7 +199,7 @@
                     android:src="@drawable/ic_filter_outline"
                     android:contentDescription="@string/image"/>
 
-                <iomango.com.forestdirect.mvp.view.custom.CustomEditText
+                <iomango.com.forestdirect.mvp.view.custom.DialogEditText
                     android:id="@+id/kind_edit_text"
                     android:layout_width="match_parent"
                     android:layout_weight="4"

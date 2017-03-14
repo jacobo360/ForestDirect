@@ -36,4 +36,16 @@
     <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>
 
+    <!-- Stepper View -->
+    <string name="amount_label">0</string>
+    <string name="blank">%d</string>
+
+    <!-- Advanced Options Dialog -->
+    <string name="positive_option_label">Accept</string>
+    <string name="negative_option_label">Cancel</string>
+    <string name="adults_label">Adults (12 &#8211; 65)</string>
+    <string name="seniors_label">Senior (65+)</string>
+    <string name="children_label">Children (2 &#8211; 11)</string>
+    <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
+
 </resources>

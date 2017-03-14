@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center|start"
+                android:text="@string/adults_label"
+                style="@style/TextViewStyle.Body"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.StepperView
+                android:id="@+id/adults_stepper"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center|start"
+                android:text="@string/seniors_label"
+                style="@style/TextViewStyle.Body"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.StepperView
+                android:id="@+id/seniors_step"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center|start"
+                android:text="@string/children_label"
+                style="@style/TextViewStyle.Body"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.StepperView
+                android:id="@+id/children_stepper"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center|start"
+                android:text="@string/infants_label"
+                style="@style/TextViewStyle.Body"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.StepperView
+                android:id="@+id/infants_stepper"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

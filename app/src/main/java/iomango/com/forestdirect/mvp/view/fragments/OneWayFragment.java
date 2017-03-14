@@ -16,6 +16,7 @@ import iomango.com.forestdirect.mvp.presenter.TemplatePresenterFragment;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
+import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
 
 /**
  * Created by Clelia López on 03/10/2017
@@ -63,7 +64,7 @@ public class OneWayFragment
         CustomEditText fromEditText = (CustomEditText) containerLayout.findViewById(R.id.from_edit_text);
         CustomEditText toEditText = (CustomEditText) containerLayout.findViewById(R.id.to_edit_text);
         DatePickerEditText dateEditText = (DatePickerEditText) containerLayout.findViewById(R.id.date_edit_text);
-        CustomEditText kindEditText = (CustomEditText) containerLayout.findViewById(R.id.kind_edit_text);
+        DialogEditText kindEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
         CheckBox fromCheckBox = (CheckBox) containerLayout.findViewById(R.id.from_checkbox);
         CheckBox toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
         CustomTextView moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
@@ -94,8 +95,6 @@ public class OneWayFragment
             case R.id.from_edit_text:
                 break;
             case R.id.to_edit_text:
-                break;
-            case R.id.kind_edit_text:
                 break;
             case R.id.from_checkbox:
                 break;

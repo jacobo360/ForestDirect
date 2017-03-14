@@ -69,8 +69,10 @@ public class DatePickerEditText
         if (date.isValid()) {
             dateEditText.setText(date.toString());
             dateEditText.setError(null);
-        } else
+        } else {
             dateEditText.setError(context.getString(R.string.date_error));
+            dateEditText.setText("");
+        }
     }
 
     @Override
