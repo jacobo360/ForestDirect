@@ -23,6 +23,7 @@ public class StepperView
     private Context context;
     private CustomTextView amountTextView;
     private int amount = 0;
+    private int minimum = -1;
 
 
     public StepperView(Context context) {
@@ -55,7 +56,7 @@ public class StepperView
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.remove_button:
-                if (amount > 0) {
+                if (amount > 0 && Integer.parseInt(amountTextView.getText().toString()) > minimum) {
                     amount--;
                     amountTextView.setText(getContext().getString(R.string.blank, amount));
                 }
@@ -67,7 +68,16 @@ public class StepperView
         }
     }
 
+    public void setAmount (int amount) {
+        this.amount = amount;
+        amountTextView.setText(getContext().getString(R.string.blank, amount));
+    }
+
     public int getAmount() {
         return amount;
+    }
+
+    public void setMinimum(int minimum) {
+        this.minimum = minimum;
     }
 }

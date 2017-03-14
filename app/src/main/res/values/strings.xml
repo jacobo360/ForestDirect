@@ -43,10 +43,17 @@
     <!-- Advanced Options Dialog -->
     <string name="positive_option_label">Accept</string>
     <string name="negative_option_label">Cancel</string>
+    <string name="cabin_label">Cabin</string>
     <string name="adults_label">Adults (12 &#8211; 65)</string>
     <string name="seniors_label">Senior (65+)</string>
     <string name="children_label">Children (2 &#8211; 11)</string>
     <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
     <string name="dialog_title_label">Select flight kind and passengers</string>
-
+    <string-array name="test_array">
+        <item>Any Cabin</item>
+        <item>Economy</item>
+        <item>Premium Economy</item>
+        <item>Business</item>
+        <item>First</item>
+    </string-array>
 </resources>

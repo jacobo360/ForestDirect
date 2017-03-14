@@ -12,10 +12,13 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
+import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.view.custom.StepperView;
+import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
 
 /**
  * Created by Clelia López on 3/13/17
@@ -23,13 +26,12 @@ import iomango.com.forestdirect.mvp.view.custom.StepperView;
 
 public class AdvanceOptionsDialog
         extends DialogFragment
-        implements DialogInterface.OnShowListener{
-
-    // TODO: add model
+        implements DialogInterface.OnShowListener {
 
     /**
      * Attributes
      */
+    private Spinner cabinSpinner;
     private StepperView adultsStepperView;
     private StepperView seniorsStepperView;
     private StepperView childrenStepperView;
@@ -45,10 +47,14 @@ public class AdvanceOptionsDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View container = inflater.inflate(R.layout.advanced_options_dialog, null);
+        cabinSpinner = (Spinner) container.findViewById(R.id.cabin_spinner);
         adultsStepperView = (StepperView) container.findViewById(R.id.adults_stepper);
         seniorsStepperView = (StepperView) container.findViewById(R.id.seniors_step);
         childrenStepperView = (StepperView) container.findViewById(R.id.children_stepper);
         infantsStepperView = (StepperView) container.findViewById(R.id.infants_stepper);
+
+        adultsStepperView.setAmount(1);
+        adultsStepperView.setMinimum(1);
 
         // Tinting drawables
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_add, R.color.white);
@@ -60,10 +66,12 @@ public class AdvanceOptionsDialog
             .setPositiveButton(R.string.positive_option_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
-                    System.out.print("Adults value: " + adultsStepperView.getAmount());
-                    System.out.print("Adults value: " + seniorsStepperView.getAmount());
-                    System.out.print("Adults value: " + childrenStepperView.getAmount());
-                    System.out.print("Adults value: " + infantsStepperView.getAmount());
+                    AdvancedOptionsModel model = new AdvancedOptionsModel();
+                    model.setAdult(adultsStepperView.getAmount());
+                    model.setSenior(seniorsStepperView.getAmount());
+                    model.setChildren(childrenStepperView.getAmount());
+                    model.setInfant(infantsStepperView.getAmount());
+                    model.setCabin(cabinSpinner.getSpinner().getSelectedItem());
                 }
             })
             .setNegativeButton(R.string.negative_option_label, new DialogInterface.OnClickListener() {
@@ -81,7 +89,18 @@ public class AdvanceOptionsDialog
     @Override
     public void onShow(DialogInterface dialog) {
         Window view = ((AlertDialog)dialog).getWindow();
-        if (view != null)
+        if (view != null) {
             view.setBackgroundDrawableResource(R.drawable.bg_dialog);
+
+            int colorPrimary = ContextCompat.getColor(getContext(), R.color.colorPrimary);
+
+            Button negativeButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
+            negativeButton.setTextColor(colorPrimary);
+            negativeButton.invalidate();
+
+            Button positiveButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_POSITIVE);
+            positiveButton.setTextColor(colorPrimary);
+            positiveButton.invalidate();
+        }
     }
 }

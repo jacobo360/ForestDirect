@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.global.Enums.CustomTypeface;
 import iomango.com.forestdirect.mvp.common.utilities.FontTools;
 
 /**
@@ -66,6 +67,17 @@ public class CustomTextView
         if (typeface != null)
             setTypeface(typeface);
     }
+
+    /**
+     * Set typeface
+     *
+     * @param typeface preferred
+     */
+    public void setTypeFace(CustomTypeface typeface) {
+        String path = FontTools.getFontTypeface(context, typeface.getValue());
+        setTypeFace(context, path);
+    }
+
 
     /**
      * Set default typeface
