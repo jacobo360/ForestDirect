@@ -47,5 +47,6 @@
     <string name="seniors_label">Senior (65+)</string>
     <string name="children_label">Children (2 &#8211; 11)</string>
     <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
+    <string name="dialog_title_label">Select flight kind and passengers</string>
 
 </resources>

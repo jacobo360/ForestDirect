@@ -3,13 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp">
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -20,12 +23,12 @@
                 android:layout_weight="1"
                 android:layout_gravity="center|start"
                 android:text="@string/adults_label"
-                style="@style/TextViewStyle.Body"/>
+                style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/adults_stepper"
                 android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
 
@@ -39,12 +42,12 @@
                 android:layout_weight="1"
                 android:layout_gravity="center|start"
                 android:text="@string/seniors_label"
-                style="@style/TextViewStyle.Body"/>
+                style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/seniors_step"
                 android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
 
@@ -58,12 +61,12 @@
                 android:layout_weight="1"
                 android:layout_gravity="center|start"
                 android:text="@string/children_label"
-                style="@style/TextViewStyle.Body"/>
+                style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/children_stepper"
                 android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
 
@@ -77,12 +80,12 @@
                 android:layout_weight="1"
                 android:layout_gravity="center|start"
                 android:text="@string/infants_label"
-                style="@style/TextViewStyle.Body"/>
+                style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/infants_stepper"
                 android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
 

@@ -4,12 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.view.custom.StepperView;
 
 /**
@@ -17,7 +22,8 @@ import iomango.com.forestdirect.mvp.view.custom.StepperView;
  */
 
 public class AdvanceOptionsDialog
-        extends DialogFragment {
+        extends DialogFragment
+        implements DialogInterface.OnShowListener{
 
     // TODO: add model
 
@@ -44,9 +50,14 @@ public class AdvanceOptionsDialog
         childrenStepperView = (StepperView) container.findViewById(R.id.children_stepper);
         infantsStepperView = (StepperView) container.findViewById(R.id.infants_stepper);
 
-        builder.setView(inflater.inflate(R.layout.advanced_options_dialog, null))
+        // Tinting drawables
+        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_add, R.color.white);
+        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_remove, R.color.white);
 
-            .setPositiveButton(R.string.negative_option_label, new DialogInterface.OnClickListener() {
+        builder
+            .setView(container)
+            .setTitle(getContext().getString(R.string.dialog_title_label))
+            .setPositiveButton(R.string.positive_option_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
                     System.out.print("Adults value: " + adultsStepperView.getAmount());
@@ -55,13 +66,22 @@ public class AdvanceOptionsDialog
                     System.out.print("Adults value: " + infantsStepperView.getAmount());
                 }
             })
-
             .setNegativeButton(R.string.negative_option_label, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
                 }
             });
 
-        return builder.create();
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(this);
+
+        return dialog;
+    }
+
+    @Override
+    public void onShow(DialogInterface dialog) {
+        Window view = ((AlertDialog)dialog).getWindow();
+        if (view != null)
+            view.setBackgroundDrawableResource(R.drawable.bg_dialog);
     }
 }
