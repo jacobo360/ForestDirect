@@ -1,5 +1,7 @@
 package iomango.com.forestdirect.mvp.view.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import java.util.List;
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
@@ -26,7 +29,7 @@ import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
  */
 public class SearchActivity
         extends GenericActivity<MVP.RequiredActivityMethods, MVP.ProvidedPresenterMethodsActivity, SearchActivityPresenter>
-        implements MVP.RequiredActivityMethods, View.OnClickListener {
+        implements MVP.RequiredActivityMethods, View.OnClickListener, OnLocationSelectedListener {
 
     /**
      * Attributes
@@ -119,10 +122,19 @@ public class SearchActivity
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> void updateView(T data) {
         adapter = new LocationListAdapter(this, (List<LocationModel>)data);
-        // adapter.setPortfolioListItemListener(this);
+        adapter.setOnLocationSelectedListener(this);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void updateLocation(LocationModel location) {
+        Intent intent = new Intent();
+        intent.putExtra("location", location);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 }

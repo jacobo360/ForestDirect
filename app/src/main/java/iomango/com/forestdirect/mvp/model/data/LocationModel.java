@@ -1,10 +1,14 @@
 package iomango.com.forestdirect.mvp.model.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by clelia_arch on 3/8/17
  */
 
-public class LocationModel {
+public class LocationModel
+        implements Parcelable {
 
     /**
      * Attributes
@@ -40,4 +44,43 @@ public class LocationModel {
     public boolean getHasChild() {
         return hasChild;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.city);
+        dest.writeString(this.code);
+        dest.writeString(this.country);
+        dest.writeString(this.municipality);
+        dest.writeByte(this.isChild ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.hasChild ? (byte) 1 : (byte) 0);
+    }
+
+    public LocationModel() {
+    }
+
+    public LocationModel(Parcel in) {
+        this.city = in.readString();
+        this.code = in.readString();
+        this.country = in.readString();
+        this.municipality = in.readString();
+        this.isChild = in.readByte() != 0;
+        this.hasChild = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<LocationModel> CREATOR = new Parcelable.Creator<LocationModel>() {
+        @Override
+        public LocationModel createFromParcel(Parcel source) {
+            return new LocationModel(source);
+        }
+
+        @Override
+        public LocationModel[] newArray(int size) {
+            return new LocationModel[size];
+        }
+    };
 }

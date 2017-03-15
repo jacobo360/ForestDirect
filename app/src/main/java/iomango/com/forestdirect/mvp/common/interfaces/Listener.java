@@ -1,6 +1,7 @@
 package iomango.com.forestdirect.mvp.common.interfaces;
 
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
+import iomango.com.forestdirect.mvp.model.data.LocationModel;
 
 /**
  * Created by clelia_arch on 3/8/17
@@ -19,5 +20,9 @@ public interface Listener {
     interface OnAmountChangeListener {
         void amountIncrease(int viewId, int amount);
         void amountDecrease(int viewId, int amount);
+    }
+
+    interface OnLocationSelectedListener {
+        void updateLocation(LocationModel location);
     }
 }

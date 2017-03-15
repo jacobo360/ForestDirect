@@ -7,6 +7,8 @@ public class Enums {
 
     public enum DialogType { TIME_DETERMINED, TIME_UNDETERMINED, MESSAGE}
 
+    public enum ScreenUnit { PX, DP }
+
     public enum CustomTypeface {
         ROBOTO_REGULAR(0),
         ROBOTO_MEDIUM(1),

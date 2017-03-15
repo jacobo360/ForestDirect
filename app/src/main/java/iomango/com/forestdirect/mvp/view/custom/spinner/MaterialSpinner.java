@@ -31,7 +31,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.global.Enums;
 import iomango.com.forestdirect.mvp.common.global.Enums.CustomTypeface;
+import iomango.com.forestdirect.mvp.common.utilities.ScreenTools;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 
@@ -616,6 +618,8 @@ public class MaterialSpinner
             textView.setHeight(getSpinnerHeight() - topPadding - bottomPadding);
 
             parentLinearLayout.addView(textView);
+            if (leftPadding == 2*ScreenTools.getDensityIndex(getContext()))
+                leftPadding = ScreenTools.convertValueTo(getContext(), 10, Enums.ScreenUnit.PX);
             parentLinearLayout.setPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 
             return parentLinearLayout;

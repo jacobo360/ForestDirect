@@ -28,6 +28,11 @@ public class Constants {
     public static final Pair<String,Integer> CAMERA_PERMISSION =
             new Pair<>(Manifest.permission.CAMERA, CAMERA);
 
+    /**
+     * Requests codes
+     */
+    public static int SEARCH_ACTIVITY = 50;
+
     public static Timepoint Timepoints[] = new Timepoint[] {
         new Timepoint(0, 0), new Timepoint(0, 30),
         new Timepoint(1, 0), new Timepoint(1, 30),

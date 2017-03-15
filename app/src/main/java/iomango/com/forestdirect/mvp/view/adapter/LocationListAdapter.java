@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 
@@ -24,6 +25,7 @@ public class LocationListAdapter
      */
     private Context context;
     private List<LocationModel> locations;
+    private OnLocationSelectedListener listener;
 
 
     public LocationListAdapter(Context context, List<LocationModel> locations) {
@@ -59,6 +61,10 @@ public class LocationListAdapter
         notifyItemRangeRemoved(0, size);
     }
 
+    public void setOnLocationSelectedListener(OnLocationSelectedListener listener) {
+        this.listener = listener;
+    }
+
     /**
      * View holder class for list item
      */
@@ -85,8 +91,8 @@ public class LocationListAdapter
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            /*if (listener != null)
-                listener.onClick(locations.get(position));*/
+            if (listener != null)
+                listener.updateLocation(locations.get(position));
         }
     }
 }

@@ -1,5 +1,6 @@
 package iomango.com.forestdirect.mvp.view.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -77,6 +78,10 @@ public class MainActivity
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     /**
      * Called when the user clicks a button to perform some action
