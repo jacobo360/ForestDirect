@@ -76,6 +76,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:background">@color/colorAccent</item>
         <item name="typeface">roboto_medium</item>
     </style>
 

@@ -28,10 +28,12 @@
     <!-- One Way Fragment -->
     <string name="from_label">From</string>
     <string name="to_label">To</string>
-    <string name="date_label">Date</string>
+    <string name="departure_date_label">Departure date</string>
+    <string name="departure_time_label">Departure time</string>
+    <string name="return_time_label">Return time</string>
     <string name="kind_label">Kind</string>
     <string name="more_options_label">More Options</string>
-    <string name="advanced_options_label">Advanced Options</string>
+    <string name="preferred_airline_label">Preferred Airline</string>
     <string name="include_airport_label">Include Near Airport</string>
     <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>

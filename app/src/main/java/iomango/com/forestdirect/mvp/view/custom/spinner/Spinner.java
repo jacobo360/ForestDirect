@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.global.Enums.CustomTypeface;
-import iomango.com.forestdirect.mvp.common.utilities.FontTools;
 import iomango.com.forestdirect.mvp.view.custom.TriangleShape;
 
 

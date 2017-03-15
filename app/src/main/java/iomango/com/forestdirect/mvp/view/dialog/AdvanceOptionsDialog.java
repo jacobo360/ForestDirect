@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -15,6 +14,8 @@ import android.view.Window;
 import android.widget.Button;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAdvanceOptionsListener;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAmountChangeListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.view.custom.StepperView;
@@ -23,10 +24,9 @@ import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
 /**
  * Created by Clelia López on 3/13/17
  */
-
 public class AdvanceOptionsDialog
         extends DialogFragment
-        implements DialogInterface.OnShowListener {
+        implements DialogInterface.OnShowListener, OnAmountChangeListener {
 
     /**
      * Attributes
@@ -36,6 +36,7 @@ public class AdvanceOptionsDialog
     private StepperView seniorsStepperView;
     private StepperView childrenStepperView;
     private StepperView infantsStepperView;
+    private OnAdvanceOptionsListener listener;
 
 
     @SuppressLint("InflateParams")
@@ -56,6 +57,10 @@ public class AdvanceOptionsDialog
         adultsStepperView.setAmount(1);
         adultsStepperView.setMinimum(1);
 
+        // Setting listeners
+        adultsStepperView.setOnAmountChangeListener(this);
+        seniorsStepperView.setOnAmountChangeListener(this);
+
         // Tinting drawables
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_add, R.color.white);
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_remove, R.color.white);
@@ -72,6 +77,9 @@ public class AdvanceOptionsDialog
                     model.setChildren(childrenStepperView.getAmount());
                     model.setInfant(infantsStepperView.getAmount());
                     model.setCabin(cabinSpinner.getSpinner().getSelectedItem());
+
+                    if (listener != null)
+                        listener.updateTextView(model);
                 }
             })
             .setNegativeButton(R.string.negative_option_label, new DialogInterface.OnClickListener() {
@@ -102,5 +110,32 @@ public class AdvanceOptionsDialog
             positiveButton.setTextColor(colorPrimary);
             positiveButton.invalidate();
         }
+    }
+
+    public void setOnAdvanceOptionsListener(OnAdvanceOptionsListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void amountIncrease(int viewId, int amount) {
+        switch (viewId) {
+            case R.id.adults_stepper:
+                if (amount > 0) {
+                    adultsStepperView.setMinimum(1);
+                    seniorsStepperView.setMinimum(0);
+                }
+                break;
+            case R.id.seniors_step:
+                if (amount > 0) {
+                    adultsStepperView.setMinimum(0);
+                    seniorsStepperView.setMinimum(1);
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void amountDecrease(int viewId, int amount) {
+        // no-op
     }
 }

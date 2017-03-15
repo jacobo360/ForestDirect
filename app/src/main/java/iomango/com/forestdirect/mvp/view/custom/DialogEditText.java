@@ -1,5 +1,6 @@
 package iomango.com.forestdirect.mvp.view.custom;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAdvanceOptionsListener;
+import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.view.dialog.AdvanceOptionsDialog;
 
 /**
@@ -15,7 +18,7 @@ import iomango.com.forestdirect.mvp.view.dialog.AdvanceOptionsDialog;
  */
 public class DialogEditText
         extends LinearLayout
-        implements View.OnClickListener {
+        implements View.OnClickListener, OnAdvanceOptionsListener {
 
     /**
      * Attributes
@@ -49,6 +52,7 @@ public class DialogEditText
         dialogEditText.setOnClickListener(this);
 
         advanceOptionsDialog = new AdvanceOptionsDialog();
+        advanceOptionsDialog.setOnAdvanceOptionsListener(this);
 
         dialogEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
@@ -64,5 +68,17 @@ public class DialogEditText
     public void onClick(View view) {
         advanceOptionsDialog.show(((AppCompatActivity)getContext())
                 .getSupportFragmentManager(), "AdvancedOptionsDialogFragment");
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void updateTextView(AdvancedOptionsModel model) {
+        int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
+        if (total > 1)
+            dialogEditText.setText(total + " Travelers, " + model.getCabin());
+        else if (model.getAdult() == 1)
+            dialogEditText.setText("1 Adult, " + model.getCabin());
+        else if (model.getSenior() == 1)
+            dialogEditText.setText("1 Senior, " + model.getCabin());
     }
 }

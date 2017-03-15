@@ -1,7 +1,7 @@
 package iomango.com.forestdirect.mvp.model;
 
 /**
- * Created by clelia_arch on 3/14/17
+ * Created by Clelia López on 3/14/17
  */
 
 public class AdvancedOptionsModel {

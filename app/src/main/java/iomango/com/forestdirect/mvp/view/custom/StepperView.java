@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAmountChangeListener;
 
 /**
  * Created by Clelia López on 3/12/17
@@ -24,6 +25,7 @@ public class StepperView
     private CustomTextView amountTextView;
     private int amount = 0;
     private int minimum = -1;
+    private OnAmountChangeListener listener;
 
 
     public StepperView(Context context) {
@@ -59,11 +61,17 @@ public class StepperView
                 if (amount > 0 && Integer.parseInt(amountTextView.getText().toString()) > minimum) {
                     amount--;
                     amountTextView.setText(getContext().getString(R.string.blank, amount));
+
+                    if (listener != null)
+                        listener.amountDecrease(getId(), amount);
                 }
                 break;
             case R.id.add_button:
                 amount++;
                 amountTextView.setText(getContext().getString(R.string.blank, amount));
+
+                if (listener != null)
+                    listener.amountIncrease(getId(), amount);
                 break;
         }
     }
@@ -79,5 +87,9 @@ public class StepperView
 
     public void setMinimum(int minimum) {
         this.minimum = minimum;
+    }
+
+    public void setOnAmountChangeListener(OnAmountChangeListener listener) {
+        this.listener = listener;
     }
 }
