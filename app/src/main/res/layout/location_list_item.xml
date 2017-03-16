@@ -3,9 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="7dp"
-    android:layout_marginBottom="7dp"
-    android:orientation="horizontal">
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:background="@drawable/bg_item">
 
     <android.support.v4.widget.Space
         android:id="@+id/space"
@@ -17,6 +19,7 @@
         android:id="@+id/code_text_view"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/code_name"
         style="@style/TextViewStyle.Subheading"/>
 

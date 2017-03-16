@@ -34,7 +34,7 @@
             app:itemsOverSpinner="1"
             app:itemTextColor="@color/grey_dark"
             app:itemTextSize="16"
-            app:itemSelectedColor="@color/colorAccent"
+            app:itemSelectedDrawable="@drawable/bg_item"
             app:listBackgroundColor="@color/white"
             app:arrowColor="@color/colorAccent"
             app:lineColor="@color/colorAccent"
@@ -57,15 +57,15 @@
             android:layout_marginTop="25dp">
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
                 android:layout_gravity="center|start"
                 android:text="@string/adults_label"
                 style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/adults_stepper"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
@@ -76,15 +76,15 @@
             android:layout_marginTop="15dp">
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
                 android:layout_gravity="center|start"
                 android:text="@string/seniors_label"
                 style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/seniors_step"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
@@ -95,15 +95,15 @@
             android:layout_marginTop="15dp">
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
                 android:layout_gravity="center|start"
                 android:text="@string/children_label"
                 style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/children_stepper"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>
@@ -114,15 +114,15 @@
             android:layout_marginTop="15dp">
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_weight="1.5"
                 android:layout_gravity="center|start"
                 android:text="@string/infants_label"
                 style="@style/TextViewStyle.Subheading"/>
 
             <iomango.com.forestdirect.mvp.view.custom.StepperView
                 android:id="@+id/infants_stepper"
-                android:layout_width="60dp"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"/>
         </TableRow>

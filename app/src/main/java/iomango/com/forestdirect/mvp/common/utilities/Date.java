@@ -53,20 +53,24 @@ public class Date {
     @SuppressWarnings("RedundantIfStatement")
     public boolean isValid() {
         Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        int month = calendar.get(Calendar.MONTH);
-        int year = calendar.get(Calendar.YEAR);
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        int currentMonth = calendar.get(Calendar.MONTH);
+        int currentYear = calendar.get(Calendar.YEAR);
 
-        if (this.day < day)
-            return false;
+        if (year > currentYear)
+            return true;
+        else if (year == currentYear) {
+            if (month > currentMonth)
+                return true;
+            else if (month == currentMonth) {
+                if (day >= currentDay)
+                    return true;
+                else
+                    return false;
+            }
+        }
 
-        if (this.month < month)
-            return false;
-
-        if (this.year < year)
-            return false;
-
-        return true;
+        return false;
     }
 
     public int getDay() {

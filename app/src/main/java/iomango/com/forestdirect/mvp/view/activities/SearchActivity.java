@@ -15,6 +15,7 @@ import java.util.List;
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
+import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
@@ -115,6 +116,7 @@ public class SearchActivity
                 editText.setText("");
                 break;
             case R.id.back_image_button:
+                setResult(Constants.CLEAR_ACTIVITY);
                 finish();
                 break;
             default:

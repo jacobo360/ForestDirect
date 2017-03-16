@@ -53,7 +53,6 @@ public class OneWayFragment
     private Spinner airlinesSpinner;
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
-    private boolean isToActive = false;
 
 
     /**
@@ -137,12 +136,10 @@ public class OneWayFragment
             case R.id.from_edit_text:
                 startSearchActivity();
                 isFromActive = true;
-                isToActive = false;
                 break;
             case R.id.to_edit_text:
                 startSearchActivity();
                 isFromActive = false;
-                isToActive = true;
                 break;
             case R.id.from_checkbox:
             break;
@@ -168,15 +165,18 @@ public class OneWayFragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
+        if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
             LocationModel location = data.getParcelableExtra("location");
             if (isFromActive) {
                 fromEditText.setText(location.getCity() + " (" + location.getCode() + ")");
                 fromEditText.clearFocus();
-            } else if(isToActive) {
+            } else {
                 toEditText.setText(location.getCity() + " (" + location.getCode() + ")");
                 toEditText.clearFocus();
             }
+        } else {
+            fromEditText.clearFocus();
+            toEditText.clearFocus();
         }
     }
 
@@ -187,14 +187,12 @@ public class OneWayFragment
                 if (hasFocus) {
                     startSearchActivity();
                     isFromActive = true;
-                    isToActive = false;
                 }
                 break;
             case R.id.to_edit_text:
                 if (hasFocus) {
                     startSearchActivity();
                     isFromActive = false;
-                    isToActive = true;
                 }
                 break;
         }

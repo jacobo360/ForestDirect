@@ -32,6 +32,7 @@ public class Constants {
      * Requests codes
      */
     public static int SEARCH_ACTIVITY = 50;
+    public static int CLEAR_ACTIVITY = 60;
 
     public static Timepoint Timepoints[] = new Timepoint[] {
         new Timepoint(0, 0), new Timepoint(0, 30),

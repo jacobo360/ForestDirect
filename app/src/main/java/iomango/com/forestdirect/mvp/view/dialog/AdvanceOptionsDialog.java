@@ -1,22 +1,26 @@
 package iomango.com.forestdirect.mvp.view.dialog;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
+
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.global.Enums.ScreenUnit;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAdvanceOptionsListener;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAmountChangeListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
+import iomango.com.forestdirect.mvp.common.utilities.ScreenTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.view.custom.StepperView;
 import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
@@ -91,15 +95,28 @@ public class AdvanceOptionsDialog
         AlertDialog dialog = builder.create();
         dialog.setOnShowListener(this);
 
+
         return dialog;
     }
 
     @Override
     public void onShow(DialogInterface dialog) {
         Window view = ((AlertDialog)dialog).getWindow();
+
         if (view != null) {
+            // Setting size
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.copyFrom(view.getAttributes());
+            int margin = ScreenTools.convertValueTo(getContext(), 15, ScreenUnit.PX);
+            int width = (int)ScreenTools.getScreenWidth(getContext(), ScreenUnit.PX);
+            width = width - 2*margin;
+            layoutParams.width = width;
+            view.setAttributes(layoutParams);
+
+            // Setting resource background
             view.setBackgroundDrawableResource(R.drawable.bg_dialog);
 
+            // Setting button font colors
             int colorPrimary = ContextCompat.getColor(getContext(), R.color.colorPrimary);
 
             Button negativeButton = ((AlertDialog)dialog).getButton(DialogInterface.BUTTON_NEGATIVE);
