@@ -16,6 +16,8 @@ import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
 import iomango.com.forestdirect.mvp.view.fragments.OneWayFragment;
+import iomango.com.forestdirect.mvp.view.fragments.RoundTripFragment;
+import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
 
 /**
  * Created by Clelia López on 03/10/2016
@@ -73,7 +75,7 @@ public class MainActivity
      */
     private void setViewPager() {
         adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
-        adapter.addFragment(new OneWayFragment(), R.string.flight_label);
+        adapter.addFragment(new SelectorFragment(), R.string.flight_label);
         adapter.addFragment(new EmptyFragment(), R.string.hotel_label);
         viewPager.setAdapter(adapter);
     }

@@ -20,7 +20,7 @@
     <string name="empty_label">Not content yet</string>
 
     <!-- Flight Fragment -->
-    <string name="flight_label">Flight</string>
+    <string name="flight_label">Flights</string>
 
     <!-- Hotels Fragment -->
     <string name="hotel_label">Hotels</string>
@@ -29,6 +29,7 @@
     <string name="from_label">From</string>
     <string name="to_label">To</string>
     <string name="departure_date_label">Departure date</string>
+    <string name="return_date_label">Return date</string>
     <string name="departure_time_label">Departure time</string>
     <string name="return_time_label">Return time</string>
     <string name="kind_label">Kind</string>
@@ -37,6 +38,11 @@
     <string name="include_airport_label">Include Near Airport</string>
     <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>
+
+    <!-- Selector Fragment -->
+    <string name="one_way_label">One Way</string>
+    <string name="round_trip_label">Round-Trip</string>
+    <string name="multi_city_label">MultiCity</string>
 
     <!-- Stepper View -->
     <string name="amount_label">0</string>

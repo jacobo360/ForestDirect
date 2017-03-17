@@ -98,8 +98,10 @@ public class SearchActivity
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() > 0)
                     getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString()));
-                else
-                    adapter.clear();
+                else {
+                    if (adapter != null)
+                        adapter.clear();
+                }
             }
         });
     }

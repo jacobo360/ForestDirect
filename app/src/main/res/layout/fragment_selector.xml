@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal" >
+
+        <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
+            android:id="@+id/one_way_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/radio_button"
+            android:background="@drawable/bg_radio_left"
+            android:text="@string/one_way_label"
+            android:checked="true"/>
+
+        <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
+            android:id="@+id/round_trip_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/radio_button"
+            android:background="@drawable/bg_radio_center"
+            android:text="@string/round_trip_label"/>
+
+        <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
+            android:id="@+id/multi_city_radio_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/radio_button"
+            android:background="@drawable/bg_radio_right"
+            android:text="@string/multi_city_label"/>
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
