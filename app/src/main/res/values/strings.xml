@@ -39,10 +39,13 @@
     <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>
 
+    <!-- MultiCity Fragment -->
+    <string name="add_flight_label"> Add another flight (Up to 6)</string>
+
     <!-- Selector Fragment -->
     <string name="one_way_label">One Way</string>
     <string name="round_trip_label">Round-Trip</string>
-    <string name="multi_city_label">MultiCity</string>
+    <string name="multi_city_label">Multi-City</string>
 
     <!-- Stepper View -->
     <string name="amount_label">0</string>

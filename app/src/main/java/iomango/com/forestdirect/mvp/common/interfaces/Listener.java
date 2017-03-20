@@ -25,4 +25,9 @@ public interface Listener {
     interface OnLocationSelectedListener {
         void updateLocation(LocationModel location);
     }
+
+    interface OnMultiCityActionListener {
+        void onSearchPressed();
+        void onAddFlightPressed();
+    }
 }
