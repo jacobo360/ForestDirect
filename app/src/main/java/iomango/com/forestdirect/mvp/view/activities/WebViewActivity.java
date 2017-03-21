@@ -11,6 +11,8 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.apache.http.util.EncodingUtils;
+
 import iomango.com.forestdirect.R;
 
 /**
@@ -43,8 +45,10 @@ public class WebViewActivity
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.setWebViewClient(new MyBrowser());
 
-        if (source != null)
-            webView.loadDataWithBaseURL("https://forestdirect.com/flights/search", source, "text/html", "UTF-8", null);
+        if (source != null) {
+            // webView.loadDataWithBaseURL("https://forestdirect.com/flights/search", source, "text/html", "UTF-8", null);
+            webView.postUrl("https://forestdirect.com/flights/search", EncodingUtils.getBytes(source, "BASE64"));
+        }
     }
 
     // Manages the behavior when URLs are loaded

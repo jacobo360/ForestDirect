@@ -29,6 +29,7 @@ import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
+import iomango.com.forestdirect.mvp.view.activities.WebViewActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
@@ -63,6 +64,8 @@ public class OneWayFragment
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
+    private String fromCode;
+    private String toCode;
 
 
     /**
@@ -171,9 +174,11 @@ public class OneWayFragment
             case R.id.search_button:
                 SearchModel model = new SearchModel();
                 model.setType("OneWay");
-                model.setFrom(fromEditText.getValue());
+                //model.setFrom(fromEditText.getValue());
+                model.setFrom(fromCode);
                 model.setIncludeFrom(fromCheckBox.isChecked() ? "1" : "0");
-                model.setTo(toEditText.getValue());
+                // model.setTo(toEditText.getValue());
+                model.setTo(toCode);
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(datePickerEditText.getValue());
                 AdvancedOptionsModel data = kindDialogEditText.getData();
@@ -205,7 +210,13 @@ public class OneWayFragment
                     model.setAirline(airlines.get(selected).getAirLineCode());
                 }
 
-                getPresenter().executeNetworkRequest(model);
+
+                Intent intent = new Intent(getContext(), WebViewActivity.class);
+                intent.putExtra("source", model.getEncodedParams());
+                startActivity(intent);
+
+
+                // getPresenter().executeNetworkRequest(model);
                 break;
         }
     }
@@ -215,9 +226,11 @@ public class OneWayFragment
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
             LocationModel location = data.getParcelableExtra("location");
             if (isFromActive) {
+                fromCode = location.getCode();
                 fromEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
                 fromEditText.clearFocus();
             } else {
+                toCode = location.getCode();
                 toEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
                 toEditText.clearFocus();
             }

@@ -61,7 +61,6 @@
     <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
     <string name="dialog_title_label">Select Flight Kind and Passengers</string>
     <string-array name="test_array">
-        <item>Any Cabin</item>
         <item>Economy</item>
         <item>Premium Economy</item>
         <item>Business</item>

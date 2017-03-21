@@ -2,7 +2,13 @@ package iomango.com.forestdirect.mvp.model.data;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by clelia_arch on 3/20/17
@@ -118,7 +124,6 @@ public class SearchModel {
     }
 
     public HashMap<String,String> getFieldMap() {
-
         HashMap<String,String> data = new HashMap<>();
         data.put("type", type);
         data.put("from", from);
@@ -126,15 +131,31 @@ public class SearchModel {
         data.put("to", to);
         data.put("include_to", includeTo);
         data.put("dep_date", departureDate);
-        // data.put("arr_date", arriveDate);
         data.put("cabin", cabin);
         data.put("adult", adult);
         data.put("senior", senior);
         data.put("child", child);
         data.put("lap_infant", lapInfant);
         data.put("dep_time", departureTime);
-        // data.put("arr_time", arriveTime);
         data.put("airline", airline);
         return data;
+    }
+
+    public String getEncodedParams() {
+        List<NameValuePair> nameValuePairs = new ArrayList<>();
+        nameValuePairs.add(new BasicNameValuePair("type", type));
+        nameValuePairs.add(new BasicNameValuePair("from", from));
+        nameValuePairs.add(new BasicNameValuePair("include_from", includeFrom));
+        nameValuePairs.add(new BasicNameValuePair("to", to));
+        nameValuePairs.add(new BasicNameValuePair("include_to", includeTo));
+        nameValuePairs.add(new BasicNameValuePair("dep_date", departureDate));
+        nameValuePairs.add(new BasicNameValuePair("cabin", cabin));
+        nameValuePairs.add(new BasicNameValuePair("adult", adult));
+        nameValuePairs.add(new BasicNameValuePair("senior", senior));
+        nameValuePairs.add(new BasicNameValuePair("child", child));
+        nameValuePairs.add(new BasicNameValuePair("lap_infant", lapInfant));
+        nameValuePairs.add(new BasicNameValuePair("dep_time", departureTime));
+        nameValuePairs.add(new BasicNameValuePair("airline", airline));
+        return URLEncodedUtils.format(nameValuePairs, "UTF-8").replaceAll("\\+", "%20");
     }
 }
