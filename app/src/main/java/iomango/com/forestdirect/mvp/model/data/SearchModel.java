@@ -138,6 +138,11 @@ public class SearchModel {
         data.put("lap_infant", lapInfant);
         data.put("dep_time", departureTime);
         data.put("airline", airline);
+
+        if (type.equalsIgnoreCase("RoundTrip")) {
+            data.put("arr_date", arriveDate);
+            data.put("arr_time", arriveTime);
+        }
         return data;
     }
 

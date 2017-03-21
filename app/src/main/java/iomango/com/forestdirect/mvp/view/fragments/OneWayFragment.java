@@ -29,7 +29,6 @@ import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
-import iomango.com.forestdirect.mvp.view.activities.WebViewActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
@@ -174,10 +173,8 @@ public class OneWayFragment
             case R.id.search_button:
                 SearchModel model = new SearchModel();
                 model.setType("OneWay");
-                //model.setFrom(fromEditText.getValue());
                 model.setFrom(fromCode);
                 model.setIncludeFrom(fromCheckBox.isChecked() ? "1" : "0");
-                // model.setTo(toEditText.getValue());
                 model.setTo(toCode);
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(datePickerEditText.getValue());
@@ -210,13 +207,7 @@ public class OneWayFragment
                     model.setAirline(airlines.get(selected).getAirLineCode());
                 }
 
-
-                Intent intent = new Intent(getContext(), WebViewActivity.class);
-                intent.putExtra("source", model.getEncodedParams());
-                startActivity(intent);
-
-
-                // getPresenter().executeNetworkRequest(model);
+                getPresenter().executeNetworkRequest(model);
                 break;
         }
     }

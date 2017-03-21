@@ -3,17 +3,14 @@ package iomango.com.forestdirect.mvp.view.activities;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import org.apache.http.util.EncodingUtils;
-
-import iomango.com.forestdirect.R;
 
 /**
  * Created by Clelia López on 3/21/2017
@@ -24,13 +21,15 @@ public class WebViewActivity
     /**
      * Attributes
      */
+    private WebView webView;
     private String source;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        webView = new WebView(this);
+        setContentView(webView);
 
         source = getIntent().getStringExtra("source");
 
@@ -39,20 +38,22 @@ public class WebViewActivity
 
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeViews() {
-        final WebView webView = (WebView) findViewById(R.id.web_view);
-        webView.getSettings().setLoadsImagesAutomatically(true);
-        webView.getSettings().setJavaScriptEnabled(true);
+        WebSettings settings = webView.getSettings();
+        settings.setLoadsImagesAutomatically(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setDomStorageEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.setWebViewClient(new MyBrowser());
+        webView.setWebViewClient(new AppBrowser());
 
-        if (source != null) {
-            // webView.loadDataWithBaseURL("https://forestdirect.com/flights/search", source, "text/html", "UTF-8", null);
-            webView.postUrl("https://forestdirect.com/flights/search", EncodingUtils.getBytes(source, "BASE64"));
-        }
+        String url = "https://forestdirect.com/flights/search";
+        if (source != null)
+            webView.loadDataWithBaseURL(url, source, "text/html", "UTF-8", null);
+        else
+            finish();
     }
 
-    // Manages the behavior when URLs are loaded
-    private class MyBrowser
+
+    private class AppBrowser
             extends WebViewClient {
 
         @SuppressWarnings("deprecation")
