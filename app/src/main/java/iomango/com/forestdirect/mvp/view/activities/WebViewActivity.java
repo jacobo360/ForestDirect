@@ -45,15 +45,6 @@ public class WebViewActivity
 
         if (source != null)
             webView.loadDataWithBaseURL("https://forestdirect.com/flights/search", source, "text/html", "UTF-8", null);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                webView.loadDataWithBaseURL("https://forestdirect.com/flights/search", source, "text/html", "UTF-8", null);
-            }
-        }, 5000);
-
     }
 
     // Manages the behavior when URLs are loaded
