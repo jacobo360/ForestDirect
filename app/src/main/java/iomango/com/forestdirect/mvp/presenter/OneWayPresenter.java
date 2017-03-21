@@ -1,12 +1,17 @@
 package iomango.com.forestdirect.mvp.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.lang.ref.WeakReference;
 
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericPresenter;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
+import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
+import iomango.com.forestdirect.mvp.model.request.QueryFlight;
+import iomango.com.forestdirect.mvp.view.activities.WebViewActivity;
 
 
 /**
@@ -14,7 +19,7 @@ import iomango.com.forestdirect.mvp.model.GlobalModel;
  */
 public class OneWayPresenter
         extends GenericPresenter<MVP.RequiredPresenterMethods, MVP.ProvidedModelMethods, GlobalModel>
-        implements MVP.ProvidedPresenterMethodsFragment, MVP.RequiredPresenterMethods {
+        implements MVP.ProvidedPresenterMethodsFragment, MVP.RequiredPresenterMethods, OnNetworkResponseListener {
 
     /**
      * Attributes
@@ -40,14 +45,18 @@ public class OneWayPresenter
         context = this.view.get().getActivityContext();
     }
 
-    /**
-     * Called when the user clicks a button to perform some action
-     *
-     * @param viewId Indicates the id of the button pressed by the user
-     */
     @Override
-    public void handleClick(int viewId) {
+    public <T> void executeNetworkRequest(T model) {
+        NetworkRequest request = new QueryFlight<>(model, this);
+        request.performNetworkRequest();
+    }
 
+
+    @Override
+    public <T> void processResponse(T response) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra("source", (String)response);
+        context.startActivity(intent);
     }
 
     @SuppressWarnings("unchecked")

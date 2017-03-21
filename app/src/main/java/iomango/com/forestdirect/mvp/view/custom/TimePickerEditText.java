@@ -76,4 +76,12 @@ public class TimePickerEditText
         else
             timeEditText.setText(hourOfDay + ":" + minute);
     }
+
+    public String getValue() {
+        String hour = timeEditText.getValue();
+        hour = hour.replace(":", "");
+        if (hour.length() == 3)
+            hour = "0" + hour;
+        return hour;
+    }
 }

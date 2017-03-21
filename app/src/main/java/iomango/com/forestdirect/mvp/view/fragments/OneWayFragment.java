@@ -22,15 +22,19 @@ import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
+import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
+import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
 import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
+import iomango.com.forestdirect.mvp.view.custom.TimePickerEditText;
 import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
 
 /**
@@ -46,13 +50,19 @@ public class OneWayFragment
     private NestedScrollView containerLayout;
     private CustomEditText fromEditText;
     private CustomEditText toEditText;
-    private TableRow departureTimeTextView;
-    private TableRow departureTimeEditText;
-    private TableRow preferredAirlineTextView;
-    private TableRow preferredAirlineSpinner;
+    private CheckBox fromCheckBox;
+    private CheckBox toCheckBox;
+    private DatePickerEditText datePickerEditText;
+    private DialogEditText kindDialogEditText;
+    private TimePickerEditText departureTimeEditText;
+    private TableRow departureTextTableRow;
+    private TableRow departureEditTableRow;
+    private TableRow airlineTextTableRow;
+    private TableRow airlineSpinnerTableRow;
     private Spinner airlinesSpinner;
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
+    private List<AirlineModel> airlines;
 
 
     /**
@@ -87,14 +97,18 @@ public class OneWayFragment
         // Initializing views
         fromEditText = (CustomEditText) containerLayout.findViewById(R.id.from_edit_text);
         toEditText = (CustomEditText) containerLayout.findViewById(R.id.to_edit_text);
-        CheckBox fromCheckBox = (CheckBox) containerLayout.findViewById(R.id.from_checkbox);
-        CheckBox toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
+        fromCheckBox = (CheckBox) containerLayout.findViewById(R.id.from_checkbox);
+        toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
         CustomTextView moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
-        departureTimeTextView = (TableRow) containerLayout.findViewById(R.id.departure_table_label);
-        departureTimeEditText = (TableRow) containerLayout.findViewById(R.id.departure_table_edit_text);
-        preferredAirlineTextView = (TableRow) containerLayout.findViewById(R.id.airline_table_label);
-        preferredAirlineSpinner = (TableRow) containerLayout.findViewById(R.id.airline_table_spinner);
+        datePickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.departure_date_edit_text);
+        kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
+        departureTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.departure_time_edit_text);
+        departureTextTableRow = (TableRow) containerLayout.findViewById(R.id.departure_table_label);
+        departureEditTableRow = (TableRow) containerLayout.findViewById(R.id.departure_table_edit_text);
+        airlineTextTableRow = (TableRow) containerLayout.findViewById(R.id.airline_table_label);
+        airlineSpinnerTableRow = (TableRow) containerLayout.findViewById(R.id.airline_table_spinner);
         airlinesSpinner = (Spinner) containerLayout.findViewById(R.id.airline_spinner);
+        CustomButton searchButton =  (CustomButton) containerLayout.findViewById(R.id.search_button);
 
         // Tinting drawables
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_takeoff, R.color.colorPrimary);
@@ -109,14 +123,12 @@ public class OneWayFragment
         toEditText.setOnClickListener(this);
         fromEditText.setOnFocusChangeListener(this);
         toEditText.setOnFocusChangeListener(this);
-        fromCheckBox.setOnClickListener(this);
-        toCheckBox.setOnClickListener(this);
         moreOptionsCustomTextView.setOnClickListener(this);
-
+        searchButton.setOnClickListener(this);
 
         // Loading data and setting up spinner
         GlobalModel model = getPresenter().getModel();
-        List<AirlineModel> airlines = model.loadJsonDatabase(new TypeToken<ArrayList<AirlineModel>>(){}, "Data/airlines");
+        airlines = model.loadJsonDatabase(new TypeToken<ArrayList<AirlineModel>>(){}, "Data/airlines");
         Iterator<AirlineModel> iterator = airlines.iterator();
         while (iterator.hasNext()) {
             AirlineModel airline = iterator.next();
@@ -141,24 +153,59 @@ public class OneWayFragment
                 startSearchActivity();
                 isFromActive = false;
                 break;
-            case R.id.from_checkbox:
-            break;
-            case R.id.to_checkbox:
-            break;
             case R.id.more_options_link:
                 if (moreOptionsIsVisible) {
-                    departureTimeTextView.setVisibility(View.GONE);
-                    departureTimeEditText.setVisibility(View.GONE);
-                    preferredAirlineTextView.setVisibility(View.GONE);
-                    preferredAirlineSpinner.setVisibility(View.GONE);
+                    departureTextTableRow.setVisibility(View.GONE);
+                    departureEditTableRow.setVisibility(View.GONE);
+                    airlineTextTableRow.setVisibility(View.GONE);
+                    airlineSpinnerTableRow.setVisibility(View.GONE);
                             moreOptionsIsVisible = false;
                 } else {
-                    departureTimeTextView.setVisibility(View.VISIBLE);
-                    departureTimeEditText.setVisibility(View.VISIBLE);
-                    preferredAirlineTextView.setVisibility(View.VISIBLE);
-                    preferredAirlineSpinner.setVisibility(View.VISIBLE);
+                    departureTextTableRow.setVisibility(View.VISIBLE);
+                    departureEditTableRow.setVisibility(View.VISIBLE);
+                    airlineTextTableRow.setVisibility(View.VISIBLE);
+                    airlineSpinnerTableRow.setVisibility(View.VISIBLE);
                     moreOptionsIsVisible = true;
                 }
+                break;
+            case R.id.search_button:
+                SearchModel model = new SearchModel();
+                model.setType("OneWay");
+                model.setFrom(fromEditText.getValue());
+                model.setIncludeFrom(fromCheckBox.isChecked() ? "1" : "0");
+                model.setTo(toEditText.getValue());
+                model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
+                model.setDepartureDate(datePickerEditText.getValue());
+                AdvancedOptionsModel data = kindDialogEditText.getData();
+                if (data != null) {
+                    switch (data.getCabin()) {
+                        case "Economy":
+                            model.setCabin("M");
+                            break;
+                        case "Premium Economy":
+                            model.setCabin("Y");
+                            break;
+                        case "Business":
+                            model.setCabin("C");
+                            break;
+                        case "First":
+                            model.setCabin("F");
+                            break;
+                        default:
+                            model.setCabin("");
+                    }
+                    model.setAdult(String.valueOf(kindDialogEditText.getData().getAdult()));
+                    model.setSenior(String.valueOf(kindDialogEditText.getData().getSenior()));
+                    model.setChild(String.valueOf(kindDialogEditText.getData().getChildren()));
+                    model.setLapInfant(String.valueOf(kindDialogEditText.getData().getInfant()));
+                }
+                if (moreOptionsIsVisible) {
+                    int selected = airlinesSpinner.getSpinner().getSelectedPosition();
+                    model.setDepartureTime(departureTimeEditText.getValue());
+                    model.setAirline(airlines.get(selected).getAirLineCode());
+                }
+
+                getPresenter().executeNetworkRequest(model);
                 break;
         }
     }
@@ -168,10 +215,10 @@ public class OneWayFragment
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
             LocationModel location = data.getParcelableExtra("location");
             if (isFromActive) {
-                fromEditText.setText(location.getCity() + " (" + location.getCode() + ")");
+                fromEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
                 fromEditText.clearFocus();
             } else {
-                toEditText.setText(location.getCity() + " (" + location.getCode() + ")");
+                toEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
                 toEditText.clearFocus();
             }
         } else {

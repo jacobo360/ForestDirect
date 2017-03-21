@@ -25,6 +25,7 @@ public class DialogEditText
      */
     private CustomEditText dialogEditText;
     private AdvanceOptionsDialog advanceOptionsDialog;
+    private AdvancedOptionsModel data;
     private Context context;
 
 
@@ -44,7 +45,7 @@ public class DialogEditText
             initializeView();
     }
 
-    public void initializeView() {
+    private void initializeView() {
         LayoutInflater inflater = LayoutInflater.from(context);
         View container = inflater.inflate(R.layout.dialog_edit_text, this, true);
         dialogEditText = (CustomEditText) container.findViewById(R.id.dialog_edit_text_view);
@@ -73,6 +74,7 @@ public class DialogEditText
     @SuppressLint("SetTextI18n")
     @Override
     public void updateTextView(AdvancedOptionsModel model) {
+        data = model;
         int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
         if (total > 1)
             dialogEditText.setText(total + " Travelers, " + model.getCabin());
@@ -80,5 +82,9 @@ public class DialogEditText
             dialogEditText.setText("1 Adult, " + model.getCabin());
         else if (model.getSenior() == 1)
             dialogEditText.setText("1 Senior, " + model.getCabin());
+    }
+
+    public AdvancedOptionsModel getData() {
+        return data;
     }
 }

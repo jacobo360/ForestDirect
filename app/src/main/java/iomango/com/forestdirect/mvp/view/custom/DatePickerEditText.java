@@ -79,4 +79,8 @@ public class DatePickerEditText
     public void onClick(View view) {
         datePickerDialog.show();
     }
+
+    public String getValue() {
+        return dateEditText.getText().toString().trim();
+    }
 }

@@ -164,6 +164,8 @@ public interface MVP {
 
         void handleClick(int viewId);
 
+        <T> void executeNetworkRequest(T model);
+
         <PMM> PMM getModel();
     }
 

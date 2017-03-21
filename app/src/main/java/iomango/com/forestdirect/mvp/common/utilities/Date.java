@@ -32,7 +32,7 @@ public class Date {
     public String toString() {
         String monthString = "";
 
-        switch (month) {
+        /*switch (month) {
             case 0: monthString = "January"; break;
             case 1: monthString = "February"; break;
             case 2: monthString = "March"; break;
@@ -45,6 +45,21 @@ public class Date {
             case 9: monthString = "October"; break;
             case 10: monthString = "November"; break;
             case 11: monthString = "December"; break;
+        }*/
+
+        switch (month) {
+            case 0: monthString = "Jan"; break;
+            case 1: monthString = "Feb"; break;
+            case 2: monthString = "Mar"; break;
+            case 3: monthString = "Apr"; break;
+            case 4: monthString = "May"; break;
+            case 5: monthString = "Jun"; break;
+            case 6: monthString = "Jul"; break;
+            case 7: monthString = "Aug"; break;
+            case 8: monthString = "Sep"; break;
+            case 9: monthString = "Oct"; break;
+            case 10: monthString = "Nov"; break;
+            case 11: monthString = "Dec"; break;
         }
 
         return day + " " + monthString + ", " + year;

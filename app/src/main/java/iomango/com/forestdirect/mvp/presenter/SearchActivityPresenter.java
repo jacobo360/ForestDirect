@@ -59,15 +59,15 @@ public class SearchActivityPresenter
         view.get().displayDialog(DialogType.TIME_UNDETERMINED);
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public MVP.ProvidedModelMethods getModel() {
-        return new GlobalModel(context);
-    }
-
     @Override
     public <T> void processResponse(T response) {
         view.get().dismissDialog(DialogType.TIME_UNDETERMINED);
         view.get().updateView(response);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public MVP.ProvidedModelMethods getModel() {
+        return new GlobalModel(context);
     }
 }

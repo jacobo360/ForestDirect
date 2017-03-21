@@ -98,4 +98,8 @@ public class CustomEditText
             setError(error, icon);
         }
     }
+
+    public String getValue() {
+        return getText().toString().trim();
+    }
 }

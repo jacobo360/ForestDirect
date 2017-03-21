@@ -122,6 +122,5 @@ public abstract class GenericPresenter<RPM, PMM, M extends ModelMethods<RPM>> {
     public <T> void executeNetworkRequest(T model) {
         // Implemented on concrete presenter if needed
     }
-
 }
 
