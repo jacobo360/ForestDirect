@@ -15,8 +15,7 @@ import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
 import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
-import iomango.com.forestdirect.mvp.view.fragments.OneWayFragment;
-import iomango.com.forestdirect.mvp.view.fragments.RoundTripFragment;
+
 import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
 
 /**
@@ -30,8 +29,6 @@ public class MainActivity
      * Attributes
      */
     private ViewPager viewPager;
-    private TabLayout tabLayout;
-    private ViewPagerAdapter adapter;
 
 
     /**
@@ -61,7 +58,7 @@ public class MainActivity
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setViewPager();
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
         if(viewPager != null) {
@@ -74,10 +71,11 @@ public class MainActivity
      * Specifies which fragments will be contained on the {@param viewpager} and sets its adapter.
      */
     private void setViewPager() {
-        adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
         adapter.addFragment(new SelectorFragment(), R.string.flight_label);
         adapter.addFragment(new EmptyFragment(), R.string.hotel_label);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(2);
     }
 
     @Override
@@ -92,7 +90,7 @@ public class MainActivity
      */
     @Override
     public void onClick(View view) {
-        getPresenter().handleClick(view.getId());
+
     }
 
     /**
@@ -108,8 +106,7 @@ public class MainActivity
         private int previousScrollState;
         private int scrollState;
 
-
-        public TabLayoutOnPageChangeListener(TabLayout tabLayout) {
+        TabLayoutOnPageChangeListener(TabLayout tabLayout) {
             tabLayoutWeakReference = new WeakReference<>(tabLayout);
         }
 
@@ -128,10 +125,6 @@ public class MainActivity
                         && previousScrollState == ViewPager.SCROLL_STATE_DRAGGING);
                 tabLayout.setScrollPosition(position, positionOffset, updateText);
             }
-            /*if (position == 0)
-                floatingActionButton.setVisibility(View.VISIBLE);
-            else
-                floatingActionButton.setVisibility(View.GONE);*/
         }
 
         @SuppressWarnings("ConstantConditions")
@@ -140,13 +133,6 @@ public class MainActivity
             final TabLayout tabLayout = tabLayoutWeakReference.get();
             if (tabLayout != null)
                 tabLayout.getTabAt(position).select();
-
-            /*
-                if (position == 0)
-                    floatingActionButton.setVisibility(View.VISIBLE);
-                else
-                    floatingActionButton.setVisibility(View.GONE);
-            }*/
         }
     }
 }

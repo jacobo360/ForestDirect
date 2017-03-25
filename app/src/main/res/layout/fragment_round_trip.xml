@@ -399,7 +399,7 @@
                     app:itemSelectedDrawable="@drawable/bg_item"
                     app:listBackgroundColor="@color/white"
                     app:arrowColor="@color/colorAccent"
-                    app:lineColor="@color/colorAccent"
+                    app:lineColor="@color/colorPrimaryDark"
                     app:mode="text"
                     app:typeface="roboto_regular"/>
             </TableRow>

@@ -18,6 +18,10 @@ public class Constants {
     public static final int CAMERA = 30;
     public static final int ALL = 40;
 
+    public static final String ONE_WAY_FRAGMENT = "OneWay";
+    public static final String ROUND_TRIP_FRAGMENT = "RoundTrip";
+    public static final String MULTI_CITY_FRAGMENT = "MultiCity";
+
     public static final Pair<String,Integer> READ_PERMISSION =
             new Pair<>(Manifest.permission.READ_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE);
 

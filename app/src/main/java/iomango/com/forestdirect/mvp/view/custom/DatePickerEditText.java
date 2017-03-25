@@ -1,7 +1,9 @@
 package iomango.com.forestdirect.mvp.view.custom;
 
 import android.app.DatePickerDialog;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,7 @@ import iomango.com.forestdirect.mvp.common.utilities.Date;
 
 public class DatePickerEditText
         extends LinearLayout
-        implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
+        implements DatePickerDialog.OnDateSetListener, DialogInterface.OnCancelListener, View.OnClickListener {
 
     /**
      * Attributes
@@ -61,6 +63,7 @@ public class DatePickerEditText
 
         Date date = new Date();
         datePickerDialog = new DatePickerDialog(context, this, date.getYear(), date.getMonth(), date.getDay());
+        datePickerDialog.setOnCancelListener(this);
     }
 
     @Override
@@ -82,5 +85,11 @@ public class DatePickerEditText
 
     public String getValue() {
         return dateEditText.getText().toString().trim();
+    }
+
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        dateEditText.clearFocus();
     }
 }

@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnMultiCityActionListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
@@ -15,6 +18,7 @@ import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
+import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
 
 /**
  * Created by clelia_arch on 3/17/17
@@ -31,6 +35,7 @@ public class MultiCityAdapter
     private int minimumSize;
     private int maximumSize;
     private OnMultiCityActionListener listener;
+    private List<MultiCityAdapter.ViewHolder> holders  = new ArrayList<>();
 
 
     public MultiCityAdapter(Context context, int size, int minimumSize, int maximumSize) {
@@ -54,6 +59,8 @@ public class MultiCityAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         DrawablesTools.tintDrawable(context, R.drawable.ic_clear, R.color.grey_500);
+
+        holders.add(position, holder);
     }
 
     @Override
@@ -84,6 +91,14 @@ public class MultiCityAdapter
         }
     }
 
+    public int getSize() {
+        return size;
+    }
+
+    public List<ViewHolder> getHolders() {
+        return holders;
+    }
+
     public void setOnMultiCityActionListener(OnMultiCityActionListener listener) {
         this.listener = listener;
     }
@@ -91,9 +106,9 @@ public class MultiCityAdapter
     /**
      * View holder class for list item
      */
-    class ViewHolder
+    public class ViewHolder
             extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+            implements View.OnClickListener, View.OnFocusChangeListener {
 
         /**
          * Attributes
@@ -107,6 +122,7 @@ public class MultiCityAdapter
 
         CustomButton searchButton;
         CustomTextView addTextView;
+        DialogEditText dialogEditText;
 
 
         ViewHolder(View view) {
@@ -115,6 +131,7 @@ public class MultiCityAdapter
                 case R.id.footer_container:
                     searchButton = (CustomButton) view.findViewById(R.id.search_button);
                     addTextView = (CustomTextView) view.findViewById(R.id.add_flights_link);
+                    dialogEditText = (DialogEditText) view.findViewById(R.id.kind_edit_text);
                     searchButton.setOnClickListener(this);
                     addTextView.setOnClickListener(this);
                     break;
@@ -125,24 +142,82 @@ public class MultiCityAdapter
                     toCheckbox = (CheckBox) view.findViewById(R.id.to_checkbox);
                     departureDateEditText = (DatePickerEditText) view.findViewById(R.id.departure_date_edit_text);
                     deleteImageButton = (ImageButton) view.findViewById(R.id.delete_image_button);
+                    fromEditText.setOnClickListener(this);
+                    toEditText.setOnClickListener(this);
                     deleteImageButton.setOnClickListener(this);
+                    fromEditText.setOnFocusChangeListener(this);
+                    toEditText.setOnFocusChangeListener(this);
             }
+        }
+
+        public CustomEditText getFromEditText() {
+            return fromEditText;
+        }
+
+        public CheckBox getFromCheckbox() {
+            return fromCheckbox;
+        }
+
+        public CustomEditText getToEditText() {
+            return toEditText;
+        }
+
+        public CheckBox getToCheckbox() {
+            return toCheckbox;
+        }
+
+        public DatePickerEditText getDepartureDateEditText() {
+            return departureDateEditText;
+        }
+
+        public DialogEditText getDialogEditText() {
+            return dialogEditText;
         }
 
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
             switch (view.getId()) {
+                case R.id.from_edit_text:
+                    if (listener != null)
+                        listener.onFromEditTextClicked((CustomEditText)view
+                                .findViewById(R.id.from_edit_text));
+                    break;
+                case R.id.to_edit_text:
+                    if (listener != null)
+                        listener.onToEditTextClicked((CustomEditText)view
+                                .findViewById(R.id.to_edit_text));
+                    break;
                 case R.id.delete_image_button:
                     removeElement(position);
                     break;
                 case R.id.add_flights_link:
                     if (listener != null)
-                        listener.onAddFlightPressed();
+                        listener.onAddFlightClicked();
                     break;
                 case R.id.search_button:
                     if (listener != null)
-                        listener.onSearchPressed();
+                        listener.onSearchButtonClicked();
+                    break;
+            }
+        }
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            switch (view.getId()) {
+                case R.id.from_edit_text:
+                    if (hasFocus) {
+                        if (listener != null)
+                            listener.onFromEditTextClicked((CustomEditText)view
+                                    .findViewById(R.id.from_edit_text));
+                    }
+                    break;
+                case R.id.to_edit_text:
+                    if (hasFocus) {
+                        if (listener != null)
+                            listener.onToEditTextClicked((CustomEditText)view
+                                    .findViewById(R.id.to_edit_text));
+                    }
                     break;
             }
         }

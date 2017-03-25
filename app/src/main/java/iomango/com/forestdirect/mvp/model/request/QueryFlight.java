@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
+import iomango.com.forestdirect.mvp.model.data.MultiCityModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
@@ -35,8 +36,13 @@ public class QueryFlight <M>
 
     @Override
     public void performNetworkRequest() {
-        Call<ResponseBody> call = Client.getRestAPIService()
-                .getFlights(((SearchModel)model).getFieldMap());
+        Call<ResponseBody> call;
+        if (model instanceof  SearchModel)
+              call = Client.getRestAPIService()
+                    .getFlights(((SearchModel)model).getFieldMap());
+        else
+            call = Client.getRestAPIService()
+                    .getFlights(((MultiCityModel)model));
 
         call.enqueue(new Callback<ResponseBody>() {
             @Override

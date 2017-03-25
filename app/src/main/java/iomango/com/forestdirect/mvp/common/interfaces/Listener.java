@@ -1,7 +1,11 @@
 package iomango.com.forestdirect.mvp.common.interfaces;
 
+import java.util.List;
+
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.view.adapter.MultiCityAdapter;
+import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 
 /**
  * Created by clelia_arch on 3/8/17
@@ -27,7 +31,9 @@ public interface Listener {
     }
 
     interface OnMultiCityActionListener {
-        void onSearchPressed();
-        void onAddFlightPressed();
+        void onSearchButtonClicked();
+        void onAddFlightClicked();
+        void onFromEditTextClicked(CustomEditText editText);
+        void onToEditTextClicked(CustomEditText editText);
     }
 }

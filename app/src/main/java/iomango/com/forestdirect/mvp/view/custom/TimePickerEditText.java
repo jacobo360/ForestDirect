@@ -2,6 +2,7 @@ package iomango.com.forestdirect.mvp.view.custom;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 
 public class TimePickerEditText
         extends LinearLayout
-        implements TimePickerDialog.OnTimeSetListener, View.OnClickListener {
+        implements TimePickerDialog.OnTimeSetListener, DialogInterface.OnCancelListener, View.OnClickListener {
 
     /**
      * Attributes
@@ -62,6 +63,7 @@ public class TimePickerEditText
 
         timePickerDialog = TimePickerDialog.newInstance(this, 0, 0, false);
         timePickerDialog.setSelectableTimes(Constants.Timepoints);
+        timePickerDialog.setOnCancelListener(this);
     }
 
     @Override
@@ -83,5 +85,10 @@ public class TimePickerEditText
         if (hour.length() == 3)
             hour = "0" + hour;
         return hour;
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        timeEditText.clearFocus();
     }
 }

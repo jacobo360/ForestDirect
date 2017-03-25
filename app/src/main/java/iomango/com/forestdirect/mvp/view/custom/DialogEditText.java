@@ -74,14 +74,17 @@ public class DialogEditText
     @SuppressLint("SetTextI18n")
     @Override
     public void updateTextView(AdvancedOptionsModel model) {
-        data = model;
-        int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
-        if (total > 1)
-            dialogEditText.setText(total + " Travelers, " + model.getCabin());
-        else if (model.getAdult() == 1)
-            dialogEditText.setText("1 Adult, " + model.getCabin());
-        else if (model.getSenior() == 1)
-            dialogEditText.setText("1 Senior, " + model.getCabin());
+        if (model != null) {
+            data = model;
+            int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
+            if (total > 1)
+                dialogEditText.setText(total + " Travelers, " + model.getCabin());
+            else if (model.getAdult() == 1)
+                dialogEditText.setText("1 Adult, " + model.getCabin());
+            else if (model.getSenior() == 1)
+                dialogEditText.setText("1 Senior, " + model.getCabin());
+        } else
+            dialogEditText.clearFocus();
     }
 
     public AdvancedOptionsModel getData() {

@@ -9,6 +9,8 @@ public class Enums {
 
     public enum ScreenUnit { PX, DP }
 
+    public enum FlightType { ONE_WAY, ROUND_TRIP, MULTI_CITY }
+
     public enum CustomTypeface {
         ROBOTO_REGULAR(0),
         ROBOTO_MEDIUM(1),

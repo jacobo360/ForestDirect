@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.MultiCityModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -23,4 +25,7 @@ public interface RestAPIService {
     @FormUrlEncoded
     @POST("flights/search")
     Call<ResponseBody> getFlights(@FieldMap HashMap<String,String> data);
+
+    @POST("flights/search")
+    Call<ResponseBody> getFlights(@Body MultiCityModel model);
 }

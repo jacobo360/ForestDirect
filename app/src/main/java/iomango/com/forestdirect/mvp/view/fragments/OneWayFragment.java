@@ -112,6 +112,9 @@ public class OneWayFragment
         airlinesSpinner = (Spinner) containerLayout.findViewById(R.id.airline_spinner);
         CustomButton searchButton =  (CustomButton) containerLayout.findViewById(R.id.search_button);
 
+        fromEditText.clearFocus();
+        toEditText.clearFocus();
+
         // Tinting drawables
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_takeoff, R.color.colorPrimary);
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_land, R.color.colorPrimary);
@@ -196,10 +199,10 @@ public class OneWayFragment
                         default:
                             model.setCabin("");
                     }
-                    model.setAdult(String.valueOf(kindDialogEditText.getData().getAdult()));
-                    model.setSenior(String.valueOf(kindDialogEditText.getData().getSenior()));
-                    model.setChild(String.valueOf(kindDialogEditText.getData().getChildren()));
-                    model.setLapInfant(String.valueOf(kindDialogEditText.getData().getInfant()));
+                    model.setAdult(String.valueOf(data.getAdult()));
+                    model.setSenior(String.valueOf(data.getSenior()));
+                    model.setChild(String.valueOf(data.getChildren()));
+                    model.setLapInfant(String.valueOf(data.getInfant()));
                 }
                 if (moreOptionsIsVisible) {
                     int selected = airlinesSpinner.getSpinner().getSelectedPosition();

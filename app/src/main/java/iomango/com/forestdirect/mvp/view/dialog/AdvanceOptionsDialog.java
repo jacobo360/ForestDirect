@@ -89,6 +89,8 @@ public class AdvanceOptionsDialog
             .setNegativeButton(R.string.negative_option_label, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     dialog.dismiss();
+                    if (listener != null)
+                        listener.updateTextView(null);
                 }
             });
 

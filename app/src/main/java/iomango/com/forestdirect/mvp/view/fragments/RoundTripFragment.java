@@ -26,7 +26,7 @@ import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
-import iomango.com.forestdirect.mvp.presenter.RoundTripPresenter;
+import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
@@ -40,7 +40,7 @@ import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
  * Created by Clelia López on 03/10/2017
  */
 public class RoundTripFragment
-        extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, RoundTripPresenter>
+        extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
         implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener {
 
     /**
@@ -86,7 +86,7 @@ public class RoundTripFragment
         isRetainedFragment = false;
 
         // Instantiate the presenter
-        super.onCreate(RoundTripPresenter.class, this);
+        super.onCreate(OneWayPresenter.class, this);
 
         // Initialize the view components defined in the fragment's layout
         initializeViews();
@@ -118,6 +118,9 @@ public class RoundTripFragment
         airlineSpinnerTableRow = (TableRow) containerLayout.findViewById(R.id.airline_table_spinner);
         airlinesSpinner = (Spinner) containerLayout.findViewById(R.id.airline_spinner);
         CustomButton searchButton =  (CustomButton) containerLayout.findViewById(R.id.search_button);
+
+        fromEditText.clearFocus();
+        toEditText.clearFocus();
 
         // Tinting drawables
         DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_takeoff, R.color.colorPrimary);
@@ -183,7 +186,7 @@ public class RoundTripFragment
                 break;
             case R.id.search_button:
                 SearchModel model = new SearchModel();
-                model.setType("OneWay");
+                model.setType("Round");
                 model.setFrom(fromCode);
                 model.setIncludeFrom(fromCheckBox.isChecked() ? "1" : "0");
                 model.setTo(toCode);
@@ -208,15 +211,15 @@ public class RoundTripFragment
                         default:
                             model.setCabin("");
                     }
-                    model.setAdult(String.valueOf(kindDialogEditText.getData().getAdult()));
-                    model.setSenior(String.valueOf(kindDialogEditText.getData().getSenior()));
-                    model.setChild(String.valueOf(kindDialogEditText.getData().getChildren()));
-                    model.setLapInfant(String.valueOf(kindDialogEditText.getData().getInfant()));
+                    model.setAdult(String.valueOf(data.getAdult()));
+                    model.setSenior(String.valueOf(data.getSenior()));
+                    model.setChild(String.valueOf(data.getChildren()));
+                    model.setLapInfant(String.valueOf(data.getInfant()));
                 }
                 if (moreOptionsIsVisible) {
                     int selected = airlinesSpinner.getSpinner().getSelectedPosition();
                     model.setDepartureTime(departureTimeEditText.getValue());
-                    model.setArriveDate(returnTimeEditText.getValue());
+                    model.setArriveTime(returnTimeEditText.getValue());
                     model.setAirline(airlines.get(selected).getAirLineCode());
                 }
                 getPresenter().executeNetworkRequest(model);
