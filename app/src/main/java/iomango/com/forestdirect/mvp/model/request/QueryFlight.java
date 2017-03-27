@@ -60,7 +60,8 @@ public class QueryFlight <M>
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                logger.log(throwable.getCause().toString());
+                if (throwable != null)
+                    logger.log(throwable.getCause().toString());
             }
         });
     }

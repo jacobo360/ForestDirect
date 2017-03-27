@@ -55,6 +55,11 @@ public class SearchModel {
         departureTime = "";
         arriveTime = "";
         airline = "";
+        cabin = "";
+        adult = "";
+        senior = "";
+        child = "";
+        lapInfant = "";
     }
 
     public void setType(String type) {
@@ -138,5 +143,21 @@ public class SearchModel {
             data.put("arr_time", arriveTime);
         }
         return data;
+    }
+
+    public boolean isValid() {
+        if (from.isEmpty())
+            return false;
+        if (to.isEmpty())
+            return false;
+        if (departureDate.isEmpty())
+            return false;
+        if (adult.isEmpty() || senior.isEmpty())
+            return false;
+        if (type.equalsIgnoreCase("Round"))
+            if (departureDate.isEmpty())
+                return false;
+
+        return true;
     }
 }

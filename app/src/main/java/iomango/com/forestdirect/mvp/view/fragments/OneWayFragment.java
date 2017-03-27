@@ -63,8 +63,8 @@ public class OneWayFragment
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
-    private String fromCode;
-    private String toCode;
+    private String fromCode = "";
+    private String toCode = "";
 
 
     /**
@@ -210,7 +210,8 @@ public class OneWayFragment
                     model.setAirline(airlines.get(selected).getAirLineCode());
                 }
 
-                getPresenter().executeNetworkRequest(model);
+                if (model.isValid())
+                    getPresenter().executeNetworkRequest(model);
                 break;
         }
     }
