@@ -16,6 +16,7 @@ import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
 
+import iomango.com.forestdirect.mvp.view.fragments.HotelsFragment;
 import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
 
 /**
@@ -73,7 +74,7 @@ public class MainActivity
     private void setViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
         adapter.addFragment(new SelectorFragment(), R.string.flight_label);
-        adapter.addFragment(new EmptyFragment(), R.string.hotel_label);
+        adapter.addFragment(new HotelsFragment(), R.string.hotel_label);
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(2);
     }

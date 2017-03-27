@@ -47,6 +47,24 @@
     <string name="round_trip_label">Round-Trip</string>
     <string name="multi_city_label">Multi-City</string>
 
+    <!-- Hotels Fragment -->
+    <string name="destination_city_label">Destination City</string>
+    <string name="check_in_label">Check In</string>
+    <string name="check_out_label">Check Out</string>
+    <string name="rooms_label">Rooms</string>
+    <string name="adults_children_label">Adults and Children</string>
+    <string-array name="rooms_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
     <!-- Stepper View -->
     <string name="amount_label">0</string>
     <string name="blank">%d</string>
