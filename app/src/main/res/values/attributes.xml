@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="hint" format="string"/>
+
     <attr name="typeface" format="enum">
         <enum name="roboto_regular" value="0" />
         <enum name="roboto_medium" value="1" />
@@ -20,6 +22,18 @@
 
     <declare-styleable name="CustomTabLayout">
         <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="DatePickerEditText">
+        <attr name="hint"/>
+    </declare-styleable>
+
+    <declare-styleable name="TimePickerEditText">
+        <attr name="hint"/>
+    </declare-styleable>
+
+    <declare-styleable name="DialogEditText">
+        <attr name="hint"/>
     </declare-styleable>
 
     <attr name="direction" format="enum">

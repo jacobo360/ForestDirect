@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
@@ -351,6 +353,21 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
             case MESSAGE:
                 break;
         }
+    }
+
+    /**
+     * Renders a snack bar at the bottom of the screen
+     *
+     * @param view parent view
+     * @param message resource ID with desired message
+     * @param close resource ID with desired action title
+     */
+    public void displaySnackBar(View view, int message, int close, View.OnClickListener listener) {
+        Snackbar
+            .make(view, message, Snackbar.LENGTH_INDEFINITE)
+            .setAction(close, listener)
+            .setActionTextColor(ContextCompat.getColor(this, R.color.colorAccent))
+            .show();
     }
 
     /**

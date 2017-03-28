@@ -52,7 +52,7 @@ public class MultiCityAdapter
         if (viewType == R.layout.multicity_list_item)
             convertView = inflater.inflate(R.layout.multicity_list_item, parent, false);
         else
-            convertView = inflater.inflate(R.layout.footer_button, parent, false);
+            convertView = inflater.inflate(R.layout.multicity_footer, parent, false);
         return new MultiCityAdapter.ViewHolder(convertView);
     }
 
@@ -71,7 +71,7 @@ public class MultiCityAdapter
     @Override
     public int getItemViewType(int position) {
         if (position  == (size -1))
-            return R.layout.footer_button;
+            return R.layout.multicity_footer;
         else
             return R.layout.multicity_list_item;
     }

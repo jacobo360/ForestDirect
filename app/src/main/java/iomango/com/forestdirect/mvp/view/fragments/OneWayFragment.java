@@ -28,6 +28,7 @@ import iomango.com.forestdirect.mvp.model.data.AirlineModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
+import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
@@ -52,6 +53,7 @@ public class OneWayFragment
     private CustomEditText toEditText;
     private CheckBox fromCheckBox;
     private CheckBox toCheckBox;
+    private CheckBox flexibleDatesCheckBox;
     private DatePickerEditText datePickerEditText;
     private DialogEditText kindDialogEditText;
     private TimePickerEditText departureTimeEditText;
@@ -103,6 +105,7 @@ public class OneWayFragment
         toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
         CustomTextView moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
         datePickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.departure_date_edit_text);
+        flexibleDatesCheckBox = (CheckBox) containerLayout.findViewById(R.id.flexible_dates_checkbox);
         kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
         departureTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.departure_time_edit_text);
         departureTextTableRow = (TableRow) containerLayout.findViewById(R.id.departure_table_label);
@@ -181,6 +184,7 @@ public class OneWayFragment
                 model.setTo(toCode);
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(datePickerEditText.getValue());
+                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": "");
                 AdvancedOptionsModel data = kindDialogEditText.getData();
                 if (data != null) {
                     switch (data.getCabin()) {
@@ -208,9 +212,15 @@ public class OneWayFragment
                     int selected = airlinesSpinner.getSpinner().getSelectedPosition();
                     model.setDepartureTime(departureTimeEditText.getValue());
                     model.setAirline(airlines.get(selected).getAirLineCode());
+                } else {
+                    model.setDepartureTime("");
+                    model.setAirline("");
                 }
-
+                
                 getPresenter().executeNetworkRequest(model);
+                break;
+            case android.support.design.R.id.snackbar_action:
+                getActivity().finish();
                 break;
         }
     }

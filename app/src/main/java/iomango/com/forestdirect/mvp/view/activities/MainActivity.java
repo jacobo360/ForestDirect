@@ -14,7 +14,6 @@ import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
 import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
-import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
 
 import iomango.com.forestdirect.mvp.view.fragments.HotelsFragment;
 import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;

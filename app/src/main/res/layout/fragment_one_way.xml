@@ -54,7 +54,7 @@
                     android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:editable="false"
-                    android:hint="@string/search_hint"
+                    android:hint="@string/from_hint"
                     style="@style/EditTextStyle.Margin"/>
             </TableRow>
 
@@ -113,7 +113,7 @@
                     android:layout_weight="4"
                     android:layout_marginBottom="5dp"
                     android:editable="false"
-                    android:hint="@string/search_hint"
+                    android:hint="@string/to_hint"
                     style="@style/EditTextStyle.Margin"/>
             </TableRow>
 
@@ -169,8 +169,27 @@
                     android:id="@+id/departure_date_edit_text"
                     android:layout_width="100dp"
                     android:layout_weight="4"
-                    android:hint="@string/search_hint"
+                    app:hint="@string/departure_date_hint"
                     style="@style/EditTextStyle.Margin"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"/>
+
+                <CheckBox
+                    android:id="@+id/flexible_dates_checkbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:text="@string/include_flexible_label"
+                    style="@style/CheckBoxStyle"/>
             </TableRow>
 
             <TableRow
@@ -206,7 +225,7 @@
                     android:id="@+id/kind_edit_text"
                     android:layout_width="100dp"
                     android:layout_weight="4"
-                    android:hint="@string/search_hint"
+                    app:hint="@string/kind_hint"
                     style="@style/EditTextStyle.Margin"/>
             </TableRow>
 
@@ -265,7 +284,7 @@
                     android:layout_width="100dp"
                     android:layout_weight="4"
                     android:layout_marginBottom="5dp"
-                    android:hint="@string/search_hint"
+                    app:hint="@string/departure_time_hint"
                     style="@style/EditTextStyle.Margin"/>
             </TableRow>
 

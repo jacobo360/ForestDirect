@@ -13,6 +13,7 @@
     <string name="location_name">Phoenix Regional Airport, United States</string>
 
     <!-- All -->
+    <string name="empty"/>
     <string name="search_hint">Type to search</string>
     <string name="image">Image</string>
 
@@ -32,12 +33,22 @@
     <string name="return_date_label">Return date</string>
     <string name="departure_time_label">Departure time</string>
     <string name="return_time_label">Return time</string>
-    <string name="kind_label">Kind</string>
+    <string name="kind_label">Kind and Passengers</string>
     <string name="more_options_label">More Options</string>
     <string name="preferred_airline_label">Preferred Airline</string>
-    <string name="include_airport_label">Include Near Airport</string>
+    <string name="include_airport_label">Include near airport</string>
+    <string name="include_flexible_label">Include flexible dates</string>
     <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>
+    <string name="from_hint">E.g. Orlando</string>
+    <string name="to_hint">E.g. Chicago</string>
+    <string name="departure_date_hint">E.g. 20 May, 2017</string>
+    <string name="kind_hint">E.g. 1 Adult, Business</string>
+    <string name="departure_time_hint">E.g. 18:30</string>
+
+    <!--RoundTrip Fragment -->
+    <string name="return_date_hint">E.g. 30 May, 2017</string>
+    <string name="return_time_hint">E.g. 8:30</string>
 
     <!-- MultiCity Fragment -->
     <string name="add_flight_label"> Add another flight (Up to 6)</string>

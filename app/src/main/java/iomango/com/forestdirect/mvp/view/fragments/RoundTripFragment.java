@@ -51,6 +51,7 @@ public class RoundTripFragment
     private CustomEditText toEditText;
     private CheckBox fromCheckBox;
     private CheckBox toCheckBox;
+    private CheckBox flexibleDatesCheckBox;
     private DatePickerEditText departureDatePickerEditText;
     private DatePickerEditText returnDatePickerEditText;
     private DialogEditText kindDialogEditText;
@@ -106,6 +107,7 @@ public class RoundTripFragment
         toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
         departureDatePickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.departure_date_edit_text);
         returnDatePickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.return_date_edit_text);
+        flexibleDatesCheckBox = (CheckBox) containerLayout.findViewById(R.id.flexible_dates_checkbox);
         kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
         departureTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.departure_time_edit_text);
         returnTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.return_time_edit_text);
@@ -193,6 +195,7 @@ public class RoundTripFragment
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(departureDatePickerEditText.getValue());
                 model.setArriveDate(returnDatePickerEditText.getValue());
+                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": "");
                 AdvancedOptionsModel data = kindDialogEditText.getData();
                 if (data != null) {
                     switch (data.getCabin()) {
@@ -221,6 +224,10 @@ public class RoundTripFragment
                     model.setDepartureTime(departureTimeEditText.getValue());
                     model.setArriveTime(returnTimeEditText.getValue());
                     model.setAirline(airlines.get(selected).getAirLineCode());
+                } else {
+                    model.setDepartureTime("");
+                    model.setArriveTime("");
+                    model.setAirline("");
                 }
                 getPresenter().executeNetworkRequest(model);
                 break;

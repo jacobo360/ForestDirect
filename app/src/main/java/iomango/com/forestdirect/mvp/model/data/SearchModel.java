@@ -47,6 +47,9 @@ public class SearchModel {
 
     private String airline;
 
+    @SerializedName("search_type")
+    private String includeFlexibleDates;
+
 
     public SearchModel() {
         includeFrom = "0";
@@ -55,6 +58,7 @@ public class SearchModel {
         departureTime = "";
         arriveTime = "";
         airline = "";
+        includeFlexibleDates = "";
     }
 
     public void setType(String type) {
@@ -117,6 +121,10 @@ public class SearchModel {
         this.airline = airline;
     }
 
+    public void setIncludeFlexibleDates(String includeFlexibleDates) {
+        this.includeFlexibleDates = includeFlexibleDates;
+    }
+
     public HashMap<String,String> getFieldMap() {
         HashMap<String,String> data = new HashMap<>();
         data.put("type", type);
@@ -132,6 +140,7 @@ public class SearchModel {
         data.put("lap_infant", lapInfant);
         data.put("dep_time", departureTime);
         data.put("airline", airline);
+        data.put("search_type", includeFlexibleDates);
 
         if (type.equalsIgnoreCase("Round")) {
             data.put("arr_date", arriveDate);

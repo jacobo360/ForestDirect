@@ -50,7 +50,11 @@ public class QueryLocation<M>
 
             @Override
             public void onFailure(Call<List<LocationModel>> call, Throwable throwable) {
-                logger.log(throwable.getCause().toString());
+                try {
+                    logger.log(throwable.getCause().toString());
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
     }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/footer_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+        android:id="@+id/add_flights_link"
+        android:layout_gravity="end"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        android:text="@string/add_flight_label"
+        style="@style/TextViewStyle.Link"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+                android:layout_width="match_parent"
+                android:layout_weight="4"
+                android:text="@string/kind_label"
+                style="@style/TextViewStyle.Body"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_weight="1.5"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_filter_outline"
+                android:contentDescription="@string/image"/>
+
+            <iomango.com.forestdirect.mvp.view.custom.DialogEditText
+                android:id="@+id/kind_edit_text"
+                android:layout_width="100dp"
+                android:layout_weight="4"
+                app:hint="@string/kind_hint"
+                style="@style/EditTextStyle.Margin"/>
+        </TableRow>
+    </TableLayout>
+
+    <iomango.com.forestdirect.mvp.view.custom.CustomButton
+        android:id="@+id/search_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/search_label"
+        style="@style/ButtonStyle"/>
+
+</LinearLayout>
+

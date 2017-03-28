@@ -28,7 +28,7 @@
                 android:title="@string/app_name"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleTextColor="@color/white"
-                app:layout_scrollFlags="scroll|enterAlways"/>
+                app:layout_scrollFlags="scroll"/>
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTabLayout
                 android:id="@+id/tab_layout"

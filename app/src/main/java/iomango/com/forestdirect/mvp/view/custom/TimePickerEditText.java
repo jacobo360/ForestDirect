@@ -3,6 +3,7 @@ package iomango.com.forestdirect.mvp.view.custom;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,19 @@ public class TimePickerEditText
         super(context, attributes);
         this.context = context;
 
-        if (!isInEditMode())
+        if (!isInEditMode()) {
             initializeView();
+            parseAttributes(attributes);
+        }
+    }
+
+    private void parseAttributes(AttributeSet attributes) {
+        TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.TimePickerEditText);
+        String hint = typedArray.getString(R.styleable.TimePickerEditText_hint);
+        if (hint != null)
+            timeEditText.setHint(hint);
+
+        typedArray.recycle();
     }
 
     public void initializeView() {

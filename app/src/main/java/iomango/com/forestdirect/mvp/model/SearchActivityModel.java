@@ -13,7 +13,7 @@ public class SearchActivityModel {
 
 
     public SearchActivityModel(String location) {
-        this.location = location.trim();
+        this.location = location;
     }
 
     public String getLocation() {

@@ -122,6 +122,15 @@ public interface MVP {
         void dismissDialog(DialogType type);
 
         /**
+         * Renders a snack bar at the bottom of the screen
+         *
+         * @param view parent view
+         * @param message resource ID with desired message
+         * @param close resource ID with desired action title
+         */
+        void displaySnackBar(View view, int message, int close, View.OnClickListener listener);
+
+        /**
          * Update activity view content with new {@param data}
          */
         <T> void updateView(T data);

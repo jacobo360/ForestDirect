@@ -2,6 +2,7 @@ package iomango.com.forestdirect.mvp.view.custom;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -41,8 +42,19 @@ public class DialogEditText
         super(context, attributes);
         this.context = context;
 
-        if (!isInEditMode())
+        if (!isInEditMode()) {
             initializeView();
+            parseAttributes(attributes);
+        }
+    }
+
+    private void parseAttributes(AttributeSet attributes) {
+        TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.DialogEditText);
+        String hint = typedArray.getString(R.styleable.DialogEditText_hint);
+        if (hint != null)
+            dialogEditText.setHint(hint);
+
+        typedArray.recycle();
     }
 
     private void initializeView() {

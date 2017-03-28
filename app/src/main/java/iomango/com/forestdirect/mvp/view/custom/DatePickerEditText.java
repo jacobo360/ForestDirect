@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,19 @@ public class DatePickerEditText
         super(context, attributes);
         this.context = context;
 
-        if (!isInEditMode())
+        if (!isInEditMode()) {
             initializeView();
+            parseAttributes(attributes);
+        }
+    }
+
+    private void parseAttributes(AttributeSet attributes) {
+        TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.DatePickerEditText);
+        String hint = typedArray.getString(R.styleable.DatePickerEditText_hint);
+        if (hint != null)
+            dateEditText.setHint(hint);
+
+        typedArray.recycle();
     }
 
     public void initializeView() {

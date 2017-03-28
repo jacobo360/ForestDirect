@@ -28,7 +28,8 @@
     <!-- TextView Body -->
     <style name="TextViewStyle.Body">
         <item name="android:textSize">13sp</item>
-        <item name="android:textColor">@color/grey_dark</item>
+        <item name="android:textColor">@color/grey_500</item>
+        <item name="typeface">roboto_medium</item>
     </style>
 
     <!-- TextView Body Bold -->
@@ -60,6 +61,18 @@
         <item name="android:background">@drawable/bg_edit_text</item>
         <item name="android:singleLine">true</item>
         <item name="typeface">roboto_regular</item>
+    </style>
+
+    <!-- RadioButton -->
+    <style name="RadioButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/radio_button</item>
+        <item name="typeface">roboto_medium</item>
     </style>
 
     <!-- EditText with Margin -->
