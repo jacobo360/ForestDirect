@@ -87,4 +87,17 @@ public class MultiCityModel {
     public void setLapInfant(String lapInfant) {
         this.lapInfant = lapInfant;
     }
+
+    public boolean isValid() {
+        if (from.size() < 2)
+            return false;
+        if (to.size() < 2)
+            return false;
+        if (dates.size() < 2)
+            return false;
+        if (adult.isEmpty() || senior.isEmpty())
+            return false;
+
+        return true;
+    }
 }

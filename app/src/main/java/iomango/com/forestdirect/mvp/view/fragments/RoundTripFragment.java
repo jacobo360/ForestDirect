@@ -27,6 +27,7 @@ import iomango.com.forestdirect.mvp.model.data.AirlineModel;
 import iomango.com.forestdirect.mvp.model.data.LocationModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
+import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
@@ -67,8 +68,8 @@ public class RoundTripFragment
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
-    private String fromCode;
-    private String toCode;
+    private String fromCode = "";
+    private String toCode = "";
 
 
     /**
@@ -229,7 +230,12 @@ public class RoundTripFragment
                     model.setArriveTime("");
                     model.setAirline("");
                 }
-                getPresenter().executeNetworkRequest(model);
+
+                if (model.isValid() && model.getTotalPassengers() <= 6)
+                    getPresenter().executeNetworkRequest(model);
+                else
+                    getParentActivity(MainActivity.class).displaySnackBar(containerLayout,
+                        R.string.passenger_error, R.string.close_label, this);
                 break;
         }
     }

@@ -102,4 +102,8 @@ public class DialogEditText
     public AdvancedOptionsModel getData() {
         return data;
     }
+
+    public void setText(String value) {
+        dialogEditText.setText(value);
+    }
 }

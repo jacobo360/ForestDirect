@@ -65,8 +65,8 @@ public class OneWayFragment
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
-    private String fromCode;
-    private String toCode;
+    private String fromCode = "";
+    private String toCode = "";
 
 
     /**
@@ -216,11 +216,15 @@ public class OneWayFragment
                     model.setDepartureTime("");
                     model.setAirline("");
                 }
-                
-                getPresenter().executeNetworkRequest(model);
+
+                if (model.isValid() && model.getTotalPassengers() <= 6)
+                    getPresenter().executeNetworkRequest(model);
+                else
+                    getParentActivity(MainActivity.class).displaySnackBar(containerLayout,
+                        R.string.passenger_error, R.string.close_label, this);
                 break;
             case android.support.design.R.id.snackbar_action:
-                getActivity().finish();
+                kindDialogEditText.setText("");
                 break;
         }
     }

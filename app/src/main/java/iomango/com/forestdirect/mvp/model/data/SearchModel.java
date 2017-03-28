@@ -59,6 +59,11 @@ public class SearchModel {
         arriveTime = "";
         airline = "";
         includeFlexibleDates = "";
+        cabin = "";
+        adult = "";
+        senior = "";
+        child = "";
+        lapInfant = "";
     }
 
     public void setType(String type) {
@@ -147,5 +152,34 @@ public class SearchModel {
             data.put("arr_time", arriveTime);
         }
         return data;
+    }
+
+    public boolean isValid() {
+        if (from.isEmpty())
+            return false;
+        if (to.isEmpty())
+            return false;
+        if (departureDate.isEmpty())
+            return false;
+        if (adult.isEmpty() || senior.isEmpty())
+            return false;
+        if (type.equalsIgnoreCase("Round"))
+            if (departureDate.isEmpty())
+                return false;
+
+        return true;
+    }
+
+    public int getTotalPassengers() {
+        int total = 0;
+        if (!adult.equals(""))
+            total = total + Integer.parseInt(adult);
+        if (!senior.equals(""))
+            total = total + Integer.parseInt(senior);
+        if (!child.equals(""))
+            total = total + Integer.parseInt(child);
+        if (!lapInfant.equals(""))
+            total = total + Integer.parseInt(lapInfant);
+        return total;
     }
 }

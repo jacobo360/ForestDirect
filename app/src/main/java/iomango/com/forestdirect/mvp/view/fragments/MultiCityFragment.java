@@ -176,7 +176,9 @@ public class MultiCityFragment
             model.setChild(String.valueOf(data.getChildren()));
             model.setLapInfant(String.valueOf(data.getInfant()));
 
-            getPresenter().executeNetworkRequest(model);
+
+            if (model.isValid())
+                getPresenter().executeNetworkRequest(model);
         }
     }
 }
