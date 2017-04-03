@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by clelia_arch on 4/3/17
  */
 
-public class HotelModel implements Parcelable {
+public class HotelLocationModel implements Parcelable {
 
     @SerializedName("city_code")
     private String code;
@@ -53,25 +53,25 @@ public class HotelModel implements Parcelable {
         dest.writeString(this.municipality);
     }
 
-    public HotelModel() {
+    public HotelLocationModel() {
     }
 
-    protected HotelModel(Parcel in) {
+    protected HotelLocationModel(Parcel in) {
         this.code = in.readString();
         this.city = in.readString();
         this.country = in.readString();
         this.municipality = in.readString();
     }
 
-    public static final Parcelable.Creator<HotelModel> CREATOR = new Parcelable.Creator<HotelModel>() {
+    public static final Parcelable.Creator<HotelLocationModel> CREATOR = new Parcelable.Creator<HotelLocationModel>() {
         @Override
-        public HotelModel createFromParcel(Parcel source) {
-            return new HotelModel(source);
+        public HotelLocationModel createFromParcel(Parcel source) {
+            return new HotelLocationModel(source);
         }
 
         @Override
-        public HotelModel[] newArray(int size) {
-            return new HotelModel[size];
+        public HotelLocationModel[] newArray(int size) {
+            return new HotelLocationModel[size];
         }
     };
 }

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by clelia_arch on 3/23/17
  */
 
-public class MultiCityModel {
+public class MultiCitySearchModel {
 
     private String type;
 
@@ -39,7 +39,7 @@ public class MultiCityModel {
     private String lapInfant;
 
 
-    public MultiCityModel() {
+    public MultiCitySearchModel() {
         type = "Multi";
         from = new ArrayList<>();
         includeFrom = new ArrayList<>();

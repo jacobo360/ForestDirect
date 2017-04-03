@@ -44,7 +44,7 @@ public class Client {
 
     private static HttpLoggingInterceptor getInterceptor() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         return loggingInterceptor;
     }
 
@@ -57,11 +57,14 @@ public class Client {
     }
 
     public static RestAPIService getRestAPIService() {
-        if (restAPIService == null)
-            if (hasHostChanged)
-                new Client(retrofit);
-            else
-                new Client(getDefaultRetrofitBuilder());
+        if (restAPIService == null || !hasHostChanged)
+            new Client(getDefaultRetrofitBuilder());
+        return restAPIService;
+    }
+
+    public static RestAPIService getTestAPIService() {
+        if (restAPIService == null || hasHostChanged)
+            new Client(retrofit);
         return restAPIService;
     }
 }

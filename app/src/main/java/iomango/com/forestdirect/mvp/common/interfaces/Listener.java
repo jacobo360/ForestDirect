@@ -2,7 +2,6 @@ package iomango.com.forestdirect.mvp.common.interfaces;
 
 import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 
 /**

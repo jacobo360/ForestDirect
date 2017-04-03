@@ -19,8 +19,8 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
-import iomango.com.forestdirect.mvp.model.data.HotelModel;
+import iomango.com.forestdirect.mvp.model.data.AirportLocationModel;
+import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.presenter.SearchActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.AirportListAdapter;
 import iomango.com.forestdirect.mvp.view.adapter.HotelListAdapter;
@@ -99,26 +99,26 @@ public class SearchActivity
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
+                // no-op
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
                 if (lookingHotels) {
-                    if (count > 0)
-                        getPresenter().executeNetworkRequest(new SearchActivityModel(text.toString(), true));
+                    if (editable.toString().length() > 0)
+                        getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString(), true));
                     else {
                         if (hotelListAdapter != null)
                             hotelListAdapter.clear();
                     }
                 } else {
-                    if (count > 0)
-                        getPresenter().executeNetworkRequest(new SearchActivityModel(text.toString()));
+                    if (editable.toString().length() > 0)
+                        getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString()));
                     else {
                         if (airportListAdapter != null)
                             airportListAdapter.clear();
                     }
                 }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // no-op
             }
         });
     }
@@ -147,11 +147,11 @@ public class SearchActivity
     @Override
     public <T> void updateView(T data) {
         if (lookingHotels) {
-            hotelListAdapter = new HotelListAdapter(this, (List<HotelModel>)data);
+            hotelListAdapter = new HotelListAdapter(this, (List<HotelLocationModel>)data);
             hotelListAdapter.setOnLocationSelectedListener(this);
             recyclerView.setAdapter(hotelListAdapter);
         } else {
-            airportListAdapter = new AirportListAdapter(this, (List<AirportModel>)data);
+            airportListAdapter = new AirportListAdapter(this, (List<AirportLocationModel>)data);
             airportListAdapter.setOnLocationSelectedListener(this);
             recyclerView.setAdapter(airportListAdapter);
         }
@@ -161,9 +161,9 @@ public class SearchActivity
     public <T> void updateLocation(T location) {
         Intent intent = new Intent();
         if (lookingHotels)
-            intent.putExtra("location", (HotelModel)location);
+            intent.putExtra("location", (HotelLocationModel)location);
         else
-            intent.putExtra("location", (AirportModel)location);
+            intent.putExtra("location", (AirportLocationModel)location);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }

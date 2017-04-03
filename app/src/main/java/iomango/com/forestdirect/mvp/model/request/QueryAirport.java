@@ -5,7 +5,7 @@ import java.util.List;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
+import iomango.com.forestdirect.mvp.model.data.AirportLocationModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
 import retrofit2.Call;
@@ -35,12 +35,12 @@ public class QueryAirport<M>
 
     @Override
     public void performNetworkRequest() {
-        Call<List<AirportModel>> call = Client.getRestAPIService()
+        Call<List<AirportLocationModel>> call = Client.getRestAPIService()
                 .getAirports(((SearchActivityModel)model).getLocation());
 
-        call.enqueue(new Callback<List<AirportModel>>() {
+        call.enqueue(new Callback<List<AirportLocationModel>>() {
             @Override
-            public void onResponse(Call<List<AirportModel>> call, Response<List<AirportModel>> response) {
+            public void onResponse(Call<List<AirportLocationModel>> call, Response<List<AirportLocationModel>> response) {
                 if (response.isSuccessful()) {
                     if (listener != null)
                         listener.processResponse(response.body());
@@ -49,7 +49,7 @@ public class QueryAirport<M>
             }
 
             @Override
-            public void onFailure(Call<List<AirportModel>> call, Throwable throwable) {
+            public void onFailure(Call<List<AirportLocationModel>> call, Throwable throwable) {
                 try {
                     logger.log(throwable.getCause().toString());
                 } catch (Exception exception) {

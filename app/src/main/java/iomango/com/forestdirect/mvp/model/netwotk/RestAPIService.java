@@ -3,9 +3,9 @@ package iomango.com.forestdirect.mvp.model.netwotk;
 import java.util.HashMap;
 import java.util.List;
 
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
-import iomango.com.forestdirect.mvp.model.data.HotelModel;
-import iomango.com.forestdirect.mvp.model.data.MultiCityModel;
+import iomango.com.forestdirect.mvp.model.data.AirportLocationModel;
+import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
+import iomango.com.forestdirect.mvp.model.data.MultiCitySearchModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,15 +22,15 @@ import retrofit2.http.Query;
 public interface RestAPIService {
 
     @GET("flights/getCities")
-    Call<List<AirportModel>> getAirports(@Query("q") String name);
+    Call<List<AirportLocationModel>> getAirports(@Query("q") String name);
 
     @GET("hotels-and-cities/{name}")
-    Call<List<HotelModel>> getHotels(@Path("name") String name);
+    Call<List<HotelLocationModel>> getHotels(@Path("name") String name);
 
     @FormUrlEncoded
     @POST("flights/search")
     Call<ResponseBody> getFlights(@FieldMap HashMap<String,String> data);
 
     @POST("flights/search")
-    Call<ResponseBody> getFlights(@Body MultiCityModel model);
+    Call<ResponseBody> getFlights(@Body MultiCitySearchModel model);
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import iomango.com.forestdirect.R;
@@ -17,14 +16,13 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
-import iomango.com.forestdirect.mvp.model.data.HotelModel;
+import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
 import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
-import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
 
 /**
  * Created by Clelia López on 03/10/2017
@@ -147,7 +145,7 @@ public class HotelsFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            HotelModel location = data.getParcelableExtra("location");
+            HotelLocationModel location = data.getParcelableExtra("location");
             destinationEditText.setText(location.getCity() + " (" + location.getCode() + ")");
             destinationEditText.clearFocus();
         } else

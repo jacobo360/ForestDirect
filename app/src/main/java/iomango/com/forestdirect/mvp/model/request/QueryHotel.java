@@ -5,8 +5,7 @@ import java.util.List;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
-import iomango.com.forestdirect.mvp.model.data.HotelModel;
+import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
 import retrofit2.Call;
@@ -38,12 +37,12 @@ public class QueryHotel<M>
     public void performNetworkRequest() {
         Client.changeBaseHost("https://test.forestdirect.com/hotels/");
 
-        Call<List<HotelModel>> call = Client.getRestAPIService()
-                .getHotels(((SearchActivityModel)model).getLocation());
+        Call<List<HotelLocationModel>> call = Client.getTestAPIService()
+            .getHotels(((SearchActivityModel)model).getLocation());
 
-        call.enqueue(new Callback<List<HotelModel>>() {
+        call.enqueue(new Callback<List<HotelLocationModel>>() {
             @Override
-            public void onResponse(Call<List<HotelModel>> call, Response<List<HotelModel>> response) {
+            public void onResponse(Call<List<HotelLocationModel>> call, Response<List<HotelLocationModel>> response) {
                 Client.returnToBaseHost();
                 if (response.isSuccessful()) {
                     if (listener != null)
@@ -53,8 +52,7 @@ public class QueryHotel<M>
             }
 
             @Override
-            public void onFailure(Call<List<HotelModel>> call, Throwable throwable) {
-                Client.returnToBaseHost();
+            public void onFailure(Call<List<HotelLocationModel>> call, Throwable throwable) {
                 try {
                     logger.log(throwable.getCause().toString());
                 } catch (Exception exception) {

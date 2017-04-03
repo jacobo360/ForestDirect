@@ -20,8 +20,8 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
-import iomango.com.forestdirect.mvp.model.data.MultiCityModel;
+import iomango.com.forestdirect.mvp.model.data.AirportLocationModel;
+import iomango.com.forestdirect.mvp.model.data.MultiCitySearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
@@ -98,7 +98,7 @@ public class MultiCityFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            AirportModel location = data.getParcelableExtra("location");
+            AirportLocationModel location = data.getParcelableExtra("location");
             if (isFromActive) {
                 fromCode = location.getCode();
                 fromEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
@@ -143,7 +143,7 @@ public class MultiCityFragment
     @Override
     public void onSearchButtonClicked() {
         List<MultiCityAdapter.ViewHolder> holders = adapter.getHolders();
-        MultiCityModel model = new MultiCityModel();
+        MultiCitySearchModel model = new MultiCitySearchModel();
         int total = adapter.getSize();
 
         MultiCityAdapter.ViewHolder view;

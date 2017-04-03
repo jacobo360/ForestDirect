@@ -11,7 +11,7 @@ import java.util.List;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
-import iomango.com.forestdirect.mvp.model.data.AirportModel;
+import iomango.com.forestdirect.mvp.model.data.AirportLocationModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 
 /**
@@ -24,11 +24,11 @@ public class AirportListAdapter
      * Attributes
      */
     private Context context;
-    private List<AirportModel> locations;
+    private List<AirportLocationModel> locations;
     private OnLocationSelectedListener listener;
 
 
-    public AirportListAdapter(Context context, List<AirportModel> locations) {
+    public AirportListAdapter(Context context, List<AirportLocationModel> locations) {
         this.context = context;
         this.locations = locations;
     }

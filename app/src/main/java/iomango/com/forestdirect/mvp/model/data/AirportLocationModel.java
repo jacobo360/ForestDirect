@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by clelia_arch on 3/8/17
  */
 
-public class AirportModel
+public class AirportLocationModel
         implements Parcelable {
 
     /**
@@ -60,10 +60,10 @@ public class AirportModel
         dest.writeByte(this.hasChild ? (byte) 1 : (byte) 0);
     }
 
-    public AirportModel() {
+    public AirportLocationModel() {
     }
 
-    public AirportModel(Parcel in) {
+    public AirportLocationModel(Parcel in) {
         this.city = in.readString();
         this.code = in.readString();
         this.country = in.readString();
@@ -72,15 +72,15 @@ public class AirportModel
         this.hasChild = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<AirportModel> CREATOR = new Parcelable.Creator<AirportModel>() {
+    public static final Parcelable.Creator<AirportLocationModel> CREATOR = new Parcelable.Creator<AirportLocationModel>() {
         @Override
-        public AirportModel createFromParcel(Parcel source) {
-            return new AirportModel(source);
+        public AirportLocationModel createFromParcel(Parcel source) {
+            return new AirportLocationModel(source);
         }
 
         @Override
-        public AirportModel[] newArray(int size) {
-            return new AirportModel[size];
+        public AirportLocationModel[] newArray(int size) {
+            return new AirportLocationModel[size];
         }
     };
 }

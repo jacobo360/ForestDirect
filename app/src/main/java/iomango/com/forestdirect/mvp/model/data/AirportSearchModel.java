@@ -8,7 +8,7 @@ import java.util.HashMap;
  * Created by clelia_arch on 3/20/17
  */
 
-public class SearchModel {
+public class AirportSearchModel {
 
     private String type;
 
@@ -51,7 +51,7 @@ public class SearchModel {
     private String includeFlexibleDates;
 
 
-    public SearchModel() {
+    public AirportSearchModel() {
         includeFrom = "0";
         includeTo = "0";
         arriveDate = "";
