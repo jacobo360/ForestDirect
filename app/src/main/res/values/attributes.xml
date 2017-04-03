@@ -34,6 +34,7 @@
 
     <declare-styleable name="DialogEditText">
         <attr name="hint"/>
+        <attr name="forHotels" format="boolean"/>
     </declare-styleable>
 
     <attr name="direction" format="enum">

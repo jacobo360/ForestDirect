@@ -38,7 +38,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/MarginStyle">
+                style="@style/OnTouchStyle">
 
                 <ImageView
                     android:layout_width="0dp"
@@ -96,7 +96,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/MarginStyle">
+                style="@style/OnTouchStyle">
 
                 <ImageView
                     android:layout_width="0dp"
@@ -154,7 +154,8 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/OnTouchStyle">
 
                 <ImageView
                     android:layout_width="0dp"
@@ -261,6 +262,7 @@
                     android:id="@+id/kind_edit_text"
                     android:layout_width="100dp"
                     android:layout_weight="4"
+                    app:forHotels="false"
                     app:hint="@string/kind_hint"
                     style="@style/EditTextStyle.Margin"/>
             </TableRow>

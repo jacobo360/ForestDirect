@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.global.Enums.ScreenUnit;
@@ -43,15 +45,38 @@ public class AdvanceOptionsDialog
     private OnAdvanceOptionsListener listener;
 
 
+    public static AdvanceOptionsDialog newInstance() {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isForHotels", true);
+        AdvanceOptionsDialog dialog = new AdvanceOptionsDialog();
+        dialog.setArguments(bundle);
+
+        return dialog;
+    }
+
     @SuppressLint("InflateParams")
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        boolean isForHotels = false;
+        if (getArguments() != null)
+            isForHotels = getArguments().getBoolean("isForHotels", false);
 
         // Dialog initialization
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View container = inflater.inflate(R.layout.advanced_options_dialog, null);
+
+        LinearLayout cabinLinear = (LinearLayout) container.findViewById(R.id.cabin_linear_layout);
+        TableRow seniorTableRow = (TableRow) container.findViewById(R.id.senior_table_row);
+        TableRow infantsTableRow = (TableRow) container.findViewById(R.id.infant_table_row);
+
+        if (isForHotels) {
+            cabinLinear.setVisibility(View.GONE);
+            seniorTableRow.setVisibility(View.GONE);
+            infantsTableRow.setVisibility(View.GONE);
+        }
+
         cabinSpinner = (Spinner) container.findViewById(R.id.cabin_spinner);
         adultsStepperView = (StepperView) container.findViewById(R.id.adults_stepper);
         seniorsStepperView = (StepperView) container.findViewById(R.id.seniors_step);
@@ -71,7 +96,6 @@ public class AdvanceOptionsDialog
 
         builder
             .setView(container)
-            .setTitle(getContext().getString(R.string.dialog_title_label))
             .setPositiveButton(R.string.positive_option_label, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
@@ -95,8 +119,12 @@ public class AdvanceOptionsDialog
             });
 
         AlertDialog dialog = builder.create();
-        dialog.setOnShowListener(this);
+        if (isForHotels)
+            dialog.setTitle(getContext().getString(R.string.dialog_title_guests_label));
+        else
+            dialog.setTitle(getContext().getString(R.string.dialog_title_label));
 
+        dialog.setOnShowListener(this);
 
         return dialog;
     }

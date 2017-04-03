@@ -9,8 +9,10 @@ import iomango.com.forestdirect.mvp.common.generic.GenericPresenter;
 import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
+import iomango.com.forestdirect.mvp.model.SearchActivityModel;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
-import iomango.com.forestdirect.mvp.model.request.QueryLocation;
+import iomango.com.forestdirect.mvp.model.request.QueryAirport;
+import iomango.com.forestdirect.mvp.model.request.QueryHotel;
 
 /**
  * Created by Clelia López on 12/9/2015
@@ -54,8 +56,14 @@ public class SearchActivityPresenter
 
     @Override
     public <M> void executeNetworkRequest(M model) {
-        NetworkRequest request = new QueryLocation<>(model, this);
-        request.performNetworkRequest();
+        NetworkRequest request;
+        if (((SearchActivityModel)model).isLookingHotels()) {
+            request = new QueryHotel<>(model, this);
+            request.performNetworkRequest();
+        } else  {
+            request = new QueryAirport<>(model, this);
+            request.performNetworkRequest();
+        }
         view.get().displayDialog(DialogType.TIME_UNDETERMINED);
     }
 

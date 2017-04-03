@@ -51,6 +51,7 @@
     <!--RoundTrip Fragment -->
     <string name="return_date_hint">E.g. 30 May, 2017</string>
     <string name="return_time_hint">E.g. 8:30</string>
+    <string name="dates_error">Range invalid </string>
 
     <!-- MultiCity Fragment -->
     <string name="add_flight_label"> Add another flight (Up to 6)</string>
@@ -62,10 +63,14 @@
 
     <!-- Hotels Fragment -->
     <string name="destination_city_label">Destination City</string>
+    <string name="destination_city_hint">E.g. Prague</string>
     <string name="check_in_label">Check In</string>
+    <string name="check_in_hint">E.g. 11 Jun, 2017</string>
     <string name="check_out_label">Check Out</string>
+    <string name="check_out_hint">E.g. 23 Jun, 2017</string>
     <string name="rooms_label">Rooms</string>
     <string name="adults_children_label">Adults and Children</string>
+    <string name="adults_children_hint">E.g. 2 Adults, 1 Children</string>
     <string-array name="rooms_array">
         <item>1</item>
         <item>2</item>
@@ -91,6 +96,7 @@
     <string name="children_label">Children (2 &#8211; 11)</string>
     <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
     <string name="dialog_title_label">Select Flight Kind and Passengers</string>
+    <string name="dialog_title_guests_label">Select Guests</string>
     <string-array name="test_array">
         <item>Any Cabin</item>
         <item>Economy</item>

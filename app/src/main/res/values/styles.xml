@@ -127,7 +127,7 @@
         <item name="android:scrollbarThumbVertical">@color/colorAccent</item>
     </style>
 
-    <style name="MarginStyle">
+    <style name="OnTouchStyle">
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">true</item>
     </style>

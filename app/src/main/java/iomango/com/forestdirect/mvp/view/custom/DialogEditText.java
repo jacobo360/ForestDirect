@@ -28,6 +28,8 @@ public class DialogEditText
     private AdvanceOptionsDialog advanceOptionsDialog;
     private AdvancedOptionsModel data;
     private Context context;
+    private boolean isForHotels;
+    private String hint;
 
 
     public DialogEditText(Context context) {
@@ -43,17 +45,15 @@ public class DialogEditText
         this.context = context;
 
         if (!isInEditMode()) {
-            initializeView();
             parseAttributes(attributes);
+            initializeView();
         }
     }
 
     private void parseAttributes(AttributeSet attributes) {
         TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.DialogEditText);
-        String hint = typedArray.getString(R.styleable.DialogEditText_hint);
-        if (hint != null)
-            dialogEditText.setHint(hint);
-
+        hint = typedArray.getString(R.styleable.DialogEditText_hint);
+        isForHotels = typedArray.getBoolean(R.styleable.DialogEditText_forHotels, false);
         typedArray.recycle();
     }
 
@@ -64,7 +64,14 @@ public class DialogEditText
         dialogEditText.setFocusableInTouchMode(true);
         dialogEditText.setOnClickListener(this);
 
-        advanceOptionsDialog = new AdvanceOptionsDialog();
+        if (hint != null)
+            dialogEditText.setHint(hint);
+
+        if (isForHotels)
+            advanceOptionsDialog = AdvanceOptionsDialog.newInstance();
+        else
+            advanceOptionsDialog = new AdvanceOptionsDialog();
+
         advanceOptionsDialog.setOnAdvanceOptionsListener(this);
 
         dialogEditText.setOnFocusChangeListener(new OnFocusChangeListener() {

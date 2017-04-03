@@ -19,9 +19,11 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
+import iomango.com.forestdirect.mvp.model.data.HotelModel;
 import iomango.com.forestdirect.mvp.presenter.SearchActivityPresenter;
-import iomango.com.forestdirect.mvp.view.adapter.LocationListAdapter;
+import iomango.com.forestdirect.mvp.view.adapter.AirportListAdapter;
+import iomango.com.forestdirect.mvp.view.adapter.HotelListAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
 
@@ -37,7 +39,9 @@ public class SearchActivity
      */
     private CustomEditText editText;
     private RecyclerView recyclerView;
-    LocationListAdapter adapter;
+    private AirportListAdapter airportListAdapter;
+    private HotelListAdapter hotelListAdapter;
+    private boolean lookingHotels = false;
 
 
     /**
@@ -49,6 +53,10 @@ public class SearchActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        Intent intent = getIntent();
+        if (intent != null)
+            lookingHotels = intent.getBooleanExtra("lookingHotels", false);
 
         // Instantiate the presenter
         super.onCreate(SearchActivityPresenter.class, this);
@@ -91,17 +99,26 @@ public class SearchActivity
 
             @Override
             public void onTextChanged(CharSequence text, int start, int before, int count) {
-                // no-op
+                if (lookingHotels) {
+                    if (count > 0)
+                        getPresenter().executeNetworkRequest(new SearchActivityModel(text.toString(), true));
+                    else {
+                        if (hotelListAdapter != null)
+                            hotelListAdapter.clear();
+                    }
+                } else {
+                    if (count > 0)
+                        getPresenter().executeNetworkRequest(new SearchActivityModel(text.toString()));
+                    else {
+                        if (airportListAdapter != null)
+                            airportListAdapter.clear();
+                    }
+                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.toString().length() > 0)
-                    getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString()));
-                else {
-                    if (adapter != null)
-                        adapter.clear();
-                }
+                // no-op
             }
         });
     }
@@ -129,15 +146,24 @@ public class SearchActivity
     @SuppressWarnings("unchecked")
     @Override
     public <T> void updateView(T data) {
-        adapter = new LocationListAdapter(this, (List<LocationModel>)data);
-        adapter.setOnLocationSelectedListener(this);
-        recyclerView.setAdapter(adapter);
+        if (lookingHotels) {
+            hotelListAdapter = new HotelListAdapter(this, (List<HotelModel>)data);
+            hotelListAdapter.setOnLocationSelectedListener(this);
+            recyclerView.setAdapter(hotelListAdapter);
+        } else {
+            airportListAdapter = new AirportListAdapter(this, (List<AirportModel>)data);
+            airportListAdapter.setOnLocationSelectedListener(this);
+            recyclerView.setAdapter(airportListAdapter);
+        }
     }
 
     @Override
-    public void updateLocation(LocationModel location) {
+    public <T> void updateLocation(T location) {
         Intent intent = new Intent();
-        intent.putExtra("location", location);
+        if (lookingHotels)
+            intent.putExtra("location", (HotelModel)location);
+        else
+            intent.putExtra("location", (AirportModel)location);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }

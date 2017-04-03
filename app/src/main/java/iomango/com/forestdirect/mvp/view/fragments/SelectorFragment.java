@@ -43,6 +43,9 @@ public class SelectorFragment
         // Initialize parent activity
         parentActivity = (MainActivity) getActivity();
 
+        // Setting fragment
+        parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
+
         // Initialize retained fragment state
         isRetainedFragment = false;
 
@@ -67,9 +70,6 @@ public class SelectorFragment
         oneWayRadioButton.setOnClickListener(this);
         roundTripRadioButton.setOnClickListener(this);
         multiCityRadioButton.setOnClickListener(this);
-
-        // Setting fragment
-        parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
     }
 
     /**

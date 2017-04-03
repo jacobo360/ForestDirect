@@ -8,6 +8,7 @@
     android:background="@color/white">
 
     <LinearLayout
+        android:id="@+id/cabin_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -71,6 +72,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/senior_table_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
@@ -109,6 +111,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/infant_table_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">

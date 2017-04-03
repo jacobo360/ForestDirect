@@ -15,26 +15,53 @@ public class Client {
      */
     private static final String host = "https://forestdirect.com/";
     private static RestAPIService restAPIService = null;
+    private static Retrofit retrofit;
+    private static boolean hasHostChanged = false;
 
 
-    private Client() {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.addInterceptor(loggingInterceptor);
+    private Client(Retrofit retrofit) {
+        restAPIService = retrofit.create(RestAPIService.class);
+    }
 
-        Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(host)
-            .client(builder.build())
+    public static void changeBaseHost(String newHost) {
+        hasHostChanged = true;
+        retrofit = new Retrofit.Builder()
+            .baseUrl(newHost)
+            .client(getOkHttpBuilder().build())
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+    }
 
-        restAPIService = retrofit.create(RestAPIService.class);
+    public static void returnToBaseHost() {
+        hasHostChanged = false;
+    }
+
+    private static OkHttpClient.Builder getOkHttpBuilder() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.addInterceptor(getInterceptor());
+        return builder;
+    }
+
+    private static HttpLoggingInterceptor getInterceptor() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        return loggingInterceptor;
+    }
+
+    private static Retrofit getDefaultRetrofitBuilder () {
+        return new Retrofit.Builder()
+            .baseUrl(host)
+            .client(getOkHttpBuilder().build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
     }
 
     public static RestAPIService getRestAPIService() {
         if (restAPIService == null)
-            new Client();
+            if (hasHostChanged)
+                new Client(retrofit);
+            else
+                new Client(getDefaultRetrofitBuilder());
         return restAPIService;
     }
 }

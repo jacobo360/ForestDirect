@@ -20,21 +20,22 @@ import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.model.data.MultiCityModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
-import iomango.com.forestdirect.mvp.presenter.TemplatePresenterFragment;
+import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.adapter.MultiCityAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
+import jp.wasabeef.recyclerview.animators.LandingAnimator;
 
 /**
  * Created by Clelia López on 03/10/2017
  */
 public class MultiCityFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
-        implements MVP.RequiredFragmentMethods, Listener.OnMultiCityActionListener {
+        implements MVP.RequiredFragmentMethods, Listener.OnMultiCityActionListener, View.OnClickListener {
 
     /**
      * Attributes
@@ -84,6 +85,8 @@ public class MultiCityFragment
         recyclerView = (RecyclerView) relativeLayout.findViewById(R.id.steps_recycler);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new LandingAnimator());
+        recyclerView.getItemAnimator().setAddDuration(200);
         recyclerView.addItemDecoration(new DividerItemDecoration(activityContext, R.drawable.divider));
         recyclerView.setHasFixedSize(false);
 
@@ -95,7 +98,7 @@ public class MultiCityFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            LocationModel location = data.getParcelableExtra("location");
+            AirportModel location = data.getParcelableExtra("location");
             if (isFromActive) {
                 fromCode = location.getCode();
                 fromEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
@@ -177,8 +180,19 @@ public class MultiCityFragment
             model.setLapInfant(String.valueOf(data.getInfant()));
 
 
-            if (model.isValid())
+            if (model.isValid() && model.getTotalPassengers() <= 6)
                 getPresenter().executeNetworkRequest(model);
+            else
+                getParentActivity(MainActivity.class).displaySnackBar(relativeLayout,
+                        R.string.passenger_error, R.string.close_label, this);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        List<MultiCityAdapter.ViewHolder> holders = adapter.getHolders();
+        int total = adapter.getSize();
+        MultiCityAdapter.ViewHolder holder = holders.get(total - 1);
+        holder.getDialogEditText().setText("");
     }
 }

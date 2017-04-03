@@ -64,4 +64,22 @@ public class Constants {
         new Timepoint(22, 0), new Timepoint(22, 30),
         new Timepoint(23, 0), new Timepoint(23, 30)
     };
+
+    public static String FROM[] = new String[] {
+        "E.g. New York",
+        "E.g. Los Angeles",
+        "E.g. Boston",
+        "E.g. San Francisco",
+        "E.g. Phoenix",
+        "E.g Chicago"
+    };
+
+    public static String TO[] = new String[] {
+        "E.g. Los Angeles",
+        "E.g. Boston",
+        "E.g. San Francisco",
+        "E.g. Phoenix",
+        "E.g. Chicago",
+        "E.g Washington D.C",
+    };
 }

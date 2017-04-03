@@ -100,4 +100,17 @@ public class MultiCityModel {
 
         return true;
     }
+
+    public int getTotalPassengers() {
+        int total = 0;
+        if (!adult.equals(""))
+            total = total + Integer.parseInt(adult);
+        if (!senior.equals(""))
+            total = total + Integer.parseInt(senior);
+        if (!child.equals(""))
+            total = total + Integer.parseInt(child);
+        if (!lapInfant.equals(""))
+            total = total + Integer.parseInt(lapInfant);
+        return total;
+    }
 }

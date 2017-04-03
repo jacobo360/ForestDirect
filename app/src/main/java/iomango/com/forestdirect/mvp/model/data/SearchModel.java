@@ -58,7 +58,6 @@ public class SearchModel {
         departureTime = "";
         arriveTime = "";
         airline = "";
-        includeFlexibleDates = "";
         cabin = "";
         adult = "";
         senior = "";
@@ -145,7 +144,9 @@ public class SearchModel {
         data.put("lap_infant", lapInfant);
         data.put("dep_time", departureTime);
         data.put("airline", airline);
-        data.put("search_type", includeFlexibleDates);
+
+        if (includeFlexibleDates != null)
+            data.put("search_type", includeFlexibleDates);
 
         if (type.equalsIgnoreCase("Round")) {
             data.put("arr_date", arriveDate);

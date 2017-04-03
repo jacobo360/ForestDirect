@@ -1,10 +1,8 @@
 package iomango.com.forestdirect.mvp.common.interfaces;
 
-import java.util.List;
-
+import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
-import iomango.com.forestdirect.mvp.view.adapter.MultiCityAdapter;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 
 /**
@@ -27,7 +25,7 @@ public interface Listener {
     }
 
     interface OnLocationSelectedListener {
-        void updateLocation(LocationModel location);
+        <T> void updateLocation(T location);
     }
 
     interface OnMultiCityActionListener {
@@ -35,5 +33,9 @@ public interface Listener {
         void onAddFlightClicked();
         void onFromEditTextClicked(CustomEditText editText);
         void onToEditTextClicked(CustomEditText editText);
+    }
+
+    interface OnDateSetListener {
+        void updateDate(Date date);
     }
 }

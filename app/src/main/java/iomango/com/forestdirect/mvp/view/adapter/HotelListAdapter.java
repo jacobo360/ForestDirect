@@ -11,24 +11,25 @@ import java.util.List;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
+import iomango.com.forestdirect.mvp.model.data.HotelModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 
 /**
  * Created by clelia_arch on 3/8/17
  */
-public class LocationListAdapter
-        extends RecyclerView.Adapter<LocationListAdapter.ViewHolder> {
+public class HotelListAdapter
+        extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> {
 
     /**
      * Attributes
      */
     private Context context;
-    private List<LocationModel> locations;
+    private List<HotelModel> locations;
     private OnLocationSelectedListener listener;
 
 
-    public LocationListAdapter(Context context, List<LocationModel> locations) {
+    public HotelListAdapter(Context context, List<HotelModel> locations) {
         this.context = context;
         this.locations = locations;
     }
@@ -45,9 +46,6 @@ public class LocationListAdapter
         holder.codeTextView.setText(locations.get(position).getCode());
         holder.locationTextView.setText(locations.get(position).getCity()
                 + ", " + locations.get(position).getCountry());
-
-        if (locations.get(position).getIsChild())
-            holder.space.setVisibility(View.VISIBLE);
     }
 
     @Override

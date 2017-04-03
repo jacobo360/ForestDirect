@@ -20,6 +20,9 @@ import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
 import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
 
+import static iomango.com.forestdirect.mvp.common.global.Constants.FROM;
+import static iomango.com.forestdirect.mvp.common.global.Constants.TO;
+
 /**
  * Created by clelia_arch on 3/17/17
  */
@@ -59,6 +62,11 @@ public class MultiCityAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         DrawablesTools.tintDrawable(context, R.drawable.ic_clear, R.color.grey_500);
+
+        if (holder.fromEditText != null && holder.toEditText != null) {
+            holder.fromEditText.setHint(FROM[position]);
+            holder.toEditText.setHint(TO[position]);
+        }
 
         holders.add(position, holder);
     }

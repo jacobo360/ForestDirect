@@ -14,7 +14,10 @@ import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener;
+import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
+import iomango.com.forestdirect.mvp.model.data.HotelModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
@@ -28,7 +31,8 @@ import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
  */
 public class HotelsFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
-        implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener {
+        implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener,
+        Listener.OnDateSetListener {
 
     /**
      * Attributes
@@ -38,7 +42,6 @@ public class HotelsFragment
     private DatePickerEditText checkInPickerEditText;
     private DatePickerEditText checkOutPickerEditText;
     private DialogEditText kindDialogEditText;
-    private Spinner roomsSpinner;
 
 
     /**
@@ -74,8 +77,7 @@ public class HotelsFragment
         destinationEditText = (CustomEditText) containerLayout.findViewById(R.id.destination_edit_text);
         checkInPickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.check_in_edit_text);
         checkOutPickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.check_out_edit_text);
-        kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
-        roomsSpinner = (Spinner) containerLayout.findViewById(R.id.rooms_spinner);
+        kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.guests_edit_text);
         CustomButton searchButton =  (CustomButton) containerLayout.findViewById(R.id.search_button);
 
         destinationEditText.clearFocus();
@@ -89,10 +91,8 @@ public class HotelsFragment
         // Setting listeners
         destinationEditText.setOnClickListener(this);
         destinationEditText.setOnFocusChangeListener(this);
+        checkInPickerEditText.setOnDateSetListener(this);
         searchButton.setOnClickListener(this);
-
-        // Loading data and setting up spinner
-        roomsSpinner.getSpinner().setItems(R.array.rooms_array);
     }
 
     /**
@@ -147,8 +147,8 @@ public class HotelsFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            // LocationModel location = data.getParcelableExtra("location"); // TODO
-            destinationEditText.setText(" ");  // TODO
+            HotelModel location = data.getParcelableExtra("location");
+            destinationEditText.setText(location.getCity() + " (" + location.getCode() + ")");
             destinationEditText.clearFocus();
         } else
             destinationEditText.clearFocus();
@@ -162,6 +162,12 @@ public class HotelsFragment
 
     public void startSearchActivity() {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
+        intent.putExtra("lookingHotels", true);
         startActivityForResult(intent, Constants.SEARCH_ACTIVITY);
+    }
+
+    @Override
+    public void updateDate(Date date) {
+        checkOutPickerEditText.setMinimumDate(date);
     }
 }

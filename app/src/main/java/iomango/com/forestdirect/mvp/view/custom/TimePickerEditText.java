@@ -28,6 +28,7 @@ public class TimePickerEditText
     private CustomEditText timeEditText;
     private TimePickerDialog timePickerDialog;
     private Context context;
+    private  String hint;
 
 
     public TimePickerEditText(Context context) {
@@ -43,17 +44,14 @@ public class TimePickerEditText
         this.context = context;
 
         if (!isInEditMode()) {
-            initializeView();
             parseAttributes(attributes);
+            initializeView();
         }
     }
 
     private void parseAttributes(AttributeSet attributes) {
         TypedArray typedArray = context.obtainStyledAttributes(attributes, R.styleable.TimePickerEditText);
-        String hint = typedArray.getString(R.styleable.TimePickerEditText_hint);
-        if (hint != null)
-            timeEditText.setHint(hint);
-
+        hint = typedArray.getString(R.styleable.TimePickerEditText_hint);
         typedArray.recycle();
     }
 
@@ -62,8 +60,10 @@ public class TimePickerEditText
         View container = inflater.inflate(R.layout.time_picker_edit_text, this, true);
         timeEditText = (CustomEditText) container.findViewById(R.id.time_edit_text_view);
         timeEditText.setFocusableInTouchMode(true);
-
         timeEditText.setOnClickListener(this);
+
+        if (hint != null)
+            timeEditText.setHint(hint);
 
         timeEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override

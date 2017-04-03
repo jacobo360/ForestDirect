@@ -5,7 +5,7 @@ import java.util.List;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
 import retrofit2.Call;
@@ -16,7 +16,7 @@ import retrofit2.Response;
  * Created by clelia_arch on 3/8/17
  */
 
-public class QueryLocation<M>
+public class QueryAirport<M>
         implements NetworkRequest {
 
     /**
@@ -28,19 +28,19 @@ public class QueryLocation<M>
     private OnNetworkResponseListener listener = null;
 
 
-    public QueryLocation(M model, OnNetworkResponseListener listener) {
+    public QueryAirport(M model, OnNetworkResponseListener listener) {
         this.model = model;
         this.listener = listener;
     }
 
     @Override
     public void performNetworkRequest() {
-        Call<List<LocationModel>> call = Client.getRestAPIService()
-                .getLocations(((SearchActivityModel)model).getLocation());
+        Call<List<AirportModel>> call = Client.getRestAPIService()
+                .getAirports(((SearchActivityModel)model).getLocation());
 
-        call.enqueue(new Callback<List<LocationModel>>() {
+        call.enqueue(new Callback<List<AirportModel>>() {
             @Override
-            public void onResponse(Call<List<LocationModel>> call, Response<List<LocationModel>> response) {
+            public void onResponse(Call<List<AirportModel>> call, Response<List<AirportModel>> response) {
                 if (response.isSuccessful()) {
                     if (listener != null)
                         listener.processResponse(response.body());
@@ -49,7 +49,7 @@ public class QueryLocation<M>
             }
 
             @Override
-            public void onFailure(Call<List<LocationModel>> call, Throwable throwable) {
+            public void onFailure(Call<List<AirportModel>> call, Throwable throwable) {
                 try {
                     logger.log(throwable.getCause().toString());
                 } catch (Exception exception) {

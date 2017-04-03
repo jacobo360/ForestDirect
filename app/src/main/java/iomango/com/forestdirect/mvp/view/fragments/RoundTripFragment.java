@@ -20,11 +20,13 @@ import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener;
+import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.MainActivity;
@@ -42,7 +44,8 @@ import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
  */
 public class RoundTripFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
-        implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener {
+        implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener,
+        Listener.OnDateSetListener {
 
     /**
      * Attributes
@@ -138,6 +141,7 @@ public class RoundTripFragment
         toEditText.setOnClickListener(this);
         fromEditText.setOnFocusChangeListener(this);
         toEditText.setOnFocusChangeListener(this);
+        departureDatePickerEditText.setOnDateSetListener(this);
         moreOptionsCustomTextView.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
@@ -196,7 +200,7 @@ public class RoundTripFragment
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(departureDatePickerEditText.getValue());
                 model.setArriveDate(returnDatePickerEditText.getValue());
-                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": "");
+                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": null);
                 AdvancedOptionsModel data = kindDialogEditText.getData();
                 if (data != null) {
                     switch (data.getCabin()) {
@@ -236,6 +240,10 @@ public class RoundTripFragment
                 else
                     getParentActivity(MainActivity.class).displaySnackBar(containerLayout,
                         R.string.passenger_error, R.string.close_label, this);
+
+                break;
+            case android.support.design.R.id.snackbar_action:
+                kindDialogEditText.setText("");
                 break;
         }
     }
@@ -243,7 +251,7 @@ public class RoundTripFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            LocationModel location = data.getParcelableExtra("location");
+            AirportModel location = data.getParcelableExtra("location");
             if (isFromActive) {
                 fromCode = location.getCode();
                 fromEditText.setText(location.getCity() + " (" + location.getCode() + ")");
@@ -280,5 +288,10 @@ public class RoundTripFragment
     public void startSearchActivity() {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         startActivityForResult(intent, Constants.SEARCH_ACTIVITY);
+    }
+
+    @Override
+    public void updateDate(Date date) {
+        returnDatePickerEditText.setMinimumDate(date);
     }
 }

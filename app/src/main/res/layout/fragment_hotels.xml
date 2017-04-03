@@ -32,7 +32,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/MarginStyle">
+            style="@style/OnTouchStyle">
 
             <ImageView
                 android:layout_width="0dp"
@@ -48,7 +48,7 @@
                 android:layout_weight="4"
                 android:layout_marginBottom="5dp"
                 android:editable="false"
-                android:hint="@string/search_hint"
+                android:hint="@string/destination_city_hint"
                 style="@style/EditTextStyle.Margin"/>
         </TableRow>
 
@@ -85,7 +85,7 @@
                 android:id="@+id/check_in_edit_text"
                 android:layout_width="100dp"
                 android:layout_weight="4"
-                android:hint="@string/search_hint"
+                app:hint="@string/check_in_hint"
                 style="@style/EditTextStyle.Margin"/>
         </TableRow>
 
@@ -122,64 +122,8 @@
                 android:id="@+id/check_out_edit_text"
                 android:layout_width="100dp"
                 android:layout_weight="4"
-                android:hint="@string/search_hint"
+                app:hint="@string/check_out_hint"
                 style="@style/EditTextStyle.Margin"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/airline_table_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5"/>
-
-            <iomango.com.forestdirect.mvp.view.custom.CustomTextView
-                android:layout_width="match_parent"
-                android:layout_weight="4"
-                android:text="@string/rooms_label"
-                style="@style/TextViewStyle.Body"/>
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/airline_table_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1.5"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_hotel"
-                android:contentDescription="@string/image"
-                android:id="@+id/imageView" />
-
-            <iomango.com.forestdirect.mvp.view.custom.spinner.Spinner
-                android:id="@+id/rooms_spinner"
-                android:layout_width="100dp"
-                android:layout_height="35dp"
-                android:layout_weight="4"
-                android:paddingLeft="0dp"
-                android:paddingStart="0dp"
-                android:paddingRight="20dp"
-                android:paddingEnd="20dp"
-                app:textColor="@color/grey_dark"
-                app:textSize="16"
-                app:backgroundColor="@color/white"
-                app:visibleItems="4"
-                app:itemsOverSpinner="0"
-                app:itemTextColor="@color/grey_dark"
-                app:itemTextSize="16"
-                app:itemSelectedDrawable="@drawable/bg_item"
-                app:listBackgroundColor="@color/white"
-                app:arrowColor="@color/colorAccent"
-                app:lineColor="@color/colorPrimaryDark"
-                app:mode="text"
-                app:typeface="roboto_regular"/>
         </TableRow>
 
         <TableRow
@@ -215,7 +159,8 @@
                 android:id="@+id/guests_edit_text"
                 android:layout_width="100dp"
                 android:layout_weight="4"
-                android:hint="@string/search_hint"
+                app:forHotels="true"
+                app:hint="@string/adults_children_hint"
                 style="@style/EditTextStyle.Margin"/>
         </TableRow>
 

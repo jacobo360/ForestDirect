@@ -25,7 +25,7 @@ import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
-import iomango.com.forestdirect.mvp.model.data.LocationModel;
+import iomango.com.forestdirect.mvp.model.data.AirportModel;
 import iomango.com.forestdirect.mvp.model.data.SearchModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
 import iomango.com.forestdirect.mvp.view.activities.MainActivity;
@@ -184,7 +184,7 @@ public class OneWayFragment
                 model.setTo(toCode);
                 model.setIncludeTo(toCheckBox.isChecked() ? "1" : "0");
                 model.setDepartureDate(datePickerEditText.getValue());
-                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": "");
+                model.setIncludeFlexibleDates(flexibleDatesCheckBox.isChecked() ? "on": null);
                 AdvancedOptionsModel data = kindDialogEditText.getData();
                 if (data != null) {
                     switch (data.getCabin()) {
@@ -232,7 +232,7 @@ public class OneWayFragment
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            LocationModel location = data.getParcelableExtra("location");
+            AirportModel location = data.getParcelableExtra("location");
             if (isFromActive) {
                 fromCode = location.getCode();
                 fromEditText.setText(location.getMunicipality() + " (" + location.getCode() + ")");
