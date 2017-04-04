@@ -75,8 +75,9 @@ public interface MVP {
          *
          * @param containerViewId container layout id
          * @param fragment fragment instance
+         * @param isStacked indicates whether fragment should be pushed to the back stack
          */
-        <T extends Fragment> void replaceFragment(int containerViewId, T fragment);
+        <T extends Fragment> void replaceFragment(int containerViewId, T fragment, boolean isStacked);
 
         /**
          * Replace a view with another

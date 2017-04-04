@@ -79,13 +79,13 @@ public class SelectorFragment
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.one_way_radio_button:
-                parentActivity.replaceFragment(R.id.fragment, new OneWayFragment());
+                parentActivity.replaceFragment(R.id.fragment, new OneWayFragment(), false);
                 break;
             case R.id.round_trip_radio_button:
-                parentActivity.replaceFragment(R.id.fragment, new RoundTripFragment());
+                parentActivity.replaceFragment(R.id.fragment, new RoundTripFragment(), false);
                 break;
             case R.id.multi_city_radio_button:
-                parentActivity.replaceFragment(R.id.fragment, new MultiCityFragment());
+                parentActivity.replaceFragment(R.id.fragment, new MultiCityFragment(), false);
                 break;
         }
     }

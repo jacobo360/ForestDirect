@@ -249,13 +249,21 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
      *
      * @param containerViewId container layout id
      * @param fragment fragment instance
+     * @param isStacked indicates whether fragment should be pushed to the back stack
      */
-    public <T extends Fragment> void replaceFragment(int containerViewId, T fragment) {
-        getSupportFragmentManager()
+    public <T extends Fragment> void replaceFragment(int containerViewId, T fragment, boolean isStacked) {
+        if (isStacked) {
+            getSupportFragmentManager()
                 .beginTransaction()
                 .replace(containerViewId, fragment, fragment.getClass().getSimpleName())
                 .addToBackStack(null)
                 .commit();
+        } else {
+            getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerViewId, fragment, fragment.getClass().getSimpleName())
+                .commit();
+        }
     }
 
     /**
