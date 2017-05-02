@@ -35,7 +35,8 @@ import jp.wasabeef.recyclerview.animators.LandingAnimator;
  */
 public class MultiCityFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
-        implements MVP.RequiredFragmentMethods, Listener.OnMultiCityActionListener, View.OnClickListener {
+        implements MVP.RequiredFragmentMethods, Listener.OnMultiCityActionListener,
+            Listener.OnAdapterErrorListener, View.OnClickListener {
 
     /**
      * Attributes
@@ -46,6 +47,7 @@ public class MultiCityFragment
     private boolean isFromActive = false;
     private CustomEditText fromEditText;
     private CustomEditText toEditText;
+    private String snackBar;
     private String fromCode;
     private String toCode;
 
@@ -92,6 +94,7 @@ public class MultiCityFragment
 
         adapter = new MultiCityAdapter(getContext(), 2, 2, 6);
         adapter.setOnMultiCityActionListener(this);
+        adapter.setOnAdapterErrorListener(this);
         recyclerView.setAdapter(adapter);
     }
 
@@ -136,11 +139,6 @@ public class MultiCityFragment
     }
 
     @Override
-    public void onAddFlightClicked() {
-        adapter.addElement();
-    }
-
-    @Override
     public void onSearchButtonClicked() {
         List<MultiCityAdapter.ViewHolder> holders = adapter.getHolders();
         MultiCitySearchModel model = new MultiCitySearchModel();
@@ -182,9 +180,11 @@ public class MultiCityFragment
 
             if (model.isValid() && model.getTotalPassengers() <= 6)
                 getPresenter().executeNetworkRequest(model);
-            else
+            else {
                 getParentActivity(MainActivity.class).displaySnackBar(relativeLayout,
                         R.string.passenger_error, R.string.close_label, this);
+                snackBar = "age";
+            }
         }
     }
 
@@ -192,7 +192,22 @@ public class MultiCityFragment
     public void onClick(View view) {
         List<MultiCityAdapter.ViewHolder> holders = adapter.getHolders();
         int total = adapter.getSize();
-        MultiCityAdapter.ViewHolder holder = holders.get(total - 1);
-        holder.getDialogEditText().setText("");
+        switch (snackBar) {
+            case "age":
+                MultiCityAdapter.ViewHolder holder = holders.get(total - 1);
+                holder.getDialogEditText().setText("");
+                break;
+            case "date":
+                for (int i = 0; i < total-1; i++)
+                    holders.get(i).getDepartureDateEditText().setText("");
+                break;
+        }
+    }
+
+    @Override
+    public void reportError() {
+        snackBar = "date";
+        getParentActivity(MainActivity.class).displaySnackBar(relativeLayout,
+                R.string.date_order_error, R.string.close_label, this);
     }
 }

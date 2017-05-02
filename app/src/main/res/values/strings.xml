@@ -20,6 +20,9 @@
     <!-- Empty Fragment -->
     <string name="empty_label">Not content yet</string>
 
+    <!-- Search Activity -->
+    <string name="locations_label">Locations</string>
+
     <!-- Flight Fragment -->
     <string name="flight_label">Flights</string>
 
@@ -54,7 +57,8 @@
     <string name="dates_error">Range invalid </string>
 
     <!-- MultiCity Fragment -->
-    <string name="add_flight_label"> Add another flight (Up to 6)</string>
+    <string name="add_flight_label">Add another flight (Up to 6)</string>
+    <string name="date_order_error">Please fill dates in order</string>
 
     <!-- Selector Fragment -->
     <string name="one_way_label">One Way</string>

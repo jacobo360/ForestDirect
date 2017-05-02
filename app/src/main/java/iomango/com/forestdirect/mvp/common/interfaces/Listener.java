@@ -29,12 +29,19 @@ public interface Listener {
 
     interface OnMultiCityActionListener {
         void onSearchButtonClicked();
-        void onAddFlightClicked();
         void onFromEditTextClicked(CustomEditText editText);
         void onToEditTextClicked(CustomEditText editText);
     }
 
     interface OnDateSetListener {
-        void updateDate(Date date);
+        void updateDate(Date date, int id);
+    }
+
+    interface OnAdapterErrorListener {
+        void reportError();
+    }
+
+    interface ExecutorListener {
+        void execute(String name);
     }
 }

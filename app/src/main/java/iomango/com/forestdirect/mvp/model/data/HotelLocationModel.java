@@ -11,33 +11,39 @@ import com.google.gson.annotations.SerializedName;
 
 public class HotelLocationModel implements Parcelable {
 
+    private String title;
+
     @SerializedName("city_code")
-    private String code;
+    private String cityCode;
 
-    @SerializedName("city_name")
-    private String city;
+    @SerializedName("hotel_code")
+    private String hotelCode;
 
-    @SerializedName("country_name")
-    private String country;
+    @SerializedName("is_child")
+    private int isChild;
 
-    @SerializedName("municipality")
-    private String municipality;
+    @SerializedName("has_child")
+    private int hasChild;
 
 
-    public String getCode() {
-        return code;
+    public String getTitle() {
+        return title;
     }
 
-    public String getCity() {
-        return city;
+    public String getCityCode() {
+        return cityCode;
     }
 
-    public String getCountry() {
-        return country;
+    public String getHotelCode() {
+        return hotelCode;
     }
 
-    public String getMunicipality() {
-        return municipality;
+    public int isChild() {
+        return isChild;
+    }
+
+    public int isHasChild() {
+        return hasChild;
     }
 
     @Override
@@ -47,23 +53,25 @@ public class HotelLocationModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.code);
-        dest.writeString(this.city);
-        dest.writeString(this.country);
-        dest.writeString(this.municipality);
+        dest.writeString(this.title);
+        dest.writeString(this.cityCode);
+        dest.writeString(this.hotelCode);
+        dest.writeInt(this.isChild);
+        dest.writeInt(this.hasChild);
     }
 
     public HotelLocationModel() {
     }
 
     protected HotelLocationModel(Parcel in) {
-        this.code = in.readString();
-        this.city = in.readString();
-        this.country = in.readString();
-        this.municipality = in.readString();
+        this.title = in.readString();
+        this.cityCode = in.readString();
+        this.hotelCode = in.readString();
+        this.isChild = in.readInt();
+        this.hasChild = in.readInt();
     }
 
-    public static final Parcelable.Creator<HotelLocationModel> CREATOR = new Parcelable.Creator<HotelLocationModel>() {
+    public static final Creator<HotelLocationModel> CREATOR = new Creator<HotelLocationModel>() {
         @Override
         public HotelLocationModel createFromParcel(Parcel source) {
             return new HotelLocationModel(source);

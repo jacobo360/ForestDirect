@@ -31,6 +31,7 @@ public class DatePickerEditText
     private Date date;
     private OnDateSetListener listener;
     private String hint;
+    private int id;
 
 
     public DatePickerEditText(Context context) {
@@ -92,7 +93,7 @@ public class DatePickerEditText
             dateEditText.setError(context.getString(R.string.date_error));
         }
         if (listener != null)
-            listener.updateDate(date);
+            listener.updateDate(date, id);
     }
 
     public String getValue() {
@@ -109,8 +110,9 @@ public class DatePickerEditText
         this.date = date;
     }
 
-    public void setOnDateSetListener(OnDateSetListener listener) {
+    public void setOnDateSetListener(OnDateSetListener listener, int id) {
         this.listener = listener;
+        this.id = id;
     }
 
     @Override
@@ -121,5 +123,9 @@ public class DatePickerEditText
     @Override
     public void onCancel(DialogInterface dialog) {
         dateEditText.clearFocus();
+    }
+
+    public void setText(String value) {
+        dateEditText.setText(value);
     }
 }

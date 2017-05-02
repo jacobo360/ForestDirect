@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAdapterErrorListener;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnMultiCityActionListener;
+import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
@@ -24,11 +27,12 @@ import static iomango.com.forestdirect.mvp.common.global.Constants.FROM;
 import static iomango.com.forestdirect.mvp.common.global.Constants.TO;
 
 /**
- * Created by clelia_arch on 3/17/17
+ * Created by Clelia López on 3/17/17
  */
 
 public class MultiCityAdapter
-        extends RecyclerView.Adapter<MultiCityAdapter.ViewHolder> {
+        extends RecyclerView.Adapter<MultiCityAdapter.ViewHolder>
+        implements Listener.OnDateSetListener {
 
     /**
      * Attributes
@@ -38,7 +42,10 @@ public class MultiCityAdapter
     private int minimumSize;
     private int maximumSize;
     private OnMultiCityActionListener listener;
+    private OnAdapterErrorListener errorListener;
     private List<MultiCityAdapter.ViewHolder> holders  = new ArrayList<>();
+    private int lastUpdated = -1;
+    private Date currentDate;
 
 
     public MultiCityAdapter(Context context, int size, int minimumSize, int maximumSize) {
@@ -68,6 +75,13 @@ public class MultiCityAdapter
             holder.toEditText.setHint(TO[position]);
         }
 
+        if (holder.departureDateEditText != null) {
+            holder.departureDateEditText.setOnDateSetListener(this, position);
+
+            if (currentDate != null && position == lastUpdated + 1)
+                holder.departureDateEditText.setMinimumDate(currentDate);
+        }
+
         holders.add(position, holder);
     }
 
@@ -84,18 +98,19 @@ public class MultiCityAdapter
             return R.layout.multicity_list_item;
     }
 
+    private void addElement() {
+        if (size < maximumSize) {
+            size++;
+            notifyItemInserted(size);
+            holders.size();
+        }
+    }
+
     private void removeElement(int position) {
         if (size > minimumSize) {
             size--;
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, size);
-        }
-    }
-
-    public void addElement() {
-        if (size < maximumSize) {
-            size++;
-            notifyItemInserted(size);
         }
     }
 
@@ -110,6 +125,27 @@ public class MultiCityAdapter
     public void setOnMultiCityActionListener(OnMultiCityActionListener listener) {
         this.listener = listener;
     }
+
+    public void setOnAdapterErrorListener(OnAdapterErrorListener errorListener) {
+        this.errorListener = errorListener;
+    }
+
+    @Override
+    public void updateDate(Date date, int id) {
+        if (id == lastUpdated + 1) {
+            if (id < 6) {
+                currentDate = date;
+                lastUpdated++;
+                DatePickerEditText dateEditText = holders.get(id + 1).departureDateEditText;
+                if (dateEditText != null)
+                    dateEditText.setMinimumDate(date);
+            }
+        } else if (errorListener != null) {
+            lastUpdated = -1;
+            errorListener.reportError();
+        }
+    }
+
 
     /**
      * View holder class for list item
@@ -200,8 +236,7 @@ public class MultiCityAdapter
                     removeElement(position);
                     break;
                 case R.id.add_flights_link:
-                    if (listener != null)
-                        listener.onAddFlightClicked();
+                    addElement();
                     break;
                 case R.id.search_button:
                     if (listener != null)

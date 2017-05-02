@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by clelia_arch on 3/8/17
+ * Created by Clelia López on 3/8/17
  */
 
 public class AirportLocationModel

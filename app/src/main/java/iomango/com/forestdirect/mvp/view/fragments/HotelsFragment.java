@@ -89,7 +89,7 @@ public class HotelsFragment
         // Setting listeners
         destinationEditText.setOnClickListener(this);
         destinationEditText.setOnFocusChangeListener(this);
-        checkInPickerEditText.setOnDateSetListener(this);
+        checkInPickerEditText.setOnDateSetListener(this, -1);
         searchButton.setOnClickListener(this);
     }
 
@@ -146,7 +146,7 @@ public class HotelsFragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
             HotelLocationModel location = data.getParcelableExtra("location");
-            destinationEditText.setText(location.getCity() + " (" + location.getCode() + ")");
+            destinationEditText.setText(location.getTitle());
             destinationEditText.clearFocus();
         } else
             destinationEditText.clearFocus();
@@ -165,7 +165,7 @@ public class HotelsFragment
     }
 
     @Override
-    public void updateDate(Date date) {
+    public void updateDate(Date date, int id) {
         checkOutPickerEditText.setMinimumDate(date);
     }
 }

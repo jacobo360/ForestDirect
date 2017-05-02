@@ -24,7 +24,7 @@ public interface RestAPIService {
     @GET("flights/getCities")
     Call<List<AirportLocationModel>> getAirports(@Query("q") String name);
 
-    @GET("hotels-and-cities/{name}")
+    @GET("locations/{name}")
     Call<List<HotelLocationModel>> getHotels(@Path("name") String name);
 
     @FormUrlEncoded

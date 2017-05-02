@@ -10,12 +10,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
 import iomango.com.forestdirect.mvp.common.global.Constants;
+import iomango.com.forestdirect.mvp.common.global.Enums;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnLocationSelectedListener;
 import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.SearchActivityModel;
@@ -38,8 +40,11 @@ public class SearchActivity
      * Attributes
      */
     private CustomEditText editText;
-    private RecyclerView recyclerView;
+    private RecyclerView defaultRecyclerView;
+    private RecyclerView locationsRecyclerView;
+    private RecyclerView hotelsRecyclerView;
     private AirportListAdapter airportListAdapter;
+    private HotelListAdapter locationListAdapter;
     private HotelListAdapter hotelListAdapter;
     private boolean lookingHotels = false;
 
@@ -70,9 +75,15 @@ public class SearchActivity
      */
     private void initializeViews() {
         editText = (CustomEditText) findViewById(R.id.search_edit_text);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_location_list);
-        ImageButton clearImageButton = (ImageButton) findViewById(R.id.clear_image_button);
         ImageButton backImageButton = (ImageButton) findViewById(R.id.back_image_button);
+        ImageButton clearImageButton = (ImageButton) findViewById(R.id.clear_image_button);
+        defaultRecyclerView = (RecyclerView) findViewById(R.id.recycler_location_list);
+
+        if (lookingHotels) {
+            defaultRecyclerView.setVisibility(View.GONE);
+            locationsRecyclerView = (RecyclerView) findViewById(R.id.recycler_location);
+            hotelsRecyclerView = (RecyclerView) findViewById(R.id.recycler_hotels);
+        }
 
         // Tinting icons
         DrawablesTools.tintDrawable(this, R.drawable.ic_clear, R.color.grey_500);
@@ -85,10 +96,19 @@ public class SearchActivity
         backImageButton.setOnClickListener(this);
 
         // Recycler set up
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, R.drawable.divider));
-        recyclerView.setHasFixedSize(false);
+        defaultRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        defaultRecyclerView.addItemDecoration(new DividerItemDecoration(this, R.drawable.divider));
+        defaultRecyclerView.setHasFixedSize(false);
+
+        if (lookingHotels) {
+            locationsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            locationsRecyclerView.addItemDecoration(new DividerItemDecoration(this, R.drawable.divider));
+            locationsRecyclerView.setHasFixedSize(false);
+
+            hotelsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            hotelsRecyclerView.addItemDecoration(new DividerItemDecoration(this, R.drawable.divider));
+            hotelsRecyclerView.setHasFixedSize(false);
+        }
 
         // Text watcher functionality
         editText.addTextChangedListener(new TextWatcher() {
@@ -146,14 +166,33 @@ public class SearchActivity
     @SuppressWarnings("unchecked")
     @Override
     public <T> void updateView(T data) {
+        List<HotelLocationModel> locationList = (List<HotelLocationModel>)data;
+
         if (lookingHotels) {
-            hotelListAdapter = new HotelListAdapter(this, (List<HotelLocationModel>)data);
+            List<HotelLocationModel> locations = new ArrayList<>();
+            List<HotelLocationModel> hotels = new ArrayList<>();
+            for (HotelLocationModel location : locationList) {
+                if (location.getHotelCode() != null)
+                    hotels.add(location);
+                else
+                    locations.add(location);
+            }
+
+            locationListAdapter = new HotelListAdapter(this, locations);
+            hotelListAdapter = new HotelListAdapter(this, hotels);
+
+            locationListAdapter.setOnLocationSelectedListener(this);
             hotelListAdapter.setOnLocationSelectedListener(this);
-            recyclerView.setAdapter(hotelListAdapter);
+
+            locationsRecyclerView.setAdapter(locationListAdapter);
+            hotelsRecyclerView.setAdapter(hotelListAdapter);
+
+            dismissDialog(Enums.DialogType.TIME_UNDETERMINED);
         } else {
             airportListAdapter = new AirportListAdapter(this, (List<AirportLocationModel>)data);
             airportListAdapter.setOnLocationSelectedListener(this);
-            recyclerView.setAdapter(airportListAdapter);
+            dismissDialog(Enums.DialogType.TIME_UNDETERMINED);
+            defaultRecyclerView.setAdapter(airportListAdapter);
         }
     }
 
@@ -161,9 +200,9 @@ public class SearchActivity
     public <T> void updateLocation(T location) {
         Intent intent = new Intent();
         if (lookingHotels)
-            intent.putExtra("location", (HotelLocationModel)location);
+            intent.putExtra("location", (HotelLocationModel) location);
         else
-            intent.putExtra("location", (AirportLocationModel)location);
+            intent.putExtra("location", (AirportLocationModel) location);
         setResult(Activity.RESULT_OK, intent);
         finish();
     }

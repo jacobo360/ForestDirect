@@ -18,6 +18,13 @@
         <item name="typeface">roboto_regular</item>
     </style>
 
+    <!-- TextView Heading -->
+    <style name="TextViewStyle.Heading">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="typeface">roboto_medium</item>
+    </style>
+
     <!-- TextView Subheading -->
     <style name="TextViewStyle.Subheading">
         <item name="android:textSize">16sp</item>

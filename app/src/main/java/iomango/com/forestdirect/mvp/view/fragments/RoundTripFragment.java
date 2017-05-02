@@ -141,7 +141,7 @@ public class RoundTripFragment
         toEditText.setOnClickListener(this);
         fromEditText.setOnFocusChangeListener(this);
         toEditText.setOnFocusChangeListener(this);
-        departureDatePickerEditText.setOnDateSetListener(this);
+        departureDatePickerEditText.setOnDateSetListener(this, -1);
         moreOptionsCustomTextView.setOnClickListener(this);
         searchButton.setOnClickListener(this);
 
@@ -291,7 +291,7 @@ public class RoundTripFragment
     }
 
     @Override
-    public void updateDate(Date date) {
+    public void updateDate(Date date, int id) {
         returnDatePickerEditText.setMinimumDate(date);
     }
 }

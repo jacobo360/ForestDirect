@@ -69,7 +69,6 @@ public class SearchActivityPresenter
 
     @Override
     public <T> void processResponse(T response) {
-        view.get().dismissDialog(DialogType.TIME_UNDETERMINED);
         view.get().updateView(response);
     }
 

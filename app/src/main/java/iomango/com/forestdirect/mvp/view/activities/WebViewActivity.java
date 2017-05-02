@@ -2,42 +2,57 @@ package iomango.com.forestdirect.mvp.view.activities;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import iomango.com.forestdirect.R;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.ExecutorListener;
+import iomango.com.forestdirect.mvp.common.managers.FutureTaskManager;
 
 
 /**
  * Created by Clelia López on 3/21/2017
  */
 public class WebViewActivity
-        extends AppCompatActivity {
+        extends AppCompatActivity
+        implements ExecutorListener {
+
 
     /**
      * Attributes
      */
-    private WebView webView;
+    private LinearLayout linearLayoutDialog;
     private String source;
+    private ExecutorListener listener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        webView = new WebView(this);
-        setContentView(webView);
+        setContentView(R.layout.activity_web_view);
 
         source = getIntent().getStringExtra("source");
+        listener = this;
 
         initializeViews();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeViews() {
+
+        linearLayoutDialog = (LinearLayout)findViewById(R.id.linear_dialog_dialog);
+        WebView webView = (WebView) findViewById(R.id.web_view);
+        linearLayoutDialog.setVisibility(View.VISIBLE);
+
+        // WebView set up
         WebSettings settings = webView.getSettings();
         settings.setLoadsImagesAutomatically(true);
         settings.setJavaScriptEnabled(true);
@@ -51,7 +66,6 @@ public class WebViewActivity
         else
             finish();
     }
-
 
     private class AppBrowser
             extends WebViewClient {
@@ -67,5 +81,15 @@ public class WebViewActivity
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             return true;
         }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            FutureTaskManager.executeAfter(listener, "hide", 3000);
+        }
+    }
+
+    @Override
+    public void execute(String name) {
+        linearLayoutDialog.setVisibility(View.GONE);
     }
 }

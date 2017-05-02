@@ -42,9 +42,11 @@ public class HotelListAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.codeTextView.setText(locations.get(position).getCode());
-        holder.locationTextView.setText(locations.get(position).getCity()
-                + ", " + locations.get(position).getCountry());
+        holder.codeTextView.setText(locations.get(position).getCityCode());
+        holder.locationTextView.setText(locations.get(position).getTitle());
+
+        if (locations.get(position).isChild() == 1)
+            holder.space.setVisibility(View.VISIBLE);
     }
 
     @Override
