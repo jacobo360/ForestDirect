@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -64,7 +65,8 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
     protected Toolbar toolbar = null;
     protected boolean readPermission = false;
     protected boolean writePermission = false;
-    protected View dialog = null;
+    protected View dialogView = null;
+    protected DialogFragment dialog = null;
 
 
     /**
@@ -296,20 +298,6 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
     }
 
     /**
-     * Changes the color od the status bar
-     * @since  Lollipop
-     */
-    @SuppressLint("NewApi")
-    public void setStatusBarBackgroundColor(int color) {
-        if (AndroidTools.getAndroidAPI() >= 21 ) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(this, color));
-        }
-    }
-
-    /**
      * Display a toast on the screen
      *
      * @param message chosen message pass as resource of type string (e.g. R.string.message)
@@ -324,7 +312,14 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
      * Sets a custom dialog view to be displayed on request of the fragment
      */
     public void setDialog(View view) {
-        dialog = view;
+        dialogView = view;
+    }
+
+    /**
+     * Sets a custom dialog fragment to be displayed on request of the fragment
+     */
+    public void setDialog(DialogFragment dialog) {
+        this.dialog = dialog;
     }
 
     /**
@@ -337,10 +332,13 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
             case TIME_DETERMINED:
                 break;
             case TIME_UNDETERMINED:
-                LinearLayout progressBar = (LinearLayout) dialog;
+                LinearLayout progressBar = (LinearLayout) dialogView;
                 progressBar.setVisibility(View.VISIBLE);
                 break;
             case MESSAGE:
+                break;
+            case SPLASH:
+                dialog.show(getSupportFragmentManager(), "SplashDialog");
                 break;
         }
     }
@@ -355,10 +353,13 @@ public abstract class GenericActivity<RVM, PPM, P extends PresenterMethods<RVM>>
             case TIME_DETERMINED:
                 break;
             case TIME_UNDETERMINED:
-                LinearLayout progressBar = (LinearLayout) dialog;
+                LinearLayout progressBar = (LinearLayout) dialogView;
                 progressBar.setVisibility(View.GONE);
                 break;
             case MESSAGE:
+                break;
+            case SPLASH:
+                dialog.dismiss();
                 break;
         }
     }

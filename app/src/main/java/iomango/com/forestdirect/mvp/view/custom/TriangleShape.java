@@ -18,9 +18,12 @@ import iomango.com.forestdirect.R;
 public class TriangleShape
         extends View {
 
-    Paint mPaint;
-    Path mPath;
-    Direction direction;
+    /**
+     * Attributes
+     */
+    private Paint mPaint;
+    private Path mPath;
+    private Direction direction;
 
     public enum Direction {
         NORTH, SOUTH, EAST, WEST

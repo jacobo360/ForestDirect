@@ -28,7 +28,16 @@
                 android:title="@string/app_name"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:titleTextColor="@color/white"
-                app:layout_scrollFlags="scroll"/>
+                app:layout_scrollFlags="scroll">
+
+                <ImageView
+                    android:layout_width="160dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logo"
+                    android:contentDescription="@string/image"/>
+            </android.support.v7.widget.Toolbar>
 
             <iomango.com.forestdirect.mvp.view.custom.CustomTabLayout
                 android:id="@+id/tab_layout"

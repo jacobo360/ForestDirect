@@ -5,7 +5,7 @@ package iomango.com.forestdirect.mvp.common.global;
  */
 public class Enums {
 
-    public enum DialogType { TIME_DETERMINED, TIME_UNDETERMINED, MESSAGE}
+    public enum DialogType { TIME_DETERMINED, TIME_UNDETERMINED, MESSAGE, SPLASH}
 
     public enum ScreenUnit { PX, DP }
 

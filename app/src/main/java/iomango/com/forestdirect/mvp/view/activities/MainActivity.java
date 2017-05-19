@@ -12,9 +12,13 @@ import java.lang.ref.WeakReference;
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericActivity;
+import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
+import iomango.com.forestdirect.mvp.common.interfaces.Listener.ExecutorListener;
+import iomango.com.forestdirect.mvp.common.managers.FutureTaskManager;
 import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
 import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 
+import iomango.com.forestdirect.mvp.view.dialog.SplashDialog;
 import iomango.com.forestdirect.mvp.view.fragments.HotelsFragment;
 import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
 
@@ -23,7 +27,7 @@ import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
  */
 public class MainActivity
         extends GenericActivity<MVP.RequiredActivityMethods, MVP.ProvidedPresenterMethodsActivity, MainActivityPresenter>
-        implements MVP.RequiredActivityMethods, View.OnClickListener {
+        implements MVP.RequiredActivityMethods, View.OnClickListener, ExecutorListener {
 
     /**
      * Attributes
@@ -41,9 +45,14 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Displaying splash dialog
+        setDialog(new SplashDialog());
+        displayDialog(DialogType.SPLASH);
+        FutureTaskManager.executeAfter(this, "splash", 3, false);
+
         // Instantiate the presenter
         super.onCreate(MainActivityPresenter.class, this);
-
+        
         // Initialize all view components defined in the activity's layout
         initializeViews();
     }
@@ -54,6 +63,8 @@ public class MainActivity
     private void initializeViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setToolbar(toolbar, false);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setViewPager();
@@ -91,6 +102,11 @@ public class MainActivity
     @Override
     public void onClick(View view) {
 
+    }
+
+    @Override
+    public void execute(String name) {
+        dismissDialog(DialogType.SPLASH);
     }
 
     /**

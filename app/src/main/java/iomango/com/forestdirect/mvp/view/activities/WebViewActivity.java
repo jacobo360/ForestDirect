@@ -3,6 +3,8 @@ package iomango.com.forestdirect.mvp.view.activities;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.ExecutorListener;
@@ -52,6 +55,9 @@ public class WebViewActivity
         WebView webView = (WebView) findViewById(R.id.web_view);
         linearLayoutDialog.setVisibility(View.VISIBLE);
 
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+
         // WebView set up
         WebSettings settings = webView.getSettings();
         settings.setLoadsImagesAutomatically(true);
@@ -84,7 +90,7 @@ public class WebViewActivity
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            FutureTaskManager.executeAfter(listener, "hide", 3000);
+            FutureTaskManager.executeAfter(listener, "hide", 3, false);
         }
     }
 

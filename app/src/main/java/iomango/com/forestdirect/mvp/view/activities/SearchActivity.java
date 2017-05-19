@@ -128,8 +128,10 @@ public class SearchActivity
                     if (editable.toString().length() > 0)
                         getPresenter().executeNetworkRequest(new SearchActivityModel(editable.toString(), true));
                     else {
-                        if (hotelListAdapter != null)
+                        if (locationListAdapter != null && hotelListAdapter != null) {
+                            locationListAdapter.clear();
                             hotelListAdapter.clear();
+                        }
                     }
                 } else {
                     if (editable.toString().length() > 0)
