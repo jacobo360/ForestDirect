@@ -52,7 +52,7 @@ public class MainActivity
 
         // Instantiate the presenter
         super.onCreate(MainActivityPresenter.class, this);
-        
+
         // Initialize all view components defined in the activity's layout
         initializeViews();
     }
