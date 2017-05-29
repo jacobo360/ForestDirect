@@ -21,7 +21,6 @@ import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
-import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
@@ -62,6 +61,7 @@ public class OneWayFragment
     private TableRow airlineTextTableRow;
     private TableRow airlineSpinnerTableRow;
     private Spinner airlinesSpinner;
+    private CustomTextView moreOptionsCustomTextView;
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
@@ -103,7 +103,7 @@ public class OneWayFragment
         toEditText = (CustomEditText) containerLayout.findViewById(R.id.to_edit_text);
         fromCheckBox = (CheckBox) containerLayout.findViewById(R.id.from_checkbox);
         toCheckBox = (CheckBox) containerLayout.findViewById(R.id.to_checkbox);
-        CustomTextView moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
+        moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
         datePickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.departure_date_edit_text);
         flexibleDatesCheckBox = (CheckBox) containerLayout.findViewById(R.id.flexible_dates_checkbox);
         kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
@@ -117,14 +117,6 @@ public class OneWayFragment
 
         fromEditText.clearFocus();
         toEditText.clearFocus();
-
-        // Tinting drawables
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_takeoff, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_land, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_event, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_filter_outline, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_access_time, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight, R.color.colorPrimary);
 
         // Setting listeners
         fromEditText.setOnClickListener(this);
@@ -167,12 +159,14 @@ public class OneWayFragment
                     departureEditTableRow.setVisibility(View.GONE);
                     airlineTextTableRow.setVisibility(View.GONE);
                     airlineSpinnerTableRow.setVisibility(View.GONE);
-                            moreOptionsIsVisible = false;
+                    moreOptionsCustomTextView.setText(getText(R.string.more_options_label));
+                    moreOptionsIsVisible = false;
                 } else {
                     departureTextTableRow.setVisibility(View.VISIBLE);
                     departureEditTableRow.setVisibility(View.VISIBLE);
                     airlineTextTableRow.setVisibility(View.VISIBLE);
                     airlineSpinnerTableRow.setVisibility(View.VISIBLE);
+                    moreOptionsCustomTextView.setText(getText(R.string.less_options_label));
                     moreOptionsIsVisible = true;
                 }
                 break;

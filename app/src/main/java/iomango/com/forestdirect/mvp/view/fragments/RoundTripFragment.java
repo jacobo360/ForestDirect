@@ -22,7 +22,6 @@ import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
-import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
 import iomango.com.forestdirect.mvp.model.GlobalModel;
 import iomango.com.forestdirect.mvp.model.data.AirlineModel;
@@ -68,6 +67,7 @@ public class RoundTripFragment
     private TableRow airlineTextTableRow;
     private TableRow airlineSpinnerTableRow;
     private Spinner airlinesSpinner;
+    private CustomTextView moreOptionsCustomTextView;
     private boolean moreOptionsIsVisible = false;
     private boolean isFromActive = false;
     private List<AirlineModel> airlines;
@@ -115,7 +115,7 @@ public class RoundTripFragment
         kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.kind_edit_text);
         departureTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.departure_time_edit_text);
         returnTimeEditText = (TimePickerEditText) containerLayout.findViewById(R.id.return_time_edit_text);
-        CustomTextView moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
+        moreOptionsCustomTextView = (CustomTextView) containerLayout.findViewById(R.id.more_options_link);
         departureTextTableRow = (TableRow) containerLayout.findViewById(R.id.departure_table_label);
         departureEditTableRow = (TableRow) containerLayout.findViewById(R.id.departure_table_edit_text);
         returnTextTableRow = (TableRow) containerLayout.findViewById(R.id.return_table_label);
@@ -127,14 +127,6 @@ public class RoundTripFragment
 
         fromEditText.clearFocus();
         toEditText.clearFocus();
-
-        // Tinting drawables
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_takeoff, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight_land, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_event, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_filter_outline, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_access_time, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_flight, R.color.colorPrimary);
 
         // Setting listeners
         fromEditText.setOnClickListener(this);
@@ -181,6 +173,7 @@ public class RoundTripFragment
                     airlineTextTableRow.setVisibility(View.GONE);
                     airlineSpinnerTableRow.setVisibility(View.GONE);
                     moreOptionsIsVisible = false;
+                    moreOptionsCustomTextView.setText(getText(R.string.more_options_label));
                 } else {
                     departureTextTableRow.setVisibility(View.VISIBLE);
                     departureEditTableRow.setVisibility(View.VISIBLE);
@@ -188,6 +181,7 @@ public class RoundTripFragment
                     returnEditTableRow.setVisibility(View.VISIBLE);
                     airlineTextTableRow.setVisibility(View.VISIBLE);
                     airlineSpinnerTableRow.setVisibility(View.VISIBLE);
+                    moreOptionsCustomTextView.setText(getText(R.string.less_options_label));
                     moreOptionsIsVisible = true;
                 }
                 break;

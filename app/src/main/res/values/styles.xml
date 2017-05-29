@@ -139,4 +139,18 @@
         <item name="android:focusableInTouchMode">true</item>
     </style>
 
+    <!-- Image Icon Style -->
+    <style name="ImageIconStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_weight">1.5</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <!-- Splash Theme -->
+    <style name="SplashStyle" parent="android:Theme" >
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>

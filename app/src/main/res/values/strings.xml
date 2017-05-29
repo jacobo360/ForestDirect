@@ -50,6 +50,7 @@
     <string name="departure_time_hint">E.g. 18:30</string>
     <string name="passenger_error">Number of passengers can\'t be more than 6</string>
     <string name="close_label">Close</string>
+    <string name="less_options_label">Less Options</string>
 
     <!--RoundTrip Fragment -->
     <string name="return_date_hint">E.g. 30 May, 2017</string>

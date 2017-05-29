@@ -43,12 +43,13 @@ public class MainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         // Displaying splash dialog
         setDialog(new SplashDialog());
         displayDialog(DialogType.SPLASH);
         FutureTaskManager.executeAfter(this, "splash", 3, false);
+
+        setContentView(R.layout.activity_main);
 
         // Instantiate the presenter
         super.onCreate(MainActivityPresenter.class, this);

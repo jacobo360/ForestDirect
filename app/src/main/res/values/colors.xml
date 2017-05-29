@@ -2,8 +2,12 @@
 <resources>
     <color name="colorPrimary">#4489ff</color>
     <color name="colorPrimaryTranslucent">#a04489ff</color>
-    <color name="colorPrimaryDark">#484848</color>
+    <color name="colorPrimaryDark">#000</color>
     <color name="colorAccent">#4489ff</color>
+
+    <color name="bg_overlay">#a01565c0</color>
+
+    <color name="red">#ff0000</color>
 
     <color name="black">#000</color>
     <color name="grey_dark">#484848</color>

@@ -1,10 +1,18 @@
 package iomango.com.forestdirect.mvp.view.fragments;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import iomango.com.forestdirect.R;
@@ -26,6 +34,7 @@ public class SelectorFragment
      */
     private MainActivity parentActivity;
     private LinearLayout linearLayout;
+    private FrameLayout fragmentContainer;
 
 
     /**
@@ -42,9 +51,6 @@ public class SelectorFragment
 
         // Initialize parent activity
         parentActivity = (MainActivity) getActivity();
-
-        // Setting fragment
-        parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
 
         // Initialize retained fragment state
         isRetainedFragment = false;
@@ -66,6 +72,11 @@ public class SelectorFragment
         CustomRadioButton roundTripRadioButton = (CustomRadioButton) linearLayout.findViewById(R.id.round_trip_radio_button);
         CustomRadioButton multiCityRadioButton = (CustomRadioButton) linearLayout.findViewById(R.id.multi_city_radio_button);
 
+        // Setting fragment
+        fragmentContainer = (FrameLayout) linearLayout.findViewById(R.id.fragment);
+        playAnimation(4000);
+        parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
+
         // Setting listeners
         oneWayRadioButton.setOnClickListener(this);
         roundTripRadioButton.setOnClickListener(this);
@@ -79,14 +90,33 @@ public class SelectorFragment
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.one_way_radio_button:
+                playAnimation(50);
                 parentActivity.replaceFragment(R.id.fragment, new OneWayFragment(), false);
                 break;
             case R.id.round_trip_radio_button:
+                playAnimation(50);
                 parentActivity.replaceFragment(R.id.fragment, new RoundTripFragment(), false);
                 break;
             case R.id.multi_city_radio_button:
+                playAnimation(50);
                 parentActivity.replaceFragment(R.id.fragment, new MultiCityFragment(), false);
                 break;
         }
+    }
+
+    private void playAnimation(int delay) {
+        float startPosition = fragmentContainer.getBottom();
+        float endPosition = 0;
+        ObjectAnimator translateAnimation = ObjectAnimator.ofFloat(fragmentContainer, View.TRANSLATION_Y, startPosition, endPosition);
+
+        PropertyValuesHolder scaleXAnimation = PropertyValuesHolder.ofFloat(View.SCALE_X, 0, 1);
+        PropertyValuesHolder scaleYAnimation = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0, 1);
+        ObjectAnimator scaleAnimation = ObjectAnimator.ofPropertyValuesHolder(fragmentContainer, scaleXAnimation, scaleYAnimation);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.setDuration(550);
+        animatorSet.setStartDelay(delay);
+        animatorSet.playTogether(translateAnimation, scaleAnimation);
+        animatorSet.start();
     }
 }

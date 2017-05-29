@@ -41,12 +41,9 @@
                 style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_flight_takeoff"
-                    android:contentDescription="@string/image"/>
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomEditText
                     android:id="@+id/from_edit_text"
@@ -99,12 +96,9 @@
                 style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_flight_land"
-                    android:contentDescription="@string/image"/>
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.CustomEditText
                     android:id="@+id/to_edit_text"
@@ -158,12 +152,9 @@
                 style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_event"
-                    android:contentDescription="@string/image"/>
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.DatePickerEditText
                     android:id="@+id/departure_date_edit_text"
@@ -195,12 +186,9 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_event"
-                    android:contentDescription="@string/image"/>
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.DatePickerEditText
                     android:id="@+id/return_date_edit_text"
@@ -251,12 +239,9 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_filter_outline"
-                    android:contentDescription="@string/image"/>
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.DialogEditText
                     android:id="@+id/kind_edit_text"
@@ -289,6 +274,7 @@
                 android:id="@+id/departure_table_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:visibility="gone">
 
                 <Space
@@ -310,12 +296,9 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_access_time"
-                    android:contentDescription="@string/image"/>
+                    android:src="@drawable/ic_clock"
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.TimePickerEditText
                     android:id="@+id/departure_time_edit_text"
@@ -352,12 +335,9 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_access_time"
-                    android:contentDescription="@string/image"/>
+                    android:src="@drawable/ic_clock"
+                    android:contentDescription="@string/image"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.TimePickerEditText
                     android:id="@+id/return_time_edit_text"
@@ -394,13 +374,10 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1.5"
-                    android:layout_gravity="center"
                     android:src="@drawable/ic_flight"
                     android:contentDescription="@string/image"
-                    android:id="@+id/imageView" />
+                    android:id="@+id/imageView"
+                    style="@style/ImageIconStyle"/>
 
                 <iomango.com.forestdirect.mvp.view.custom.spinner.Spinner
                     android:id="@+id/airline_spinner"

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/splash">
+    android:gravity="center"
+    android:background="@drawable/bg_overlay">
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/image"/>
+</RelativeLayout>

@@ -23,7 +23,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimaryDark"
+                android:background="@color/black"
                 android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
                 android:title="@string/app_name"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"

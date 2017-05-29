@@ -76,7 +76,8 @@ public class Spinner
 
         mode = Mode.TEXT;
 
-        initializeViews();
+        if (!isInEditMode())
+            initializeViews();
     }
 
     public Spinner(Context context, AttributeSet attrs) {
@@ -85,9 +86,10 @@ public class Spinner
 
         initializedByParsing = true;
 
-        parseAttributes(attrs);
-
-        initializeViews();
+        if (!isInEditMode()) {
+            parseAttributes(attrs);
+            initializeViews();
+        }
     }
 
     private void parseAttributes(AttributeSet attributes) {
