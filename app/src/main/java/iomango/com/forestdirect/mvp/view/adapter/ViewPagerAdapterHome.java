@@ -12,7 +12,7 @@ import java.util.List;
  * Created by clelia_arch on 3/10/17
  */
 
-public class ViewPagerAdapter
+public class ViewPagerAdapterHome
         extends FragmentPagerAdapter {
 
     /**
@@ -23,7 +23,7 @@ public class ViewPagerAdapter
     private Context context;
 
 
-    public ViewPagerAdapter(Context context, FragmentManager manager) {
+    public ViewPagerAdapterHome(Context context, FragmentManager manager) {
         super(manager);
         this.context = context;
     }

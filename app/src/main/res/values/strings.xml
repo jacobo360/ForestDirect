@@ -17,6 +17,11 @@
     <string name="search_hint">Type to search</string>
     <string name="image">Image</string>
 
+    <!-- Main Activity -->
+    <string name="search_label">Search</string>
+    <string name="profile_label">Profile</string>
+    <string name="my_bookmarks_label">My Bookmarks</string>
+
     <!-- Empty Fragment -->
     <string name="empty_label">Not content yet</string>
 
@@ -41,7 +46,6 @@
     <string name="preferred_airline_label">Preferred Airline</string>
     <string name="include_airport_label">Include near airport</string>
     <string name="include_flexible_label">Include flexible dates</string>
-    <string name="search_label">Search</string>
     <string name="date_error">Date is not valid</string>
     <string name="from_hint">E.g. Orlando</string>
     <string name="to_hint">E.g. Chicago</string>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -16,11 +17,11 @@ import iomango.com.forestdirect.mvp.common.global.Enums.DialogType;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.ExecutorListener;
 import iomango.com.forestdirect.mvp.common.managers.FutureTaskManager;
 import iomango.com.forestdirect.mvp.presenter.MainActivityPresenter;
-import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapter;
 
+import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapterMain;
 import iomango.com.forestdirect.mvp.view.dialog.SplashDialog;
-import iomango.com.forestdirect.mvp.view.fragments.HotelsFragment;
-import iomango.com.forestdirect.mvp.view.fragments.SelectorFragment;
+import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
+import iomango.com.forestdirect.mvp.view.fragments.HomeFragment;
 
 /**
  * Created by Clelia López on 03/10/2016
@@ -33,6 +34,15 @@ public class MainActivity
      * Attributes
      */
     private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private ViewPagerAdapterMain adapter;
+
+    /**
+     * Vector drawable support
+     */
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
 
     /**
@@ -70,8 +80,8 @@ public class MainActivity
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         setViewPager();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        setTabLayout();
 
         if(viewPager != null) {
             viewPager.clearOnPageChangeListeners();
@@ -83,11 +93,27 @@ public class MainActivity
      * Specifies which fragments will be contained on the {@param viewpager} and sets its adapter.
      */
     private void setViewPager() {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(this, getSupportFragmentManager());
-        adapter.addFragment(new SelectorFragment(), R.string.flight_label);
-        adapter.addFragment(new HotelsFragment(), R.string.hotel_label);
+        adapter = new ViewPagerAdapterMain(this, getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), R.string.search_label, R.drawable.bg_tab_home);
+        adapter.addFragment(new EmptyFragment(), R.string.profile_label, R.drawable.bg_tab_profile);
+        adapter.addFragment(new EmptyFragment(), R.string.my_bookmarks_label, R.drawable.bg_tab_bookmark);
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
+    }
+
+    /**
+     * Customizes each tab individually
+     */
+    private void setTabLayout() {
+        if (tabLayout != null) {
+            tabLayout.setupWithViewPager(viewPager);
+
+            for (int i = 0; i < tabLayout.getTabCount(); i++) {
+                TabLayout.Tab tab = tabLayout.getTabAt(i);
+                if (tab != null)
+                    tab.setCustomView(adapter.getTabView(i));
+            }
+        }
     }
 
     @Override
@@ -102,7 +128,7 @@ public class MainActivity
      */
     @Override
     public void onClick(View view) {
-
+        // no-op
     }
 
     @Override

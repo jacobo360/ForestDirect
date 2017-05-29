@@ -74,7 +74,7 @@ public class SelectorFragment
 
         // Setting fragment
         fragmentContainer = (FrameLayout) linearLayout.findViewById(R.id.fragment);
-        playAnimation(4000);
+        // playAnimation(4000);
         parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
 
         // Setting listeners
