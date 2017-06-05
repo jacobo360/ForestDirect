@@ -85,10 +85,6 @@ public class SearchActivity
             hotelsRecyclerView = (RecyclerView) findViewById(R.id.recycler_hotels);
         }
 
-        // Tinting icons
-        DrawablesTools.tintDrawable(this, R.drawable.ic_clear, R.color.grey_500);
-        DrawablesTools.tintDrawable(this, R.drawable.ic_arrow_back, R.color.grey_500);
-
         setDialog(findViewById(R.id.dialog));
 
         // Setting listeners

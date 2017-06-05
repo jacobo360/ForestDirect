@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -111,8 +111,7 @@ public class SelectorFragment
 
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(550);
-        animatorSet.setStartDelay(delay);
-        animatorSet.setInterpolator(new AccelerateInterpolator());
+        animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.playTogether(translateAnimation, scaleAnimation);
         animatorSet.start();
     }

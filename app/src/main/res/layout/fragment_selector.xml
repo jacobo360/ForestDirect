@@ -17,14 +17,14 @@
 
         <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
             android:id="@+id/round_trip_radio_button"
-            android:background="@drawable/bg_radio_center"
+            android:background="@drawable/bg_radio_left"
             android:text="@string/round_trip_label"
             android:checked="true"
             style="@style/RadioButtonStyle"/>
 
         <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
             android:id="@+id/one_way_radio_button"
-            android:background="@drawable/bg_radio_left"
+            android:background="@drawable/bg_radio_center"
             android:text="@string/one_way_label"
             style="@style/RadioButtonStyle"/>
 

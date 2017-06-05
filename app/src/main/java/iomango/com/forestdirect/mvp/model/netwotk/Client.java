@@ -13,7 +13,7 @@ public class Client {
     /**
      * Attributes
      */
-    private static final String host = "https://forestdirect.com/";
+    private static final String host = "https://m.forestdirect.com";
     private static RestAPIService restAPIService = null;
     private static Retrofit retrofit;
     private static boolean hasHostChanged = false;

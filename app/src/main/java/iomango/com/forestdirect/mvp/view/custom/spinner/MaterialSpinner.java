@@ -282,7 +282,7 @@ public class MaterialSpinner
             setAdapter(popUpListItemAdapter);
         }
 
-        if(item != -1){
+        if (item != -1) {
             if(drawable != -1)
                 popUpListItem.add(new PopupListItem(context.getResources().getString(item), drawable));
             else
@@ -311,7 +311,7 @@ public class MaterialSpinner
             setAdapter(popUpListItemAdapter);
         }
 
-        if(item != null){
+        if (item != null) {
             if(drawable != -1)
                 popUpListItem.add(new PopupListItem(item, drawable));
             else

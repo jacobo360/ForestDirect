@@ -29,9 +29,12 @@ public class RoomsAdapter
     private int maximumSize = 9;
 
 
-    public RoomsAdapter(Context context, List<GuestModel> guests) {
+    public RoomsAdapter(Context context, int size) {
+        this.size = size;
         this.context = context;
-        this.guests = guests;
+
+        for (int i=1; i<size; i++)
+            addElement();
     }
 
     @Override
@@ -43,22 +46,22 @@ public class RoomsAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.roomTextView.setText(holder.roomTextView.getText() + " " + (position + 1));
+        holder.roomNumberTextView.setText(String.valueOf(position + 1));
     }
 
     @Override
     public int getItemCount() {
-        return guests.size();
+        return size;
     }
 
-    private void addElement() {
+    public void addElement() {
         if (size < maximumSize) {
             size++;
             notifyItemInserted(size);
         }
     }
 
-    private void removeElement(int position) {
+    public void removeElement(int position) {
         if (size > minimumSize) {
             size--;
             notifyItemRemoved(position);
@@ -66,32 +69,29 @@ public class RoomsAdapter
         }
     }
 
+    public int getSize() {
+        return size;
+    }
+
     /**
      * View holder class for list item
      */
     class ViewHolder
-            extends RecyclerView.ViewHolder
-            implements View.OnClickListener {
+            extends RecyclerView.ViewHolder {
 
         /**
          * Attributes
          */
         CustomTextView roomTextView;
+        CustomTextView roomNumberTextView;
         DialogEditText guessDialogEditText;
 
 
         ViewHolder(View view) {
             super(view);
             roomTextView = (CustomTextView) view.findViewById(R.id.room_text_view);
+            roomNumberTextView = (CustomTextView) view.findViewById(R.id.room_number_text_view);
             guessDialogEditText = (DialogEditText) view.findViewById(R.id.guests_edit_text);
-            view.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            int position = getAdapterPosition();
-            // if (listener != null)
-                // listener.updateLocation(locations.get(position));
         }
     }
 }

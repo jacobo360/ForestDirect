@@ -3,11 +3,13 @@ package iomango.com.forestdirect.mvp.view.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.RelativeLayout;
+import android.widget.AdapterView;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
@@ -15,14 +17,17 @@ import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
-import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
+import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
+import iomango.com.forestdirect.mvp.view.adapter.RoomsAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.DatePickerEditText;
 import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
+import iomango.com.forestdirect.mvp.view.custom.spinner.Spinner;
+import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
 
 /**
  * Created by Clelia López on 03/10/2017
@@ -30,16 +35,20 @@ import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
 public class HotelsFragment
         extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
         implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener,
-        Listener.OnDateSetListener {
+        Listener.OnDateSetListener, AdapterView.OnItemClickListener {
 
     /**
      * Attributes
      */
-    private RelativeLayout containerLayout;
+    private NestedScrollView containerLayout;
     private CustomEditText destinationEditText;
     private DatePickerEditText checkInPickerEditText;
     private DatePickerEditText checkOutPickerEditText;
     private DialogEditText kindDialogEditText;
+    private Spinner roomsSpinner;
+    private RecyclerView roomsRecyclerView;
+    private RoomsAdapter roomsAdapter;
+    private MainActivity parentActivity;
 
 
     /**
@@ -52,7 +61,10 @@ public class HotelsFragment
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        containerLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_hotels, container, false);
+        containerLayout = (NestedScrollView) inflater.inflate(R.layout.fragment_hotels, container, false);
+
+        // Initialize parent activity
+        parentActivity = (MainActivity) getActivity();
 
         // Initialize retained fragment state
         isRetainedFragment = false;
@@ -76,6 +88,7 @@ public class HotelsFragment
         checkInPickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.check_in_edit_text);
         checkOutPickerEditText = (DatePickerEditText) containerLayout.findViewById(R.id.check_out_edit_text);
         kindDialogEditText = (DialogEditText) containerLayout.findViewById(R.id.guests_edit_text);
+        roomsSpinner = (Spinner) containerLayout.findViewById(R.id.rooms_spinner);
         CustomButton searchButton =  (CustomButton) containerLayout.findViewById(R.id.search_button);
 
         destinationEditText.clearFocus();
@@ -85,10 +98,24 @@ public class HotelsFragment
         destinationEditText.setOnFocusChangeListener(this);
         checkInPickerEditText.setOnDateSetListener(this, -1);
         searchButton.setOnClickListener(this);
+
+        // Loading data and setting up spinner
+        roomsSpinner.getSpinner().setOnItemClickListener(this);
+        roomsSpinner.getSpinner().setItems(R.array.rooms_array);
+
+        roomsRecyclerView = (RecyclerView) containerLayout.findViewById(R.id.recycler_rooms_list);
+        roomsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        roomsRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.divider));
+        roomsRecyclerView.setNestedScrollingEnabled(false);
+        roomsRecyclerView.setHasFixedSize(false);
+
+        roomsAdapter = new RoomsAdapter(getContext(), 1);
+
+        roomsRecyclerView.setAdapter(roomsAdapter);
     }
 
     /**
-     * Hook OnClickListener
+     * Hook OnClickListenerR
      */
     @Override
     public void onClick(View view) {
@@ -161,5 +188,15 @@ public class HotelsFragment
     @Override
     public void updateDate(Date date, int id) {
         checkOutPickerEditText.setMinimumDate(date);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        for (int i=0; i < roomsAdapter.getSize(); i++)
+            roomsAdapter.removeElement(i);
+
+        int size = Integer.parseInt(roomsSpinner.getSpinner().getSelectedItem());
+        for (int i=0; i < size-1; i++)
+            roomsAdapter.addElement();
     }
 }

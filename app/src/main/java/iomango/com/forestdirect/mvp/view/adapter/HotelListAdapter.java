@@ -15,7 +15,7 @@ import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 
 /**
- * Created by clelia_arch on 3/8/17
+ * Created by Clelia López on 3/8/17
  */
 public class HotelListAdapter
         extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> {
