@@ -80,8 +80,6 @@ public class MultiCityFragment
      * Initialize the Views and GUI widgets.
      */
     private void initializeViews() {
-        // Tinting drawables
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_add, R.color.white);
 
         // Recycler set up
         recyclerView = (RecyclerView) relativeLayout.findViewById(R.id.steps_recycler);

@@ -16,7 +16,6 @@ import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnAdapterErrorListener;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnMultiCityActionListener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
-import iomango.com.forestdirect.mvp.common.utilities.DrawablesTools;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
 import iomango.com.forestdirect.mvp.view.custom.CustomEditText;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
@@ -68,8 +67,6 @@ public class MultiCityAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DrawablesTools.tintDrawable(context, R.drawable.ic_clear, R.color.grey_500);
-
         if (holder.fromEditText != null && holder.toEditText != null) {
             holder.fromEditText.setHint(FROM[position]);
             holder.toEditText.setHint(TO[position]);
@@ -92,7 +89,7 @@ public class MultiCityAdapter
 
     @Override
     public int getItemViewType(int position) {
-        if (position  == (size -1))
+        if (position  == (size - 1))
             return R.layout.multicity_footer;
         else
             return R.layout.multicity_list_item;

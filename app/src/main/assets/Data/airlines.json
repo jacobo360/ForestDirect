@@ -1,6 +1,14 @@
 [
   {
     "id": 1,
+    "AirLineCode": 0,
+    "AirLineName": "",
+    "ProviderType": "",
+    "Active": "true",
+    "markup": ""
+  },
+  {
+    "id": 1,
     "AirLineCode": 1,
     "AirLineName": "RailEasy",
     "ProviderType": "TravelFusion2Provider",

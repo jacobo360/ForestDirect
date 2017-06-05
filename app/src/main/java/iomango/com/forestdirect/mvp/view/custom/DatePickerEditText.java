@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import iomango.com.forestdirect.R;
@@ -62,6 +63,8 @@ public class DatePickerEditText
         LayoutInflater inflater = LayoutInflater.from(context);
         View container = inflater.inflate(R.layout.date_picker_edit_text, this, true);
         dateEditText = (CustomEditText) container.findViewById(R.id.date_edit_text_view);
+        ImageButton clearImageButton = (ImageButton) container.findViewById(R.id.clear_image_button);
+        clearImageButton.setOnClickListener(this);
         dateEditText.setFocusableInTouchMode(true);
         dateEditText.setOnClickListener(this);
 
@@ -117,7 +120,15 @@ public class DatePickerEditText
 
     @Override
     public void onClick(View view) {
-        datePickerDialog.show();
+        switch (view.getId()) {
+            case R.id.clear_image_button:
+                dateEditText.setText("");
+                dateEditText.clearFocus();
+                break;
+            default:
+                datePickerDialog.show();
+                break;
+        }
     }
 
     @Override

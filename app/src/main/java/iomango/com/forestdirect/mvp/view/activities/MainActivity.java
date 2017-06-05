@@ -22,6 +22,7 @@ import iomango.com.forestdirect.mvp.view.adapter.ViewPagerAdapterMain;
 import iomango.com.forestdirect.mvp.view.dialog.SplashDialog;
 import iomango.com.forestdirect.mvp.view.fragments.EmptyFragment;
 import iomango.com.forestdirect.mvp.view.fragments.HomeFragment;
+import iomango.com.forestdirect.mvp.view.fragments.WebViewFragment;
 
 /**
  * Created by Clelia López on 03/10/2016
@@ -94,9 +95,15 @@ public class MainActivity
      */
     private void setViewPager() {
         adapter = new ViewPagerAdapterMain(this, getSupportFragmentManager());
+
         adapter.addFragment(new HomeFragment(), R.string.search_label, R.drawable.bg_tab_home);
-        adapter.addFragment(new EmptyFragment(), R.string.profile_label, R.drawable.bg_tab_profile);
-        adapter.addFragment(new EmptyFragment(), R.string.my_bookmarks_label, R.drawable.bg_tab_bookmark);
+
+        adapter.addFragment(WebViewFragment.newInstance(getString(R.string.profile_url)),
+                R.string.profile_label, R.drawable.bg_tab_profile);
+
+        adapter.addFragment(WebViewFragment.newInstance(getString(R.string.my_bookings_url)),
+                R.string.my_bookings_label, R.drawable.bg_tab_bookmark);
+
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
     }

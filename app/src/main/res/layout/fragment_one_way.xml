@@ -41,7 +41,7 @@
                 style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:src="@drawable/ic_flight_takeoff"
+                    app:srcCompat="@drawable/ic_flight_takeoff"
                     android:contentDescription="@string/image"
                     style="@style/ImageIconStyle"/>
 
@@ -97,7 +97,7 @@
                 style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:src="@drawable/ic_flight_land"
+                    app:srcCompat="@drawable/ic_flight_land"
                     android:contentDescription="@string/image"
                     style="@style/ImageIconStyle"/>
 
@@ -149,10 +149,11 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:src="@drawable/ic_event"
+                    app:srcCompat="@drawable/ic_event"
                     android:contentDescription="@string/image"
                     style="@style/ImageIconStyle"/>
 
@@ -202,10 +203,11 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/OnTouchStyle">
 
                 <ImageView
-                    android:src="@drawable/ic_filter_outline"
+                    app:srcCompat="@drawable/ic_filter_outline"
                     android:contentDescription="@string/image"
                     style="@style/ImageIconStyle"/>
 
@@ -261,7 +263,7 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:src="@drawable/ic_clock"
+                    app:srcCompat="@drawable/ic_clock"
                     android:contentDescription="@string/image"
                     style="@style/ImageIconStyle"/>
 
@@ -300,7 +302,7 @@
                 android:visibility="gone">
 
                 <ImageView
-                    android:src="@drawable/ic_flight"
+                    app:srcCompat="@drawable/ic_flight"
                     android:contentDescription="@string/image"
                     android:id="@+id/imageView"
                     style="@style/ImageIconStyle"/>

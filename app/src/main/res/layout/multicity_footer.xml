@@ -42,12 +42,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="25dp"
-                android:layout_weight="1.5"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_filter_outline"
-                android:contentDescription="@string/image"/>
+                app:srcCompat="@drawable/ic_filter_outline"
+                android:contentDescription="@string/image"
+                style="@style/ImageIconStyle"/>
 
             <iomango.com.forestdirect.mvp.view.custom.DialogEditText
                 android:id="@+id/kind_edit_text"

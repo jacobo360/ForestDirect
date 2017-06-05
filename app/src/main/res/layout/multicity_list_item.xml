@@ -36,7 +36,7 @@
             style="@style/OnTouchStyle">
 
             <ImageView
-                android:src="@drawable/ic_flight_takeoff"
+                app:srcCompat="@drawable/ic_flight_takeoff"
                 android:contentDescription="@string/image"
                 style="@style/ImageIconStyle"/>
 
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:src="@drawable/ic_flight_land"
+                app:srcCompat="@drawable/ic_flight_land"
                 android:contentDescription="@string/image"
                 style="@style/ImageIconStyle"/>
 
@@ -146,7 +146,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:src="@drawable/ic_event"
+                app:srcCompat="@drawable/ic_event"
                 android:contentDescription="@string/image"
                 style="@style/ImageIconStyle"/>
 
@@ -168,7 +168,7 @@
         android:layout_marginEnd="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:src="@drawable/ic_clear"
+        app:srcCompat="@drawable/ic_clear"
         android:background="@drawable/bg_control"
         android:contentDescription="@string/image"/>
 

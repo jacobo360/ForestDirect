@@ -80,12 +80,6 @@ public class HotelsFragment
 
         destinationEditText.clearFocus();
 
-        // Tinting drawables
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_event, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_my_location, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_filter_outline, R.color.colorPrimary);
-        DrawablesTools.tintDrawable(getContext(), R.drawable.ic_hotel, R.color.colorPrimary);
-
         // Setting listeners
         destinationEditText.setOnClickListener(this);
         destinationEditText.setOnFocusChangeListener(this);

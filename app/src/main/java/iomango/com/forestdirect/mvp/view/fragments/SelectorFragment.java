@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -74,8 +71,7 @@ public class SelectorFragment
 
         // Setting fragment
         fragmentContainer = (FrameLayout) linearLayout.findViewById(R.id.fragment);
-        // playAnimation(4000);
-        parentActivity.placeFragment(R.id.fragment, new OneWayFragment());
+        parentActivity.placeFragment(R.id.fragment, new RoundTripFragment());
 
         // Setting listeners
         oneWayRadioButton.setOnClickListener(this);
@@ -90,15 +86,15 @@ public class SelectorFragment
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.one_way_radio_button:
-                playAnimation(50);
+                playAnimation(0);
                 parentActivity.replaceFragment(R.id.fragment, new OneWayFragment(), false);
                 break;
             case R.id.round_trip_radio_button:
-                playAnimation(50);
+                playAnimation(0);
                 parentActivity.replaceFragment(R.id.fragment, new RoundTripFragment(), false);
                 break;
             case R.id.multi_city_radio_button:
-                playAnimation(50);
+                playAnimation(0);
                 parentActivity.replaceFragment(R.id.fragment, new MultiCityFragment(), false);
                 break;
         }
@@ -116,6 +112,7 @@ public class SelectorFragment
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(550);
         animatorSet.setStartDelay(delay);
+        animatorSet.setInterpolator(new AccelerateInterpolator());
         animatorSet.playTogether(translateAnimation, scaleAnimation);
         animatorSet.start();
     }

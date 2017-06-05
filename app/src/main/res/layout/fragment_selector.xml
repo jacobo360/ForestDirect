@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:baselineAligned="false">
 
     <RadioGroup
         android:layout_width="match_parent"
@@ -15,16 +16,16 @@
         android:orientation="horizontal" >
 
         <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
-            android:id="@+id/one_way_radio_button"
-            android:background="@drawable/bg_radio_left"
-            android:text="@string/one_way_label"
+            android:id="@+id/round_trip_radio_button"
+            android:background="@drawable/bg_radio_center"
+            android:text="@string/round_trip_label"
             android:checked="true"
             style="@style/RadioButtonStyle"/>
 
         <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton
-            android:id="@+id/round_trip_radio_button"
-            android:background="@drawable/bg_radio_center"
-            android:text="@string/round_trip_label"
+            android:id="@+id/one_way_radio_button"
+            android:background="@drawable/bg_radio_left"
+            android:text="@string/one_way_label"
             style="@style/RadioButtonStyle"/>
 
         <iomango.com.forestdirect.mvp.view.custom.CustomRadioButton

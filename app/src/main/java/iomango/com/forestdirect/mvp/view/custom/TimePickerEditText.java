@@ -7,6 +7,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -59,8 +60,10 @@ public class TimePickerEditText
         LayoutInflater inflater = LayoutInflater.from(context);
         View container = inflater.inflate(R.layout.time_picker_edit_text, this, true);
         timeEditText = (CustomEditText) container.findViewById(R.id.time_edit_text_view);
+        ImageButton clearImageButton = (ImageButton) container.findViewById(R.id.clear_image_button);
         timeEditText.setFocusableInTouchMode(true);
         timeEditText.setOnClickListener(this);
+        clearImageButton.setOnClickListener(this);
 
         if (hint != null)
             timeEditText.setHint(hint);
@@ -80,7 +83,16 @@ public class TimePickerEditText
 
     @Override
     public void onClick(View view) {
-        timePickerDialog.show(((Activity)getContext()).getFragmentManager(), "TimePickerDialog");
+        switch (view.getId()) {
+            case R.id.clear_image_button:
+                timeEditText.setText("");
+                timeEditText.clearFocus();
+                break;
+            default:
+                timePickerDialog.show(((Activity)getContext()).getFragmentManager(), "TimePickerDialog");
+                break;
+        }
+
     }
 
     @Override

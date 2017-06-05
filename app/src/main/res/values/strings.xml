@@ -20,7 +20,10 @@
     <!-- Main Activity -->
     <string name="search_label">Search</string>
     <string name="profile_label">Profile</string>
-    <string name="my_bookmarks_label">My Bookmarks</string>
+    <string name="my_bookings_label">My Bookings</string>
+    <string name="profile_url">http://m.forestdirect.com/profile/show</string>
+    <string name="my_bookings_url">http://m.forestdirect.com/profile/my-bookings</string>
+
 
     <!-- Empty Fragment -->
     <string name="empty_label">Not content yet</string>
@@ -78,6 +81,7 @@
     <string name="check_out_label">Check Out</string>
     <string name="check_out_hint">E.g. 23 Jun, 2017</string>
     <string name="rooms_label">Rooms</string>
+    <string name="configure_room_label">Configure Room </string>
     <string name="adults_children_label">Adults and Children</string>
     <string name="adults_children_hint">E.g. 2 Adults, 1 Children</string>
     <string-array name="rooms_array">

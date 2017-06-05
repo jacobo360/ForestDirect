@@ -1,24 +1,19 @@
 package iomango.com.forestdirect.mvp.view.activities;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.ExecutorListener;
-import iomango.com.forestdirect.mvp.common.managers.FutureTaskManager;
+import iomango.com.forestdirect.mvp.common.utilities.AppBrowser;
 
 
 /**
@@ -32,9 +27,8 @@ public class WebViewActivity
     /**
      * Attributes
      */
-    private LinearLayout linearLayoutDialog;
+    private RelativeLayout relativeLayoutDialog;
     private String source;
-    private ExecutorListener listener;
 
 
     @Override
@@ -43,7 +37,6 @@ public class WebViewActivity
         setContentView(R.layout.activity_web_view);
 
         source = getIntent().getStringExtra("source");
-        listener = this;
 
         initializeViews();
     }
@@ -51,9 +44,9 @@ public class WebViewActivity
     @SuppressLint("SetJavaScriptEnabled")
     public void initializeViews() {
 
-        linearLayoutDialog = (LinearLayout)findViewById(R.id.linear_dialog_dialog);
+        relativeLayoutDialog = (RelativeLayout) findViewById(R.id.linear_dialog_dialog);
         WebView webView = (WebView) findViewById(R.id.web_view);
-        linearLayoutDialog.setVisibility(View.VISIBLE);
+        relativeLayoutDialog.setVisibility(View.VISIBLE);
 
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.getIndeterminateDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
@@ -64,7 +57,7 @@ public class WebViewActivity
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.setWebViewClient(new AppBrowser());
+        webView.setWebViewClient(new AppBrowser(this));
 
         String url = "https://forestdirect.com/flights/search";
         if (source != null)
@@ -73,29 +66,8 @@ public class WebViewActivity
             finish();
     }
 
-    private class AppBrowser
-            extends WebViewClient {
-
-        @SuppressWarnings("deprecation")
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return true;
-        }
-
-        @TargetApi(Build.VERSION_CODES.N)
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            return true;
-        }
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            FutureTaskManager.executeAfter(listener, "hide", 3, false);
-        }
-    }
-
     @Override
     public void execute(String name) {
-        linearLayoutDialog.setVisibility(View.GONE);
+        relativeLayoutDialog.setVisibility(View.GONE);
     }
 }

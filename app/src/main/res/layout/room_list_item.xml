@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"/>
+
+        <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+            android:id="@+id/room_text_view"
+            android:layout_width="match_parent"
+            android:layout_weight="4"
+            android:text="@string/configure_room_label"
+            style="@style/TextViewStyle.Body"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            app:srcCompat="@drawable/ic_filter_outline"
+            android:contentDescription="@string/image"
+            style="@style/ImageIconStyle"/>
+
+        <iomango.com.forestdirect.mvp.view.custom.DialogEditText
+            android:id="@+id/guests_edit_text"
+            android:layout_width="100dp"
+            android:layout_weight="4"
+            app:forHotels="true"
+            app:hint="@string/adults_children_hint"
+            style="@style/EditTextStyle.Margin"/>
+    </TableRow>
+
+</TableLayout>
