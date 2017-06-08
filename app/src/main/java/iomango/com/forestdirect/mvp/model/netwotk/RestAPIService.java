@@ -33,4 +33,12 @@ public interface RestAPIService {
 
     @POST("flights/search")
     Call<ResponseBody> getFlights(@Body MultiCitySearchModel model);
+
+    @POST("hotels/search/{city_code}/{check_in}/{check_out}/{rooms}")
+    Call<ResponseBody> getRHotelRooms(
+        @Path("city_code") String cityCode,
+        @Path("check_in") String checkIn,
+        @Path("check_out") String checkOut,
+        @Path("rooms") String rooms
+    );
 }

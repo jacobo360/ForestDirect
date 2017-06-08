@@ -6,10 +6,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by clelia_arch on 4/3/17
+ * Created by Clelia López on 4/3/17
  */
 
-public class HotelLocationModel implements Parcelable {
+public class HotelLocationModel
+        implements Parcelable {
 
     private String title;
 

@@ -95,13 +95,16 @@ public class DialogEditText
     public void updateTextView(AdvancedOptionsModel model) {
         if (model != null) {
             data = model;
-            int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
-            if (total > 1)
-                dialogEditText.setText(total + " Travelers, " + model.getCabin());
-            else if (model.getAdult() == 1)
-                dialogEditText.setText("1 Adult, " + model.getCabin());
-            else if (model.getSenior() == 1)
-                dialogEditText.setText("1 Senior, " + model.getCabin());
+            if (!isForHotels) {
+                int total = model.getAdult() + model.getSenior() + model.getChildren() + model.getInfant();
+                if (total > 1)
+                    dialogEditText.setText(total + " Travelers, " + model.getCabin());
+                else if (model.getAdult() == 1)
+                    dialogEditText.setText("1 Adult, " + model.getCabin());
+                else if (model.getSenior() == 1)
+                    dialogEditText.setText("1 Senior, " + model.getCabin());
+            } else
+                dialogEditText.setText(model.getAdult() + " Adults, " + model.getChildrenAges().size() + " Children");
         } else
             dialogEditText.clearFocus();
     }

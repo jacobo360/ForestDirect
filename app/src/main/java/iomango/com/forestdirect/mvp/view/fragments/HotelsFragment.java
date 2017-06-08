@@ -19,7 +19,6 @@ import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
 import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
 import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
-import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.adapter.RoomsAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
@@ -48,7 +47,7 @@ public class HotelsFragment
     private Spinner roomsSpinner;
     private RecyclerView roomsRecyclerView;
     private RoomsAdapter roomsAdapter;
-    private MainActivity parentActivity;
+    private int oldSize = 1;
 
 
     /**
@@ -62,9 +61,6 @@ public class HotelsFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         containerLayout = (NestedScrollView) inflater.inflate(R.layout.fragment_hotels, container, false);
-
-        // Initialize parent activity
-        parentActivity = (MainActivity) getActivity();
 
         // Initialize retained fragment state
         isRetainedFragment = false;
@@ -131,7 +127,7 @@ public class HotelsFragment
                 model.setFrom(fromCode);
                 model.setTo(toCode);
                 model.setDepartureDate(datePickerEditText.getValue());
-                AdvancedOptionsModel data = kindDialogEditText.getData();
+                AdvancedOpti// childrenAdapter.clear();onsModel data = kindDialogEditText.getData();
                 if (data != null) {
                     switch (data.getCabin()) {
                         case "Economy":
@@ -192,11 +188,14 @@ public class HotelsFragment
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        for (int i=0; i < roomsAdapter.getSize(); i++)
-            roomsAdapter.removeElement(i);
-
         int size = Integer.parseInt(roomsSpinner.getSpinner().getSelectedItem());
-        for (int i=0; i < size-1; i++)
-            roomsAdapter.addElement();
+        if (size >= oldSize) {
+            for (int i=0; i < size - oldSize; i++)
+                roomsAdapter.addElement();
+        } else {
+            for (int i=roomsAdapter.getSize() - 1; i >= size; i--)
+                roomsAdapter.removeElement(i);
+        }
+        oldSize = size;
     }
 }

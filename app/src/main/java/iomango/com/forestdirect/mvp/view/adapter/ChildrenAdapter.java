@@ -6,15 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
-import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
+import iomango.com.forestdirect.mvp.view.custom.StepperView;
 
 /**
- * Created by Clelia López on 5/30/17
+ * Created by Clelia López on 6/7/17
  */
-public class RoomsAdapter
-        extends RecyclerView.Adapter<RoomsAdapter.ViewHolder> {
+public class ChildrenAdapter
+        extends RecyclerView.Adapter<ChildrenAdapter.ViewHolder> {
 
     /**
      * Attributes
@@ -22,10 +25,11 @@ public class RoomsAdapter
     private Context context;
     private int size = 1;
     private int minimumSize = 1;
-    private int maximumSize = 9;
+    private int maximumSize = 5;
+    private List<ChildrenAdapter.ViewHolder> holders  = new ArrayList<>();
 
 
-    public RoomsAdapter(Context context, int size) {
+    public ChildrenAdapter(Context context, int size) {
         this.context = context;
         this.size = size;
 
@@ -36,13 +40,15 @@ public class RoomsAdapter
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View convertView = inflater.inflate(R.layout.room_list_item, parent, false);
-        return new ViewHolder(convertView);
+        View convertView = inflater.inflate(R.layout.child_list_item, parent, false);
+        return new ChildrenAdapter.ViewHolder(convertView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.roomNumberTextView.setText(String.valueOf(position + 1));
+        holder.childrenNumberTextView.setText(String.valueOf(position + 1));
+
+        holders.add(position, holder);
     }
 
     @Override
@@ -65,31 +71,37 @@ public class RoomsAdapter
         }
     }
 
-    public void clear() {
-        notifyItemRangeRemoved(0, size);
-    }
-
     public int getSize() {
         return size;
+    }
+
+    public List<ViewHolder> getHolders() {
+        return holders;
     }
 
     /**
      * View holder class for list item
      */
-    class ViewHolder
+    public class ViewHolder
             extends RecyclerView.ViewHolder {
 
         /**
          * Attributes
          */
-        CustomTextView roomNumberTextView;
-        DialogEditText guessDialogEditText;
+        CustomTextView childrenNumberTextView;
+        StepperView childrenStepperView;
 
 
         ViewHolder(View view) {
             super(view);
-            roomNumberTextView = (CustomTextView) view.findViewById(R.id.room_number_text_view);
-            guessDialogEditText = (DialogEditText) view.findViewById(R.id.guests_edit_text);
+            childrenNumberTextView = (CustomTextView) view.findViewById(R.id.child_number_text_view);
+            childrenStepperView = (StepperView) view.findViewById(R.id.children_stepper);
+            childrenStepperView.setMinimum(2);
+            childrenStepperView.setMaximum(11);
+        }
+
+        public StepperView getChildrenStepperView() {
+            return childrenStepperView;
         }
     }
 }

@@ -58,7 +58,7 @@ public class MainActivity
         // Displaying splash dialog
         setDialog(new SplashDialog());
         displayDialog(DialogType.SPLASH);
-        FutureTaskManager.executeAfter(this, "splash", 3, false);
+        FutureTaskManager.executeAfter(this, "splash", 4, false);
 
         setContentView(R.layout.activity_main);
 

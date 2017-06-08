@@ -1,5 +1,7 @@
 package iomango.com.forestdirect.mvp.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Clelia López on 3/14/17
  */
@@ -14,6 +16,7 @@ public class AdvancedOptionsModel {
     private int children;
     private int infant;
     private String cabin;
+    private ArrayList<Integer> childrenAges;
 
 
     public AdvancedOptionsModel() { }
@@ -64,5 +67,13 @@ public class AdvancedOptionsModel {
 
     public void setCabin(String cabin) {
         this.cabin = cabin;
+    }
+
+    public ArrayList<Integer> getChildrenAges() {
+        return childrenAges;
+    }
+
+    public void setChildrenAges(ArrayList<Integer> childrenAges) {
+        this.childrenAges = childrenAges;
     }
 }

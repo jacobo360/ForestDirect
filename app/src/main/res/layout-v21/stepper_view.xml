@@ -13,7 +13,7 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_remove"
         android:contentDescription="@string/image"
-        android:background="@drawable/bg_stepper_left"/>
+        android:background="@drawable/bg_stepper_left_ripple"/>
 
     <iomango.com.forestdirect.mvp.view.custom.CustomTextView
         android:id="@+id/amount_text_view"
@@ -32,6 +32,6 @@
         android:layout_weight="1"
         app:srcCompat="@drawable/ic_add"
         android:contentDescription="@string/image"
-        android:background="@drawable/bg_stepper_right"/>
+        android:background="@drawable/bg_stepper_right_ripple"/>
 
 </LinearLayout>

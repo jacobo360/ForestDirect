@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by clelia_arch on 3/8/17
+ * Created by Clelia López on 3/8/17
  */
 
 public class QueryHotel<M>

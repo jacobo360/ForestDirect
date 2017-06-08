@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by clelia_arch on 3/23/17
+ * Created by Clelia López on 3/23/17
  */
 
 public class MultiCitySearchModel {

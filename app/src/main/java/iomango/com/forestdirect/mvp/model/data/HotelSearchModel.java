@@ -1,30 +1,37 @@
 package iomango.com.forestdirect.mvp.model.data;
 
-/**
- * Created by clelia_arch on 4/3/17
- */
+import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
+/**
+ * Created by Clelia López on 4/3/17
+ */
 public class HotelSearchModel {
 
-    /**
-     *
+    @SerializedName("city_code")
+    private String cityCode;
 
-     {
-         "search_parameters": {
-         "city_code": "MIA",
-         "from": "2017-03-22",
-         "to": "2017-03-25",
-         "rooms": [
-                 {
-                 "adults": 2,
-                 "children": []
-                 }
-            ]
-         }
-     }
+    private String checkIn;
+
+    private String checkOut;
+
+    private ArrayList<GuestModel> guests;
 
 
+    public String getCityCode() {
+        return cityCode;
+    }
 
-     */
+    public String getCheckIn() {
+        return checkIn;
+    }
 
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    public ArrayList<GuestModel> getGuests() {
+        return guests;
+    }
 }

@@ -84,6 +84,8 @@
     <string name="configure_room_label">Configure Room </string>
     <string name="adults_children_label">Adults and Children</string>
     <string name="adults_children_hint">E.g. 2 Adults, 1 Children</string>
+    <string name="child_label">Child</string>
+    <string name="age_label">age</string>
     <string-array name="rooms_array">
         <item>1</item>
         <item>2</item>
@@ -107,6 +109,7 @@
     <string name="adults_label">Adults (12 &#8211; 65)</string>
     <string name="seniors_label">Senior (65+)</string>
     <string name="children_label">Children (2 &#8211; 11)</string>
+    <string name="children_simple_label">Children</string>
     <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
     <string name="dialog_title_label">Select Flight Kind and Passengers</string>
     <string name="dialog_title_guests_label">Select Guests</string>
@@ -116,5 +119,12 @@
         <item>Premium Economy</item>
         <item>Business</item>
         <item>First</item>
+    </string-array>
+    <string-array name="children_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>

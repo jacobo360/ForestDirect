@@ -68,7 +68,7 @@
                 android:id="@+id/adults_stepper"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1.2"/>
         </TableRow>
 
         <TableRow
@@ -88,10 +88,11 @@
                 android:id="@+id/seniors_step"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1.2"/>
         </TableRow>
 
         <TableRow
+            android:id="@+id/children_table_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp">
@@ -107,7 +108,7 @@
                 android:id="@+id/children_stepper"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1.2"/>
         </TableRow>
 
         <TableRow
@@ -127,9 +128,57 @@
                 android:id="@+id/infants_stepper"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1.2"/>
         </TableRow>
 
     </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/children_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom|start"
+            android:text="@string/children_label"
+            style="@style/TextViewStyle.Subheading"/>
+
+        <iomango.com.forestdirect.mvp.view.custom.spinner.Spinner
+            android:id="@+id/children_spinner"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            app:textColor="@color/grey_dark"
+            app:textSize="16"
+            app:backgroundColor="@color/white"
+            app:visibleItems="5"
+            app:itemsOverSpinner="1"
+            app:itemTextColor="@color/grey_dark"
+            app:itemTextSize="16"
+            app:itemSelectedDrawable="@drawable/bg_item"
+            app:listBackgroundColor="@color/white"
+            app:arrowColor="@color/colorAccent"
+            app:lineColor="@color/colorAccent"
+            app:mode="text"
+            app:typeface="roboto_regular"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_children_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="25dp"
+        android:paddingStart="25dp"
+        android:paddingRight="25dp"
+        android:paddingEnd="25dp"
+        android:scrollbars="vertical"
+        android:visibility="gone"/>
 
 </LinearLayout>

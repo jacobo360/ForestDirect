@@ -25,6 +25,7 @@ public class StepperView
     private CustomTextView amountTextView;
     private int amount = 0;
     private int minimum = -1;
+    private int maximum;
     private OnAmountChangeListener listener;
 
 
@@ -58,8 +59,8 @@ public class StepperView
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.remove_button:
-                if (amount > 0 && Integer.parseInt(amountTextView.getText().toString()) > minimum) {
-                    amount--;
+                if (Integer.parseInt(amountTextView.getText().toString()) > minimum) {
+                    amount = amount - 1;
                     amountTextView.setText(getContext().getString(R.string.blank, amount));
 
                     if (listener != null)
@@ -67,11 +68,12 @@ public class StepperView
                 }
                 break;
             case R.id.add_button:
-                amount++;
-                amountTextView.setText(getContext().getString(R.string.blank, amount));
-
-                if (listener != null)
-                    listener.amountIncrease(getId(), amount);
+                if (Integer.parseInt(amountTextView.getText().toString()) < maximum) {
+                    amount = amount + 1;
+                    amountTextView.setText(getContext().getString(R.string.blank, amount));
+                    if (listener != null)
+                        listener.amountIncrease(getId(), amount);
+                }
                 break;
         }
     }
@@ -87,6 +89,10 @@ public class StepperView
 
     public void setMinimum(int minimum) {
         this.minimum = minimum;
+    }
+
+    public void setMaximum(int maximum) {
+        this.maximum = maximum;
     }
 
     public void setOnAmountChangeListener(OnAmountChangeListener listener) {
