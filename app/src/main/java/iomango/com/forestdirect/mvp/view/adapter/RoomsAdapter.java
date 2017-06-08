@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.view.custom.CustomTextView;
 import iomango.com.forestdirect.mvp.view.custom.DialogEditText;
@@ -23,6 +26,7 @@ public class RoomsAdapter
     private int size = 1;
     private int minimumSize = 1;
     private int maximumSize = 9;
+    private List<RoomsAdapter.ViewHolder> holders  = new ArrayList<>();
 
 
     public RoomsAdapter(Context context, int size) {
@@ -43,6 +47,8 @@ public class RoomsAdapter
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.roomNumberTextView.setText(String.valueOf(position + 1));
+
+        holders.add(position, holder);
     }
 
     @Override
@@ -65,18 +71,18 @@ public class RoomsAdapter
         }
     }
 
-    public void clear() {
-        notifyItemRangeRemoved(0, size);
-    }
-
     public int getSize() {
         return size;
+    }
+
+    public List<ViewHolder> getHolders() {
+        return holders;
     }
 
     /**
      * View holder class for list item
      */
-    class ViewHolder
+    public class ViewHolder
             extends RecyclerView.ViewHolder {
 
         /**
@@ -90,6 +96,10 @@ public class RoomsAdapter
             super(view);
             roomNumberTextView = (CustomTextView) view.findViewById(R.id.room_number_text_view);
             guessDialogEditText = (DialogEditText) view.findViewById(R.id.guests_edit_text);
+        }
+
+        public DialogEditText getGuessDialogEditText() {
+            return guessDialogEditText;
         }
     }
 }

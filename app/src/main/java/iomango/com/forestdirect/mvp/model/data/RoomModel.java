@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by Clelia López on 5/31/17
  */
 
-public class GuestModel {
+public class RoomModel {
 
     /**
      * Attributes
@@ -19,7 +19,15 @@ public class GuestModel {
         return adults;
     }
 
+    public void setAdults(int adults) {
+        this.adults = adults;
+    }
+
     public ArrayList<Integer> getChildren() {
         return children;
+    }
+
+    public void setChildren(ArrayList<Integer> children) {
+        this.children = children;
     }
 }

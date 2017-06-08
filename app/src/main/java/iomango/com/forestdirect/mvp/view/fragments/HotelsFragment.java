@@ -11,14 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import iomango.com.forestdirect.R;
 import iomango.com.forestdirect.mvp.MVP;
 import iomango.com.forestdirect.mvp.common.generic.GenericFragment;
 import iomango.com.forestdirect.mvp.common.global.Constants;
 import iomango.com.forestdirect.mvp.common.interfaces.Listener;
 import iomango.com.forestdirect.mvp.common.utilities.Date;
+import iomango.com.forestdirect.mvp.model.AdvancedOptionsModel;
+import iomango.com.forestdirect.mvp.model.data.RoomModel;
 import iomango.com.forestdirect.mvp.model.data.HotelLocationModel;
-import iomango.com.forestdirect.mvp.presenter.OneWayPresenter;
+import iomango.com.forestdirect.mvp.model.data.HotelSearchModel;
+import iomango.com.forestdirect.mvp.presenter.HotelsPresenter;
+import iomango.com.forestdirect.mvp.view.activities.MainActivity;
 import iomango.com.forestdirect.mvp.view.activities.SearchActivity;
 import iomango.com.forestdirect.mvp.view.adapter.RoomsAdapter;
 import iomango.com.forestdirect.mvp.view.custom.CustomButton;
@@ -32,7 +39,7 @@ import iomango.com.forestdirect.mvp.view.decorator.DividerItemDecoration;
  * Created by Clelia López on 03/10/2017
  */
 public class HotelsFragment
-        extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, OneWayPresenter>
+        extends GenericFragment<MVP.RequiredFragmentMethods, MVP.ProvidedPresenterMethodsFragment, HotelsPresenter>
         implements MVP.RequiredFragmentMethods, View.OnClickListener, View.OnFocusChangeListener,
         Listener.OnDateSetListener, AdapterView.OnItemClickListener {
 
@@ -45,8 +52,8 @@ public class HotelsFragment
     private DatePickerEditText checkOutPickerEditText;
     private DialogEditText kindDialogEditText;
     private Spinner roomsSpinner;
-    private RecyclerView roomsRecyclerView;
     private RoomsAdapter roomsAdapter;
+    private HotelLocationModel location;
     private int oldSize = 1;
 
 
@@ -66,7 +73,7 @@ public class HotelsFragment
         isRetainedFragment = false;
 
         // Instantiate the presenter
-        super.onCreate(OneWayPresenter.class, this);
+        super.onCreate(HotelsPresenter.class, this);
 
         // Initialize the view components defined in the fragment's layout
         initializeViews();
@@ -99,7 +106,7 @@ public class HotelsFragment
         roomsSpinner.getSpinner().setOnItemClickListener(this);
         roomsSpinner.getSpinner().setItems(R.array.rooms_array);
 
-        roomsRecyclerView = (RecyclerView) containerLayout.findViewById(R.id.recycler_rooms_list);
+        RecyclerView roomsRecyclerView = (RecyclerView) containerLayout.findViewById(R.id.recycler_rooms_list);
         roomsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         roomsRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), R.drawable.divider));
         roomsRecyclerView.setNestedScrollingEnabled(false);
@@ -111,7 +118,7 @@ public class HotelsFragment
     }
 
     /**
-     * Hook OnClickListenerR
+     * Hook OnClickListener
      */
     @Override
     public void onClick(View view) {
@@ -119,50 +126,41 @@ public class HotelsFragment
             case R.id.destination_edit_text:
                 startSearchActivity();
                 break;
-            /*case R.id.search_button:
-
-               TODO
-               SearchModel model = new SearchModel();
-                model.setType("OneWay");
-                model.setFrom(fromCode);
-                model.setTo(toCode);
-                model.setDepartureDate(datePickerEditText.getValue());
-                AdvancedOpti// childrenAdapter.clear();onsModel data = kindDialogEditText.getData();
-                if (data != null) {
-                    switch (data.getCabin()) {
-                        case "Economy":
-                            model.setCabin("M");
-                            break;
-                        case "Premium Economy":
-                            model.setCabin("Y");
-                            break;
-                        case "Business":
-                            model.setCabin("C");
-                            break;
-                        case "First":
-                            model.setCabin("F");
-                            break;
-                        default:
-                            model.setCabin("");
+            case R.id.search_button:
+                HotelSearchModel model = new HotelSearchModel();
+                model.setCityCode(location.getCityCode());
+                Date checkInDate = checkInPickerEditText.getDate();
+                Date checkOutDate = checkOutPickerEditText.getDate();
+                model.setCheckIn(checkInDate.getYear() + "-" + checkInDate.getMonth() + "-" + checkInDate.getDay());
+                model.setCheckOut(checkOutDate.getYear() + "-" + checkOutDate.getMonth() + "-" + checkOutDate.getDay());
+                List<RoomsAdapter.ViewHolder> holders = roomsAdapter.getHolders();
+                ArrayList<RoomModel> guests = new ArrayList<>();
+                RoomModel guest;
+                AdvancedOptionsModel data;
+                for (RoomsAdapter.ViewHolder holder : holders) {
+                    data = holder.getGuessDialogEditText().getData();
+                    guest = new RoomModel();
+                    if (data != null) {
+                        guest.setAdults(data.getAdult());
+                        guest.setChildren(data.getChildrenAges());
                     }
-                    model.setAdult(String.valueOf(data.getAdult()));
-                    model.setSenior(String.valueOf(data.getSenior()));
-                    model.setChild(String.valueOf(data.getChildren()));
-                    model.setLapInfant(String.valueOf(data.getInfant()));
+                    guests.add(guest);
                 }
+                model.setGuests(guests);
 
-
-
-                 // getPresenter().executeNetworkRequest(model);
-                 break;
-                */
+                if (model.isValid() /*&& model.getTotalPassengers() <= 5 TODO*/)
+                    getPresenter().executeNetworkRequest(model);
+                else
+                    getParentActivity(MainActivity.class).displaySnackBar(containerLayout,
+                            R.string.passenger_error_5, R.string.close_label, this);
+             break;
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.SEARCH_ACTIVITY && resultCode == Activity.RESULT_OK) {
-            HotelLocationModel location = data.getParcelableExtra("location");
+            location = data.getParcelableExtra("location");
             destinationEditText.setText(location.getTitle());
             destinationEditText.clearFocus();
         } else

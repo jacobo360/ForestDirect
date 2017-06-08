@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import iomango.com.forestdirect.mvp.common.interfaces.Listener.OnNetworkResponseListener;
 import iomango.com.forestdirect.mvp.common.utilities.Logger;
-import iomango.com.forestdirect.mvp.model.data.GuestModel;
+import iomango.com.forestdirect.mvp.model.data.RoomModel;
 import iomango.com.forestdirect.mvp.model.data.HotelSearchModel;
 import iomango.com.forestdirect.mvp.model.netwotk.Client;
 import iomango.com.forestdirect.mvp.model.netwotk.NetworkRequest;
@@ -39,18 +39,23 @@ public class QueryRooms<M>
 
         // Process rooms distribution
         String rooms = "";
-        ArrayList<GuestModel> guests = ((HotelSearchModel) model).getGuests();
+        ArrayList<RoomModel> guests = ((HotelSearchModel) model).getGuests();
         ArrayList<Integer> children;
-        for (GuestModel model : guests) {
+        for (RoomModel model : guests) {
             rooms = rooms + model.getAdults() + "!";
             children = model.getChildren();
             for (int age : children)
                 rooms = rooms + age + "-";
         }
 
-        int begin = rooms.lastIndexOf("!");
-        rooms = rooms.substring(0, begin - 1);
-        rooms = rooms + rooms.substring(begin + 1, rooms.length() - 1);
+        if (guests.size() > 1) {
+            int begin = rooms.lastIndexOf("!");
+            rooms = rooms.substring(0, begin - 1);
+            rooms = rooms + rooms.substring(begin + 1, rooms.length() - 1);
+        } else if (guests.size() == 1) {
+            int position = rooms.lastIndexOf("-");
+            rooms = rooms.substring(0, position - 1);
+        }
 
         Call<ResponseBody> call = Client.getTestAPIService().getRHotelRooms(
             hotelSearchModel.getCityCode(),
