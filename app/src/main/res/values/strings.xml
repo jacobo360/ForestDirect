@@ -1,0 +1,107 @@
+<resources>
+    <string name="app_name">Forest Direct</string>
+
+    <!-- Fonts -->
+    <string-array name="fonts">
+        <item>Roboto/Roboto-Regular.ttf</item>
+        <item>Roboto/Roboto-Medium.ttf</item>
+        <item>Roboto/Roboto-Black.ttf</item>
+    </string-array>
+
+    <!-- Adapter -->
+    <string name="code_name">NYC</string>
+    <string name="location_name">Phoenix Regional Airport, United States</string>
+
+    <!-- All -->
+    <string name="empty"/>
+    <string name="search_hint">Type to search</string>
+    <string name="image">Image</string>
+
+    <!-- Empty Fragment -->
+    <string name="empty_label">Not content yet</string>
+
+    <!-- Flight Fragment -->
+    <string name="flight_label">Flights</string>
+
+    <!-- Hotels Fragment -->
+    <string name="hotel_label">Hotels</string>
+
+    <!-- One Way Fragment -->
+    <string name="from_label">From</string>
+    <string name="to_label">To</string>
+    <string name="departure_date_label">Departure date</string>
+    <string name="return_date_label">Return date</string>
+    <string name="departure_time_label">Departure time</string>
+    <string name="return_time_label">Return time</string>
+    <string name="kind_label">Kind and Passengers</string>
+    <string name="more_options_label">More Options</string>
+    <string name="preferred_airline_label">Preferred Airline</string>
+    <string name="include_airport_label">Include near airport</string>
+    <string name="include_flexible_label">Include flexible dates</string>
+    <string name="search_label">Search</string>
+    <string name="date_error">Date is not valid</string>
+    <string name="from_hint">E.g. Orlando</string>
+    <string name="to_hint">E.g. Chicago</string>
+    <string name="departure_date_hint">E.g. 20 May, 2017</string>
+    <string name="kind_hint">E.g. 1 Adult, Business</string>
+    <string name="departure_time_hint">E.g. 18:30</string>
+    <string name="passenger_error">Number of passengers can\'t be more than 6</string>
+    <string name="close_label">Close</string>
+
+    <!--RoundTrip Fragment -->
+    <string name="return_date_hint">E.g. 30 May, 2017</string>
+    <string name="return_time_hint">E.g. 8:30</string>
+    <string name="dates_error">Range invalid </string>
+
+    <!-- MultiCity Fragment -->
+    <string name="add_flight_label"> Add another flight (Up to 6)</string>
+
+    <!-- Selector Fragment -->
+    <string name="one_way_label">One Way</string>
+    <string name="round_trip_label">Round-Trip</string>
+    <string name="multi_city_label">Multi-City</string>
+
+    <!-- Hotels Fragment -->
+    <string name="destination_city_label">Destination City</string>
+    <string name="destination_city_hint">E.g. Prague</string>
+    <string name="check_in_label">Check In</string>
+    <string name="check_in_hint">E.g. 11 Jun, 2017</string>
+    <string name="check_out_label">Check Out</string>
+    <string name="check_out_hint">E.g. 23 Jun, 2017</string>
+    <string name="rooms_label">Rooms</string>
+    <string name="adults_children_label">Adults and Children</string>
+    <string name="adults_children_hint">E.g. 2 Adults, 1 Children</string>
+    <string-array name="rooms_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <!-- Stepper View -->
+    <string name="amount_label">0</string>
+    <string name="blank">%d</string>
+
+    <!-- Advanced Options Dialog -->
+    <string name="positive_option_label">OK</string>
+    <string name="negative_option_label">Cancel</string>
+    <string name="cabin_label">Cabin</string>
+    <string name="adults_label">Adults (12 &#8211; 65)</string>
+    <string name="seniors_label">Senior (65+)</string>
+    <string name="children_label">Children (2 &#8211; 11)</string>
+    <string name="infants_label">Lap Infants (0 &#8211; 2)</string>
+    <string name="dialog_title_label">Select Flight Kind and Passengers</string>
+    <string name="dialog_title_guests_label">Select Guests</string>
+    <string-array name="test_array">
+        <item>Any Cabin</item>
+        <item>Economy</item>
+        <item>Premium Economy</item>
+        <item>Business</item>
+        <item>First</item>
+    </string-array>
+</resources>

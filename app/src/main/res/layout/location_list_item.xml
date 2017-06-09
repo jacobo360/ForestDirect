@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:background="@drawable/bg_item">
+
+    <android.support.v4.widget.Space
+        android:id="@+id/space"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+        android:id="@+id/code_text_view"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/code_name"
+        style="@style/TextViewStyle.Subheading"/>
+
+    <iomango.com.forestdirect.mvp.view.custom.CustomTextView
+        android:id="@+id/location_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:maxLines="3"
+        android:text="@string/location_name"
+        style="@style/TextViewStyle.Subheading"/>
+</LinearLayout>
