@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="416936448529899cd25f80808b4d1869582bc8a8">
+        <dex dex="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_d8437a71148f4b35922d544a4889a0b5603c39e9/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jacobokoenig/.android/build-cache/70970c7ace67e2511bbbd0f7d729af0160e27987/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cc2f1d4fe9a105104aa4f2e95d8f878334bdb8d6">
+        <dex dex="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/pre-dexed/release/classes_749bc50dcf0fd17fc0d0ef3cff62012c0305f7fa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jacobokoenig/.android/build-cache/2497cee22b417fa92c4e2a6749755f6ce4537115/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="20e6d443b368a3cbcfd9121e6f424708e772967e">
+        <dex dex="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/pre-dexed/release/classes_35c5725770015d41701c78c27d77430db86c9724.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/jacobokoenig/.android/build-cache/f641d97bde1a4f3ceda5ae721e52122a1af50fe0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="215abfa2b78865741d99f7b9c0afb79894986505">
+        <dex dex="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/pre-dexed/release/classes_56756d217b9cc5a3c938516c4efebd359a152dd6.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/jacobokoenig/Desktop/Development/android-forest-direct/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_66c5bdcc5c1e1a7956eab2b00483b9406f8259da/classes.dex" />
+    </item>
+
+</items>
